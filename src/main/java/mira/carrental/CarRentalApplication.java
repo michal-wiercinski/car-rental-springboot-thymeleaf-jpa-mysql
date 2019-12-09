@@ -1,4 +1,4 @@
-package mira.dbproject.carrental;
+package mira.carrental;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

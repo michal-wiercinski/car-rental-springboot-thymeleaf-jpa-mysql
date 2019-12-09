@@ -1,4 +1,4 @@
-package mira.dbproject.carrental;
+package mira.carrental;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
