@@ -1,4 +1,4 @@
-package mira.carrental.config;
+package mira.dbproject.carrental.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
