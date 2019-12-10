@@ -1,6 +1,5 @@
 package mira.dbproject.carrental.domain.entity;
 
-import com.mira.vehiclerental.security.domain.Role;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Column;

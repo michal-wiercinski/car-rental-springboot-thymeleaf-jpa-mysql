@@ -21,7 +21,7 @@ public class Rental {
 
   @OneToOne
   @JoinColumn(name = "vehicle_id")
-  private Vehicle vehicle;
+  private Car vehicle;
 
   @ManyToOne
   @JoinColumn(name = "customer_id")
@@ -55,11 +55,11 @@ public class Rental {
     this.dateTo = dateTo;
   }
 
-  public Vehicle getVehicle() {
+  public Car getVehicle() {
     return vehicle;
   }
 
-  public void setVehicle(Vehicle vehicle) {
+  public void setVehicle(Car vehicle) {
     this.vehicle = vehicle;
   }
 

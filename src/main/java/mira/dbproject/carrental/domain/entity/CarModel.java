@@ -38,7 +38,7 @@ public class CarModel implements Serializable {
 
   @OneToMany(mappedBy = "carModel",
       cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-  private List<Vehicle> vehicles;
+  private List<Car> vehicles;
 
 
   public Long getId() {
@@ -65,11 +65,11 @@ public class CarModel implements Serializable {
     this.manufacturer = manufacturer;
   }
 
-  public List<Vehicle> getVehicles() {
+  public List<Car> getVehicles() {
     return vehicles;
   }
 
-  public void setVehicles(List<Vehicle> vehicles) {
+  public void setVehicles(List<Car> vehicles) {
     this.vehicles = vehicles;
   }
 }

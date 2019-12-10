@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Vehicle implements Serializable {
+public class Car implements Serializable {
 
   @Id
   private String registrationNumber;
