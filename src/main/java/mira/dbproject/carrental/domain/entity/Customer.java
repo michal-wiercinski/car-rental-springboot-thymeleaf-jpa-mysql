@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
@@ -18,6 +19,9 @@ public class Customer {
 
   private String name;
   private String surname;
+
+  @OneToOne
+  private User user;
 
   @OneToMany(mappedBy = "customer")
   private List<Rental> rentals;
@@ -56,6 +60,22 @@ public class Customer {
 
   public void setAddress(Address address) {
     this.address = address;
+  }
+
+  public List<Rental> getRentals() {
+    return rentals;
+  }
+
+  public void setRentals(List<Rental> rentals) {
+    this.rentals = rentals;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
   }
 }
 

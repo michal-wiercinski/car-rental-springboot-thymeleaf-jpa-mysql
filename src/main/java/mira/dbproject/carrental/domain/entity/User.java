@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 @NamedQueries({
     @NamedQuery(
@@ -47,6 +48,9 @@ public class User implements Serializable {
       joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
       inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
   private Collection<Role> roles;
+
+  @OneToOne
+  private Customer customer;
 
   public User(){
     super();
@@ -132,5 +136,13 @@ public class User implements Serializable {
 
   public void setEnabled(Boolean enabled) {
     this.enabled = enabled;
+  }
+
+  public Customer getCustomer() {
+    return customer;
+  }
+
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
   }
 }
