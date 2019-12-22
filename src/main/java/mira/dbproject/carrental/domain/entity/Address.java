@@ -7,8 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import lombok.Data;
 
+@Data
+@Table(name = "address")
 @Entity
 public class Address {
 
@@ -18,7 +21,7 @@ public class Address {
 
   private String city;
 
-  private String zipCode;
+  private String zipCodessssss;
 
   private String street;
 
@@ -43,12 +46,12 @@ public class Address {
     this.city = city;
   }
 
-  public String getZipCode() {
-    return zipCode;
+  public String getZipCodessssss() {
+    return zipCodessssss;
   }
 
-  public void setZipCode(String zipCode) {
-    this.zipCode = zipCode;
+  public void setZipCodessssss(String zipCodessssss) {
+    this.zipCodessssss = zipCodessssss;
   }
 
   public String getStreet() {

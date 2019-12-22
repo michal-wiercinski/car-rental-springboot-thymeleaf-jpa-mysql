@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import lombok.Data;
 
 @NamedQueries({
     @NamedQuery(
@@ -17,6 +19,8 @@ import javax.persistence.OneToMany;
         query = "select t from BodyType t where t.typeName = :name"
     )
 })
+@Data
+@Table(name = "body_type")
 @Entity
 public class BodyType implements Serializable {
 

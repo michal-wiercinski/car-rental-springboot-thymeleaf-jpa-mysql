@@ -11,15 +11,19 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import lombok.Data;
 
 @NamedQueries({
     @NamedQuery(
-        name = "Manufacturer.FindByName",
-        query = "select m from Manufacturer m where m.name = :name"
+        name = "Brand.FindByName",
+        query = "select m from Brand m where m.name = :name"
     )
 })
+@Data
+@Table(name = "brand")
 @Entity
-public class Manufacturer implements Serializable {
+public class Brand implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
@@ -27,7 +31,7 @@ public class Manufacturer implements Serializable {
 
   private String name;
 
-  @OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
   private List<CarModel> models;
 
   public Long getId() {

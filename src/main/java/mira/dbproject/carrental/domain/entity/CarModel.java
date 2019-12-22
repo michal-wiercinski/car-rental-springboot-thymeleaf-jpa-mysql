@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import lombok.Data;
 
 @NamedQueries({
     @NamedQuery(
@@ -20,9 +22,11 @@ import javax.persistence.OneToMany;
     ),
     @NamedQuery(
         name = "CarModel.FindByManufacturerName",
-        query = "select m from CarModel m where m.manufacturer = :manufacturerId"
+        query = "select m from CarModel m where m.brand = :brandId"
     )
 })
+@Data
+@Table(name = "car_model")
 @Entity
 public class CarModel implements Serializable {
 
@@ -33,8 +37,8 @@ public class CarModel implements Serializable {
   private String name;
 
   @ManyToOne
-  @JoinColumn(name = "manufacturer_id")
-  private Manufacturer manufacturer;
+  @JoinColumn(name = "brand_id")
+  private Brand brand;
 
   @OneToMany(mappedBy = "carModel",
       cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -57,12 +61,12 @@ public class CarModel implements Serializable {
     this.name = name;
   }
 
-  public Manufacturer getManufacturer() {
-    return manufacturer;
+  public Brand getBrand() {
+    return brand;
   }
 
-  public void setManufacturer(Manufacturer manufacturer) {
-    this.manufacturer = manufacturer;
+  public void setBrand(Brand brand) {
+    this.brand = brand;
   }
 
   public List<Car> getVehicles() {

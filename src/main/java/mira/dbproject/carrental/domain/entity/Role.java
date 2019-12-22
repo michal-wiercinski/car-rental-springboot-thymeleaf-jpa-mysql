@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import lombok.Data;
 
 @NamedQueries({
     @NamedQuery(
@@ -16,6 +18,8 @@ import javax.persistence.NamedQuery;
         query="select r from Role r where r.name = :name"
     )
 })
+@Data
+@Table(name = "role")
 @Entity
 public class Role implements Serializable {
 

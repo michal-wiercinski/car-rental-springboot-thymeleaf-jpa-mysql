@@ -8,7 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import lombok.Data;
 
+@Data
+@Table(name = "rental")
 @Entity
 public class Rental {
 
@@ -19,9 +23,9 @@ public class Rental {
   private LocalDateTime dateFrom;
   private LocalDateTime dateTo;
 
-  @OneToOne
-  @JoinColumn(name = "vehicle_id")
-  private Car vehicle;
+  @ManyToOne
+  @JoinColumn(name = "car_id")
+  private Car car;
 
   @ManyToOne
   @JoinColumn(name = "customer_id")
@@ -55,12 +59,12 @@ public class Rental {
     this.dateTo = dateTo;
   }
 
-  public Car getVehicle() {
-    return vehicle;
+  public Car getCar() {
+    return car;
   }
 
-  public void setVehicle(Car vehicle) {
-    this.vehicle = vehicle;
+  public void setCar(Car car) {
+    this.car = car;
   }
 
   public Customer getCustomer() {

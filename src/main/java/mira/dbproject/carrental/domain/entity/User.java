@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import lombok.Data;
 
 @NamedQueries({
     @NamedQuery(
@@ -20,6 +22,8 @@ import javax.persistence.OneToOne;
         query = "select u from User u where u.email = :email"
     ),
 })
+@Data
+@Table(name = "user")
 @Entity
 public class User implements Serializable {
 
@@ -37,12 +41,6 @@ public class User implements Serializable {
   @Column(length = 60)
   private String password;
 
-  private boolean enabled;
-
-  private boolean isUsing2FA;
-
-  private String secret;
-
   @ManyToMany
   @JoinTable(name = "user_roles",
       joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -50,12 +48,9 @@ public class User implements Serializable {
   private Collection<Role> roles;
 
   @OneToOne
+  @JoinColumn(name = "customer_id")
   private Customer customer;
 
-  public User(){
-    super();
-    this.enabled = false;
-  }
 
   public Long getId() {
     return id;
@@ -79,31 +74,6 @@ public class User implements Serializable {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
-  }
-
-
-  public boolean isEnabled() {
-    return enabled;
-  }
-
-  public void setEnabled(boolean enabled) {
-    this.enabled = enabled;
-  }
-
-  public boolean isUsing2FA() {
-    return isUsing2FA;
-  }
-
-  public void setUsing2FA(boolean using2FA) {
-    isUsing2FA = using2FA;
-  }
-
-  public String getSecret() {
-    return secret;
-  }
-
-  public void setSecret(String secret) {
-    this.secret = secret;
   }
 
   public String getEmail() {
@@ -130,13 +100,6 @@ public class User implements Serializable {
     this.roles = roles;
   }
 
-  public Boolean getEnabled() {
-    return enabled;
-  }
-
-  public void setEnabled(Boolean enabled) {
-    this.enabled = enabled;
-  }
 
   public Customer getCustomer() {
     return customer;
