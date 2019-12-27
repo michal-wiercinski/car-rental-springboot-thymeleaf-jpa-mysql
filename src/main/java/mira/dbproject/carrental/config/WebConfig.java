@@ -1,3 +1,4 @@
+/*
 package mira.dbproject.carrental.config;
 
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,6 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("mira.carrental")
 public class WebConfig implements WebMvcConfigurer {
 
   @Bean
@@ -53,3 +53,4 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addViewController("/").setViewName("index");
   }
 }
+*/

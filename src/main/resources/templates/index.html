@@ -3,10 +3,56 @@
 <head>
   <link th:replace="/parts/metadata"/>
   <title>Title</title>
+
 </head>
 <body>
+<link th:replace="/parts/navbar"/>
+<div class="container">
+  <div class="form-control">
+  <div class="col-4">
+  <p>Start Date: <input type="text" id="datepicker1" class="form-control"></p>
+  <p>End Date: <input type="text" id="datepicker2" class="form-control"></p>
+  </div>
+  <!--<div class="col-3">
+    <div class="form-group col-md-4">
+      <label>Car Model:</label>
+      <select class="form-control" th:field="*{locationDtoId}">
+        <option th:value="null">Location</option>
+        <option th:each="location : ${locations}"
+                th:value="${location.id}"
+                th:text="${location.name}">
+        </option>
+      </select>
+    </div>
+  </div>-->
+</div>
+</div>
 
 
 <link th:replace="/parts/scripts"/>
+<script>
+  $('#datepicker1').datetimepicker({
+    timepicker: true,
+    datepicker: true,
+    format: 'Y-m-d H:i',
+    //weeks: true
+    onShow: function (ct) {
+      this.setOptions({
+        minDate: $('#datepicker2').val() ? $('#datepicker2').val() : false
+      })
+    }
+  })
+  $('#datepicker2').datetimepicker({
+    timepicker: true,
+    datepicker: true,
+    format: 'Y-m-d H:i',
+    //weeks: true
+    onShow: function (ct) {
+      this.setOptions({
+        minDate: $('#datepicker1').val() ? $('#datepicker1').val() : false
+      })
+    }
+  })
+</script>
 </body>
 </html>
