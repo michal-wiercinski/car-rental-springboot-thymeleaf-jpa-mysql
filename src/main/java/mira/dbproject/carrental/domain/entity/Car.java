@@ -43,7 +43,7 @@ public class Car implements Serializable {
       cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   private List<Rental> rental;
 
-  @ManyToOne
+  @OneToOne
   @JoinColumn(name = "car_parameter_id")
   private CarParameter carParameter;
   

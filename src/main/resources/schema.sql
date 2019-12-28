@@ -18,12 +18,12 @@ drop table if exists user;
 
 create table address
 (
-    id              bigint auto_increment
+    id           bigint auto_increment
         primary key,
-    city            varchar(255) null,
-    house_number    varchar(255) null,
-    street          varchar(255) null,
-    zip_code varchar(255) null
+    city         varchar(255) null,
+    house_number varchar(255) null,
+    street       varchar(255) null,
+    zip_code     varchar(255) null
 );
 
 create table body_type
@@ -63,11 +63,12 @@ create table car_parameter
 (
     id                       bigint auto_increment
         primary key,
-    current_mileage          int null,
-    engine_size              int null,
-    year_of_prod             int null,
-    average_fuel_consumption int null,
-    daily_rate               int null
+    current_mileage          int    null,
+    engine_size              int    null,
+    year_of_prod             int    null,
+    average_fuel_consumption int    null,
+    daily_rate               int    null,
+    car_id                   bigint null
 );
 
 create table location
@@ -101,6 +102,9 @@ create table car
 );
 
 
+
+
+
 create table customer
 (
     id         bigint auto_increment
@@ -123,23 +127,26 @@ create table user
     foreign key (customer_id) references customer (id)
 );
 
-alter table customer
-    add foreign key (user_id) references user (id);
+
 
 create table rental
 (
     id          bigint auto_increment
         primary key,
-    date_from   datetime(6)  null,
-    date_to     datetime(6)  null,
-    customer_id bigint       null,
-    status_id   bigint       null,
-    car_id      bigint null,
+    date_from   datetime(6) null,
+    date_to     datetime(6) null,
+    customer_id bigint      null,
+    status_id   bigint      null,
+    car_id      bigint      null,
     foreign key (customer_id) references customer (id),
     foreign key (car_id) references car (id),
     foreign key (status_id) references rental_status (id)
 );
+alter table car_parameter
+    add foreign key (car_id) references car (id);
 
+alter table customer
+    add foreign key (user_id) references user (id);
 
 
 

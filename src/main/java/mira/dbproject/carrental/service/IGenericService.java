@@ -21,5 +21,4 @@ public interface IGenericService<T> {
   @Transactional
   void deleteById(Long id);
 
-  Long count();
 }

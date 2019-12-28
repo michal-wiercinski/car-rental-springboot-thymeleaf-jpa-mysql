@@ -3,7 +3,7 @@ package mira.dbproject.carrental.domain.dto;
 public class CarParameterDto {
 
   private Long id;
-  private Integer currentMileage;
+
   private Integer engineSize;
   private Integer yearOfProd;
   private Integer averageFuelConsumption;
@@ -14,14 +14,6 @@ public class CarParameterDto {
 
   public void setId(Long id) {
     this.id = id;
-  }
-
-  public Integer getCurrentMileage() {
-    return currentMileage;
-  }
-
-  public void setCurrentMileage(Integer currentMileage) {
-    this.currentMileage = currentMileage;
   }
 
   public Integer getEngineSize() {

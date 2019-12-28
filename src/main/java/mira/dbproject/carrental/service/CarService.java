@@ -38,8 +38,4 @@ public class CarService implements IGenericService<Car> {
 
   }
 
-  @Override
-  public Long count() {
-    return null;
-  }
 }
