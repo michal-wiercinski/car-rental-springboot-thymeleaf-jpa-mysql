@@ -15,7 +15,7 @@ public class BodyTypeService implements IGenericService<BodyType> {
 
   @Override
   public List<BodyType> findAll() {
-    return null;
+    return bodyTypeDao.findAll();
   }
 
   @Override

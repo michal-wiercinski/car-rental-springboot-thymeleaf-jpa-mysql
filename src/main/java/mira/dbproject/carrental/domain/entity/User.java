@@ -2,6 +2,7 @@ package mira.dbproject.carrental.domain.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
@@ -29,27 +31,26 @@ public class User implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(unique = true, nullable = false)
+  @Column(name = "id_user")
   private Long id;
 
+  @Column(name = "first_name")
   private String firstName;
 
+  @Column(name = "last_name")
   private String lastName;
 
+  @Column(name = "email")
   private String email;
 
-  @Column(length = 60)
+  @Column(name = "password",length = 60)
   private String password;
 
   @ManyToMany
   @JoinTable(name = "user_roles",
-      joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-      inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+      joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id_user"),
+      inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id_role"))
   private Collection<Role> roles;
-
-  @OneToOne
-  @JoinColumn(name = "customer_id")
-  private Customer customer;
 
 
   public Long getId() {
@@ -100,12 +101,4 @@ public class User implements Serializable {
     this.roles = roles;
   }
 
-
-  public Customer getCustomer() {
-    return customer;
-  }
-
-  public void setCustomer(Customer customer) {
-    this.customer = customer;
-  }
 }

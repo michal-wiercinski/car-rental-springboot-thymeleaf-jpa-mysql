@@ -1,6 +1,7 @@
 package mira.dbproject.carrental.domain.entity;
 
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Customer {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
+  @Column(name = "id_customer")
   private Long id;
 
   @OneToOne

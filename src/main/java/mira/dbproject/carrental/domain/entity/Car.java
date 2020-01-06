@@ -3,6 +3,7 @@ package mira.dbproject.carrental.domain.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,10 +22,13 @@ public class Car implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id_car")
   private Long id;
 
+  @Column(name = "registration_number")
   private String registrationNumber;
-  private Integer dailyRate;
+
+  @Column(name = "is_rent")
   private Boolean isRent = false;
 
   @ManyToOne
@@ -61,14 +65,6 @@ public class Car implements Serializable {
 
   public void setId(Long id) {
     this.id = id;
-  }
-
-  public Integer getDailyRate() {
-    return dailyRate;
-  }
-
-  public void setDailyRate(Integer dailyRate) {
-    this.dailyRate = dailyRate;
   }
 
   public Boolean getRent() {

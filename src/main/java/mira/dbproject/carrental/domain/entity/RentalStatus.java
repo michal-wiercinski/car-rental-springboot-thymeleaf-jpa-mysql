@@ -1,6 +1,7 @@
 package mira.dbproject.carrental.domain.entity;
 
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +17,10 @@ public class RentalStatus {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
+  @Column(name = "id_status")
   private Long id;
 
+  @Column(name = "status_desc")
   private String statusDescription;
 
   @OneToMany(mappedBy = "rentalStatus")

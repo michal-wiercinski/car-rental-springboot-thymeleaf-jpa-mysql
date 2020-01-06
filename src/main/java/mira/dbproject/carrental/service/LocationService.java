@@ -15,7 +15,7 @@ public class LocationService implements IGenericService<Location> {
 
   @Override
   public List<Location> findAll() {
-    return null;
+    return locationDao.findAll();
   }
 
   @Override

@@ -1,5 +1,7 @@
 package mira.dbproject.carrental.domain.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class CarDto {
 
   private Long id;
@@ -7,13 +9,33 @@ public class CarDto {
   private String registrationNumber;
   private Integer dailyRate;
   private Boolean isRent = false;
-  private LocationDto locationDto;
-  private CarModelDto carModelDto;
-  private BodyTypeDto bodyTypeDto;
+  private Long bodyTypeDtoId;
+  private Long LocationDtoId;
+  private Long carModelDtoId;
   private Integer currentMileage;
   private Integer engineSize;
   private Integer yearOfProd;
   private Integer averageFuelConsumption;
+  private Integer power;
+
+  public CarDto() {
+  }
+
+  public CarDto(String registrationNumber, Integer dailyRate, Boolean isRent,
+      Long bodyTypeDtoId, Long locationDtoId, Long carModelDtoId, Integer currentMileage,
+      Integer engineSize, Integer yearOfProd, Integer averageFuelConsumption) {
+
+    this.registrationNumber = registrationNumber;
+    this.dailyRate = dailyRate;
+    this.isRent = isRent;
+    this.bodyTypeDtoId = bodyTypeDtoId;
+    LocationDtoId = locationDtoId;
+    this.carModelDtoId = carModelDtoId;
+    this.currentMileage = currentMileage;
+    this.engineSize = engineSize;
+    this.yearOfProd = yearOfProd;
+    this.averageFuelConsumption = averageFuelConsumption;
+  }
 
   public Long getId() {
     return id;
@@ -47,28 +69,28 @@ public class CarDto {
     isRent = rent;
   }
 
-  public LocationDto getLocationDto() {
-    return locationDto;
+  public Long getBodyTypeDtoId() {
+    return bodyTypeDtoId;
   }
 
-  public void setLocationDto(LocationDto locationDto) {
-    this.locationDto = locationDto;
+  public void setBodyTypeDtoId(Long bodyTypeDtoId) {
+    this.bodyTypeDtoId = bodyTypeDtoId;
   }
 
-  public CarModelDto getCarModelDto() {
-    return carModelDto;
+  public Long getLocationDtoId() {
+    return LocationDtoId;
   }
 
-  public void setCarModelDto(CarModelDto carModelDto) {
-    this.carModelDto = carModelDto;
+  public void setLocationDtoId(Long locationDtoId) {
+    LocationDtoId = locationDtoId;
   }
 
-  public BodyTypeDto getBodyTypeDto() {
-    return bodyTypeDto;
+  public Long getCarModelDtoId() {
+    return carModelDtoId;
   }
 
-  public void setBodyTypeDto(BodyTypeDto bodyTypeDto) {
-    this.bodyTypeDto = bodyTypeDto;
+  public void setCarModelDtoId(Long carModelDtoId) {
+    this.carModelDtoId = carModelDtoId;
   }
 
   public Integer getCurrentMileage() {

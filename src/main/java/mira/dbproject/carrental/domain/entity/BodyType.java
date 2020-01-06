@@ -3,6 +3,7 @@ package mira.dbproject.carrental.domain.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,8 +27,10 @@ public class BodyType implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
+  @Column(name = "id_body_type")
   private Long id;
 
+  @Column(name = "type_name")
   private String typeName;
 
   @OneToMany(mappedBy = "bodyType",

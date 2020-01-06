@@ -15,7 +15,7 @@ public class CarModelService implements IGenericService<CarModel>{
 
   @Override
   public List<CarModel> findAll() {
-    return null;
+    return carModelDao.findAll();
   }
 
   @Override

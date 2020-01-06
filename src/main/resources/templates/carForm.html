@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link th:replace="/parts/metadata">
+  <title>Add new car</title>
+</head>
+<body>
+
+
+<link th:replace="/parts/navbar">
+
+<form class="form-horizontal" th:object="${car}" th:action="@{/manage/add-car}" th:method="post">
+  <h2 class="title alert-primary">Add vehicle</h2>
+
+  <div class="form-group col-md-4">
+    <label for="inputBodyType">Body type:</label>
+    <select id="inputBodyType" class="form-control" th:field="*{bodyTypeDtoId}">
+      <!--   <div th:if="${#fields.hasAnyErrors()}">
+           <p th:each="err : ${#fields.allErrors()}" th:text="${err}">...</p>
+         </div>-->
+      <option th:value="null"> Body type </option>
+      <option th:each="bodyType : ${bodyTypes}"
+              th:value="${bodyType.id}"
+              th:text="${bodyType.typeName}">locationList
+      </option>
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <label>Car Model:</label>
+    <select class="form-control" th:field="*{carModelDtoId}">
+      <option th:value="null">Car model</option>
+      <option th:each="model : ${carModels}"
+              th:value="${model.id}"
+              th:text="${model.name} + ' (' + (${model.brand.name}) + ')' ">
+      </option>
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <label>Car Model:</label>
+    <select class="form-control" th:field="*{locationDtoId}">
+      <option th:value="null">Location</option>
+      <option th:each="location : ${locations}"
+              th:value="${location.id}"
+              th:text="${location.name}">
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2">Registration number:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="Enter registration number" th:field="*{registrationNumber}">
+      <!--   <div class="alert alert-danger" role="alert"
+              th:if="${#fields.hasErrors('registrationNumber')}" th:errors="*{registrationNumber}">
+         </div>-->
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Engine size:</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" placeholder="Enter engine size" th:field="*{engineSize}">
+      <!-- <div class="alert alert-danger" role="alert"
+            th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+       </div>-->
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Year of production:</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" placeholder="Enter the year"
+             th:field="*{yearOfProd}">
+      <!-- <div class="alert alert-danger" role="alert"
+            th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+       </div>-->
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Current mileage:</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" placeholder="Enter mileage"
+             th:field="*{currentMileage}">
+      <!-- <div class="alert alert-danger" role="alert"
+            th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+       </div>-->
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Year of production:</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" placeholder="Enter the year"
+             th:field="*{yearOfProd}">
+      <!-- <div class="alert alert-danger" role="alert"
+            th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+       </div>-->
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Year of production:</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" placeholder="Enter the year"
+             th:field="*{yearOfProd}">
+      <!-- <div class="alert alert-danger" role="alert"
+            th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+       </div>-->
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Year of production:</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" placeholder="Enter the year"
+             th:field="*{yearOfProd}">
+      <!-- <div class="alert alert-danger" role="alert"
+            th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+       </div>-->
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+
+<link th:replace="/parts/scripts">
+</body>
+</html>

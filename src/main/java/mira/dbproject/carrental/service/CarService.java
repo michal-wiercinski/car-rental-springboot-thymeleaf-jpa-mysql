@@ -2,16 +2,25 @@ package mira.dbproject.carrental.service;
 
 import java.util.List;
 import java.util.Optional;
+import mira.dbproject.carrental.domain.dto.CarDto;
 import mira.dbproject.carrental.domain.entity.Car;
+import mira.dbproject.carrental.mapper.CarMapper;
 import mira.dbproject.carrental.repository.dao.CarDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CarService implements IGenericService<Car> {
 
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
   @Autowired
   CarDao carDao;
+
+  @Autowired
+  CarMapper carMapper;
 
   @Override
   public List<Car> findAll() {
@@ -38,4 +47,11 @@ public class CarService implements IGenericService<Car> {
 
   }
 
+
+  public Car createNewCar(CarDto carDto){
+    Car car = carMapper.mapNewCarToEntity(carDto);
+    logger.debug("carDto has been mapped to entity");
+    save(car);
+    return  car;
+  }
 }

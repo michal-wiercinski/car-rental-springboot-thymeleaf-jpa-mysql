@@ -1,6 +1,7 @@
 package mira.dbproject.carrental.domain.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,11 +18,26 @@ public class CarParameter {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id_car_parameter")
   private Long id;
-  private Integer engineSize;
-  private Integer yearOfProd;
-  private Integer averageFuelConsumption;
+
+  @Column(name = "current_mileage")
   private Integer currentMileage;
+
+  @Column(name = "engine_size")
+  private Integer engineSize;
+
+  @Column(name = "power")
+  private  Integer power;
+
+  @Column(name = "year_of_prod")
+  private Integer yearOfProd;
+
+  @Column(name = "fuel_consumption")
+  private Integer averageFuelConsumption;
+
+  @Column(name = "daily_rate")
+  private Integer dailyRate;
 
   @OneToOne
   @JoinColumn(name = "car_id")
@@ -43,6 +59,14 @@ public class CarParameter {
     this.engineSize = engineSize;
   }
 
+  public Integer getPower() {
+    return power;
+  }
+
+  public void setPower(Integer power) {
+    this.power = power;
+  }
+
   public Integer getYearOfProd() {
     return yearOfProd;
   }
@@ -59,6 +83,14 @@ public class CarParameter {
     this.car = car;
   }
 
+  public Integer getDailyRate() {
+    return dailyRate;
+  }
+
+  public void setDailyRate(Integer dailyRate) {
+    this.dailyRate = dailyRate;
+  }
+
   public Integer getAverageFuelConsumption() {
     return averageFuelConsumption;
   }
@@ -67,13 +99,13 @@ public class CarParameter {
     this.averageFuelConsumption = averageFuelConsumption;
   }
 
-    public Integer getCurrentMileage() {
-        return currentMileage;
-    }
+  public Integer getCurrentMileage() {
+    return currentMileage;
+  }
 
-    public void setCurrentMileage(Integer currentMileage) {
-        this.currentMileage = currentMileage;
-    }
+  public void setCurrentMileage(Integer currentMileage) {
+    this.currentMileage = currentMileage;
+  }
 
 
 }
