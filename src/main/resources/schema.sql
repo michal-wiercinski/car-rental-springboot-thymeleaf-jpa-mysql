@@ -70,7 +70,8 @@ create table car_parameter
     power            int not null,
     year_of_prod     int not null,
     fuel_consumption int not null,
-    daily_rate       int not null
+    daily_rate       int not null,
+    car_id           bigint not null
 );
 
 create table location
@@ -108,13 +109,13 @@ create table car
 (
     id_car              bigint auto_increment
         primary key,
-    registration_number varchar(255) not null,
+    registration_number varchar(255)  not null,
 
-    body_type_id        bigint       not null,
-    car_model_id        bigint       not null,
-    location_id         bigint       not null,
-    car_parameter_id    bigint       not null,
-    car_status          bigint       not null,
+    body_type_id        bigint        not null,
+    car_model_id        bigint        not null,
+    location_id         bigint        not null,
+    car_parameter_id    bigint  unique not null,
+    car_status          varchar(3)  not null,
     foreign key (car_parameter_id) references car_parameter (id_car_parameter),
     foreign key (car_model_id) references car_model (id_car_model),
     foreign key (body_type_id) references body_type (id_body_type),
@@ -153,6 +154,9 @@ create table rental
 
 alter table customer
     add foreign key (user_id) references user (id_user);
+
+alter table car_parameter
+    add foreign key  (car_id) references car (id_car);
 
 
 

@@ -1,6 +1,7 @@
 package mira.dbproject.carrental.domain.entity;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +23,6 @@ public class CarStatus {
 
   @Column
   private String statusDescription;
-
-  @OneToMany(mappedBy = "car_status")
-  private List<Car> carList;
 
   public String getStatusCode() {
     return statusCode;
