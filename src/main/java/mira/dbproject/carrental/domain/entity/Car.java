@@ -29,7 +29,7 @@ public class Car implements Serializable {
   private String registrationNumber;
 
   @Column(name = "is_rent")
-  private Boolean isRent = false;
+  private Boolean isRent;
 
   @ManyToOne
   @JoinColumn(name = "location_id")
@@ -47,7 +47,7 @@ public class Car implements Serializable {
       cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   private List<Rental> rental;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "car_parameter_id")
   private CarParameter carParameter;
   

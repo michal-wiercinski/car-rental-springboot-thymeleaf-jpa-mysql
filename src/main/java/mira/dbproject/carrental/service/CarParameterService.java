@@ -13,10 +13,12 @@ public class CarParameterService {
   @Autowired
   CarParameterDao carParameterDao;
 
+
   @Transactional
   public CarParameter save(CarParameter carParameter) {
     return carParameterDao.save(carParameter);
   }
+
 
   public CarParameter createNewParameter(CarDto carDto) {
     CarParameter carParameter = new CarParameter();
@@ -26,8 +28,7 @@ public class CarParameterService {
     carParameter.setCurrentMileage(carDto.getCurrentMileage());
     carParameter.setEngineSize(carDto.getEngineSize());
     carParameter.setDailyRate(carDto.getDailyRate());
-
-    save(carParameter);
+    carParameter.setPower(carDto.getPower());
     return carParameter;
   }
 

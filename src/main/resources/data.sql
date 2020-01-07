@@ -1,4 +1,5 @@
-/*insert into body_type (type_name)
+
+insert into body_type (type_name)
 values ('Hatchback'),
        ('Kombi'),
        ('Sedan'),
@@ -26,13 +27,13 @@ values (1, 'SUPERADMIN'),
        (2, 'ADMIN'),
        (3, 'USER');
 
-insert into rental_status (id_rental, status_desc)
+insert into rental_status (id_status, status_desc)
 values (1, 'canceled'),
        (2, 'rented'),
        (3, 'reserved'),
        (4, 'returned');
 
-INSERT INTO `brand` (`id_brand`, `name_brand`)
+INSERT INTO brand (id_brand, brand_name)
 VALUES (1, 'AC'),
        (2, 'Acura'),
        (3, 'Alfa Romeo'),
@@ -1795,4 +1796,3 @@ values (3, 'Cobra', 1),
        (2903, 'Air Concept', 245);
 
 
-*/

@@ -8,10 +8,9 @@
 
 
 <link th:replace="/parts/navbar">
-
-<form class="form-horizontal" th:object="${car}" th:action="@{/manage/add-car}" th:method="post">
+<div class="container">
+<form class="form-horizontal " th:object="${car}" th:action="@{/manage/add-car}" th:method="post">
   <h2 class="title alert-primary">Add vehicle</h2>
-
   <div class="form-group col-md-4">
     <label for="inputBodyType">Body type:</label>
     <select id="inputBodyType" class="form-control" th:field="*{bodyTypeDtoId}">
@@ -46,7 +45,7 @@
     </select>
   </div>
 
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label class="control-label col-sm-2">Registration number:</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" placeholder="Enter registration number" th:field="*{registrationNumber}">
@@ -55,7 +54,7 @@
          </div>-->
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label class="control-label col-sm-2">Engine size:</label>
     <div class="col-sm-10">
       <input type="number" class="form-control" placeholder="Enter engine size" th:field="*{engineSize}">
@@ -64,17 +63,18 @@
        </div>-->
     </div>
   </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2">Year of production:</label>
+
+  <div class="form-group col-md-4">
+    <label class="control-label col-sm-2">Engine power:</label>
     <div class="col-sm-10">
       <input type="number" class="form-control" placeholder="Enter the year"
-             th:field="*{yearOfProd}">
+             th:field="*{power}">
       <!-- <div class="alert alert-danger" role="alert"
             th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
        </div>-->
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label class="control-label col-sm-2">Current mileage:</label>
     <div class="col-sm-10">
       <input type="number" class="form-control" placeholder="Enter mileage"
@@ -84,7 +84,7 @@
        </div>-->
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group col-md-4">
     <label class="control-label col-sm-2">Year of production:</label>
     <div class="col-sm-10">
       <input type="number" class="form-control" placeholder="Enter the year"
@@ -94,21 +94,21 @@
        </div>-->
     </div>
   </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2">Year of production:</label>
+  <div class="form-group col-md-4">
+    <label class="control-label col-sm-2">Average fuel consumption:</label>
     <div class="col-sm-10">
       <input type="number" class="form-control" placeholder="Enter the year"
-             th:field="*{yearOfProd}">
+             th:field="*{averageFuelConsumption}">
       <!-- <div class="alert alert-danger" role="alert"
             th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
        </div>-->
     </div>
   </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2">Year of production:</label>
+  <div class="form-group col-md-4">
+    <label class="control-label col-md-4">Daily rate:</label>
     <div class="col-sm-10">
       <input type="number" class="form-control" placeholder="Enter the year"
-             th:field="*{yearOfProd}">
+             th:field="*{dailyRate}">
       <!-- <div class="alert alert-danger" role="alert"
             th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
        </div>-->
@@ -120,7 +120,7 @@
     </div>
   </div>
 </form>
-
+</div>
 <link th:replace="/parts/scripts">
 </body>
 </html>

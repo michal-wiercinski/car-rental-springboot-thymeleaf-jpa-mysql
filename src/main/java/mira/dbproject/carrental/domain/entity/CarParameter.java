@@ -7,9 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
+
+
 
 @Data
 @Table(name = "car_parameter")
@@ -38,10 +42,6 @@ public class CarParameter {
 
   @Column(name = "daily_rate")
   private Integer dailyRate;
-
-  @OneToOne
-  @JoinColumn(name = "car_id")
-  private Car car;
 
   public Long getId() {
     return id;
@@ -73,14 +73,6 @@ public class CarParameter {
 
   public void setYearOfProd(Integer yearOfProd) {
     this.yearOfProd = yearOfProd;
-  }
-
-  public Car getCar() {
-    return car;
-  }
-
-  public void setCar(Car car) {
-    this.car = car;
   }
 
   public Integer getDailyRate() {

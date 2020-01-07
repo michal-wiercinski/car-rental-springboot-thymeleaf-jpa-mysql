@@ -124,4 +124,12 @@ public class CarDto {
   public void setAverageFuelConsumption(Integer averageFuelConsumption) {
     this.averageFuelConsumption = averageFuelConsumption;
   }
+
+  public Integer getPower() {
+    return power;
+  }
+
+  public void setPower(Integer power) {
+    this.power = power;
+  }
 }
