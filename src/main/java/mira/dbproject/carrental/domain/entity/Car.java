@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -28,8 +29,9 @@ public class Car implements Serializable {
   @Column(name = "registration_number")
   private String registrationNumber;
 
-  @Column(name = "is_rent")
-  private Boolean isRent;
+  @ManyToOne
+  @JoinColumn(name = "car_status")
+  private  CarStatus carStatus;
 
   @ManyToOne
   @JoinColumn(name = "location_id")
@@ -67,12 +69,12 @@ public class Car implements Serializable {
     this.id = id;
   }
 
-  public Boolean getRent() {
-    return isRent;
+  public CarStatus getCarStatus() {
+    return carStatus;
   }
 
-  public void setRent(Boolean rent) {
-    isRent = rent;
+  public void setCarStatus(CarStatus carStatus) {
+    this.carStatus = carStatus;
   }
 
   public Location getLocation() {

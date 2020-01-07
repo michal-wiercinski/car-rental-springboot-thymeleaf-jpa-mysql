@@ -1,4 +1,3 @@
-
 insert into body_type (type_name)
 values ('Hatchback'),
        ('Kombi'),
@@ -32,6 +31,10 @@ values (1, 'canceled'),
        (2, 'rented'),
        (3, 'reserved'),
        (4, 'returned');
+
+insert into car_status (status_code, status_description)
+values ('AVI', 'available'),
+       ('UAV', 'unavailable');
 
 INSERT INTO brand (id_brand, brand_name)
 VALUES (1, 'AC'),
