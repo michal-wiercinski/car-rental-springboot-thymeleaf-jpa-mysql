@@ -1,76 +1,103 @@
 package mira.dbproject.carrental.domain.entity;
 
-import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
+
+
 
 @Data
 @Table(name = "car_parameter")
 @Entity
 public class CarParameter {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Integer currentMileage;
-    private Integer engineSize;
-    private Integer yearOfProd;
-    private Integer averageFuelConsumption;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id_car_parameter")
+  private Long id;
 
-    @OneToMany(mappedBy = "carParameter", cascade = CascadeType.ALL)
-    private List<Car> cars;
+  @Column(name = "current_mileage")
+  private Integer currentMileage;
 
-    public Long getId() {
-        return id;
-    }
+  @Column(name = "engine_size")
+  private Integer engineSize;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  @Column(name = "power")
+  private  Integer power;
 
-    public Integer getCurrentMileage() {
-        return currentMileage;
-    }
+  @Column(name = "year_of_prod")
+  private Integer yearOfProd;
 
-    public void setCurrentMileage(Integer currentMileage) {
-        this.currentMileage = currentMileage;
-    }
+  @Column(name = "fuel_consumption")
+  private Integer averageFuelConsumption;
 
-    public Integer getEngineSize() {
-        return engineSize;
-    }
+  @Column(name = "daily_rate")
+  private Integer dailyRate;
 
-    public void setEngineSize(Integer engineSize) {
-        this.engineSize = engineSize;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public Integer getYearOfProd() {
-        return yearOfProd;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setYearOfProd(Integer yearOfProd) {
-        this.yearOfProd = yearOfProd;
-    }
+  public Integer getEngineSize() {
+    return engineSize;
+  }
 
-    public List<Car> getCars() {
-        return cars;
-    }
+  public void setEngineSize(Integer engineSize) {
+    this.engineSize = engineSize;
+  }
 
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
-    }
+  public Integer getPower() {
+    return power;
+  }
 
-    public Integer getAverageFuelConsumption() {
-        return averageFuelConsumption;
-    }
+  public void setPower(Integer power) {
+    this.power = power;
+  }
 
-    public void setAverageFuelConsumption(Integer averageFuelConsumption) {
-        this.averageFuelConsumption = averageFuelConsumption;
-    }
+  public Integer getYearOfProd() {
+    return yearOfProd;
+  }
+
+  public void setYearOfProd(Integer yearOfProd) {
+    this.yearOfProd = yearOfProd;
+  }
+
+  public Integer getDailyRate() {
+    return dailyRate;
+  }
+
+  public void setDailyRate(Integer dailyRate) {
+    this.dailyRate = dailyRate;
+  }
+
+  public Integer getAverageFuelConsumption() {
+    return averageFuelConsumption;
+  }
+
+  public void setAverageFuelConsumption(Integer averageFuelConsumption) {
+    this.averageFuelConsumption = averageFuelConsumption;
+  }
+
+  public Integer getCurrentMileage() {
+    return currentMileage;
+  }
+
+  public void setCurrentMileage(Integer currentMileage) {
+    this.currentMileage = currentMileage;
+  }
+
+
 }

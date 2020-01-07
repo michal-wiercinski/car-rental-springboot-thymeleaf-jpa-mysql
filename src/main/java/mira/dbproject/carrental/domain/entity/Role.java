@@ -2,6 +2,7 @@ package mira.dbproject.carrental.domain.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
+import org.hibernate.annotations.Cache;
 
 @NamedQueries({
     @NamedQuery(
@@ -25,8 +27,10 @@ public class Role implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
+  @Column(name = "id_role")
   private Long id;
 
+  @Column(name = "role_name")
   private String name;
 
   @ManyToMany(mappedBy = "roles" )

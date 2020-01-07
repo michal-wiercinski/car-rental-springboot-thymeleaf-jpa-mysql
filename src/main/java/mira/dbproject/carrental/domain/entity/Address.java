@@ -2,6 +2,7 @@ package mira.dbproject.carrental.domain.entity;
 
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,15 +18,20 @@ public class Address {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
+  @Column(name = "id_address")
   private Long id;
 
+  @Column(name = "city")
   private String city;
 
-  private String zipCode;
-
+  @Column(name = "street")
   private String street;
 
+  @Column(name = "house_number")
   private String houseNumber;
+
+  @Column(name = "zip_code")
+  private String zipCode;
 
   @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
   private List<Customer> customers;

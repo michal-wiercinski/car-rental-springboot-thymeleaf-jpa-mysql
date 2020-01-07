@@ -3,6 +3,7 @@ package mira.dbproject.carrental.domain.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +19,10 @@ public class Location implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
+  @Column(name = "id_location")
   private Long id;
 
+  @Column(name = "location_name")
   private String name;
 
   @OneToMany(mappedBy = "location",

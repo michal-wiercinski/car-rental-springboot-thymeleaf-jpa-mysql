@@ -1,13 +1,13 @@
 package mira.dbproject.carrental.domain.entity;
 
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -18,10 +18,14 @@ public class Rental {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
+  @Column(name = "id_rental")
   private Long id;
 
-  private LocalDateTime dateFrom;
-  private LocalDateTime dateTo;
+  @Column(name = "date_start")
+  private LocalDateTime dateStart;
+
+  @Column(name = "date_end")
+  private LocalDateTime dateEnd;
 
   @ManyToOne
   @JoinColumn(name = "car_id")
@@ -43,20 +47,20 @@ public class Rental {
     this.id = id;
   }
 
-  public LocalDateTime getDateFrom() {
-    return dateFrom;
+  public LocalDateTime getDateStart() {
+    return dateStart;
   }
 
-  public void setDateFrom(LocalDateTime dateFrom) {
-    this.dateFrom = dateFrom;
+  public void setDateStart(LocalDateTime dateFrom) {
+    this.dateStart = dateFrom;
   }
 
-  public LocalDateTime getDateTo() {
-    return dateTo;
+  public LocalDateTime getDateEnd() {
+    return dateEnd;
   }
 
-  public void setDateTo(LocalDateTime dateTo) {
-    this.dateTo = dateTo;
+  public void setDateEnd(LocalDateTime dateTo) {
+    this.dateEnd = dateTo;
   }
 
   public Car getCar() {
