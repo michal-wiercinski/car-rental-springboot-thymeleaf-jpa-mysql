@@ -70,8 +70,8 @@ create table car_parameter
     power            int not null,
     year_of_prod     int not null,
     fuel_consumption int not null,
-    daily_rate       int not null,
-    car_id           bigint not null
+    daily_rate       int not null
+    -- car_id           bigint not null
 );
 
 create table location
@@ -155,8 +155,8 @@ create table rental
 alter table customer
     add foreign key (user_id) references user (id_user);
 
-alter table car_parameter
-    add foreign key  (car_id) references car (id_car);
+-- alter table car_parameter
+   -- add foreign key  (car_id) references car (id_car);
 
 
 

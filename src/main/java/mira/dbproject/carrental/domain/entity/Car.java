@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -31,7 +30,7 @@ public class Car implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "car_status")
-  private  CarStatus carStatus;
+  private CarStatus carStatus;
 
   @ManyToOne
   @JoinColumn(name = "location_id")
@@ -52,7 +51,7 @@ public class Car implements Serializable {
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "car_parameter_id")
   private CarParameter carParameter;
-  
+
   public String getRegistrationNumber() {
     return registrationNumber;
   }

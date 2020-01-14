@@ -6,6 +6,7 @@ import mira.dbproject.carrental.domain.entity.Car;
 import mira.dbproject.carrental.service.BodyTypeService;
 import mira.dbproject.carrental.service.CarModelService;
 import mira.dbproject.carrental.service.CarParameterService;
+import mira.dbproject.carrental.service.CarStatusService;
 import mira.dbproject.carrental.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,9 @@ public class CarMapper {
   @Autowired
   CarParameterService carParameterService;
 
+  @Autowired
+  CarStatusService carStatusService;
+
   @Transactional
   public Car mapNewCarToEntity(CarDto carDto) {
     Car car = new Car();
@@ -32,9 +36,8 @@ public class CarMapper {
     car.setBodyType(bodyTypeService.findById(carDto.getBodyTypeDtoId()).get());
     car.setCarModel(carModelService.findById(carDto.getCarModelDtoId()).get());
     car.setLocation(locationService.findById(carDto.getLocationDtoId()).get());
-    System.out.println("asadasssssssssssssssssssssssssssssssssssssssssssss");
-
-
+    car.setCarStatus(carStatusService.findById(carDto.getCarStatus()).get());
+    
     return car;
   }
 

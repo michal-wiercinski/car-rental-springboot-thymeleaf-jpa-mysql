@@ -11,145 +11,142 @@
 <div class="container">
 
 
-<form class="form-inline mt-4" th:object="${car}" th:action="@{/manage/add-car}" th:method="post">
+  <form class="form-inline mt-4 col-lg-6" th:object="${car}" th:action="@{/manage/add-car}"
+        th:method="post">
 
-  <div class="form-group mb-2 mr-sm-2">
-   <!-- <label for="inputBodyType">Body type:</label>-->
-    <select id="inputBodyType" class="form-control" th:field="*{bodyTypeDtoId}">
-      <!--   <div th:if="${#fields.hasAnyErrors()}">
-           <p th:each="err : ${#fields.allErrors()}" th:text="${err}">...</p>
-         </div>-->
-      <option th:value="null"> Body type </option>
-      <option th:each="bodyType : ${bodyTypes}"
-              th:value="${bodyType.id}"
-              th:text="${bodyType.typeName}">locationList
-      </option>
-    </select>
-  </div>
-  <div class="form-group mb-2 mr-sm-2">
-    <!--<label>Car Model:</label>-->
-    <select class="form-control" th:field="*{carModelDtoId}">
-      <option th:value="null">Car model</option>
-      <option th:each="model : ${carModels}"
-              th:value="${model.id}"
-              th:text="${model.name} + ' (' + (${model.brand.name}) + ')' ">
-      </option>
-    </select>
-  </div>
-  <div class="form-group mb-2 mr-sm-2">
-    <!--<label>Location:</label>-->
-    <select class="form-control" th:field="*{locationDtoId}">
-      <option th:value="null">Location</option>
-      <option th:each="location : ${locations}"
-              th:value="${location.id}"
-              th:text="${location.name}">
-      </option>
-    </select>
-  </div>
+    <div class="blockList">
+      <div class="alert alert-danger " role="alert"
+           th:if="${#fields.hasErrors('bodyTypeDtoId')}" th:errors="*{bodyTypeDtoId}">
+      </div>
 
-    <label class="sr-only" for="inlineFormInputRegistrationNumber2">Registration number</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputRegistrationNumber2" placeholder="Registration number" th:field="*{registrationNumber}">
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('carModelDtoId')}" th:errors="*{carModelDtoId}">
+      </div>
 
-    <label class="sr-only" for="inlineFormInputEngineSize2">Engine size</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputEngineSize2" placeholder="Engine size" th:field="*{engineSize}">
-    <label class="sr-only" for="inlineFormInputEnginePower2">Engine power</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputEnginePower2" placeholder="Engine power" th:field="*{power}">
-    <label class="sr-only" for="inlineFormInputCurrentMileage2">Current mileage</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputCurrentMileage2" placeholder="Current mileage" th:field="*{currentMileage}"><label class="sr-only" for="inlineFormInputName2">Registration number</label>
-    <label class="sr-only" for="inlineFormInputYearOfProduction2">Year of production</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputYearOfProduction2" placeholder="Year of production" th:field="*{yearOfProd}">
-    <label class="sr-only" for="inlineFormInputAverageFuelConsumption2">Average fuel consumption</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputAverageFuelConsumption2" placeholder="Average fuel consumption" th:field="*{averageFuelConsumption}">
-    <label class="sr-only" for="inlineFormInputDailyRate2">Daily Rate</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputDailyRate2" placeholder="Average fuel consumption" th:field="*{averageFuelConsumption}">
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('registrationNumber')}" th:errors="*{registrationNumber}">
+      </div>
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('averageFuelConsumption')}"
+           th:errors="*{averageFuelConsumption}">
+      </div>
+      <div class="alert alert-danger " role="alert"
+           th:if="${#fields.hasErrors('engineSize')}" th:errors="*{engineSize}">
+      </div>
 
-<!--
-    <div class="form-check mb-2 mr-sm-2">
-      <input class="form-check-input" type="checkbox" id="inlineFormCheck">
-      <label class="form-check-label" for="inlineFormCheck">
-        Remember me
-      </label>
-    </div>-->
+      <div class="alert alert-danger " role="alert"
+           th:if="${#fields.hasErrors('power')}" th:errors="*{power}">
+      </div>
 
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('carStatus')}" th:errors="*{carStatus}">
+      </div>
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('yearOfProd')}" th:errors="*{yearOfProd}">
+      </div>
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('currentMileage')}" th:errors="*{currentMileage}">
+      </div>
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('locationDtoId')}" th:errors="*{locationDtoId}">
+      </div>
+
+
+    </div>
+
+
+    <div class="form-group mb-2 mr-sm-2">
+      <!-- <label for="inputBodyType">Body type:</label>-->
+      <select id="inputBodyType" class="form-control" th:field="*{bodyTypeDtoId}">
+        <!--  <div class="alert alert-danger" role="alert"
+               th:if="${#fields.hasErrors('bodyTypeDtoId')}" th:errors="*{bodyTypeDtoId}">
+          </div>-->
+        <option th:value="null"> Body type</option>
+        <option th:each="bodyType : ${bodyTypes}"
+                th:value="${bodyType.id}"
+                th:text="${bodyType.typeName}">
+        </option>
+
+      </select>
+    </div>
+    <div class="form-group mb-2 mr-sm-2">
+      <!--<label>Car Model:</label>-->
+      <select class="form-control" th:field="*{carModelDtoId}">
+        <option th:value="null">Car model</option>
+        <option th:each="model : ${carModels}"
+                th:value="${model.id}"
+                th:text="${model.name} + ' (' + (${model.brand.name}) + ')' ">
+        </option>
+      </select>
+    </div>
+    <div class="form-group mb-2 mr-sm-2">
+      <!--<label>Location:</label>-->
+      <select class="form-control" th:field="*{locationDtoId}">
+        <option th:value="null">Location</option>
+        <option th:each="location : ${locations}"
+                th:value="${location.id}"
+                th:text="${location.name}">
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label class="sr-only" for="inlineFormInputRegistrationNumber2">Registration number</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputRegistrationNumber2"
+             placeholder="Registration number" th:field="*{registrationNumber}">
+    </div>
+
+    <div>
+      <label class="sr-only" for="inlineFormInputEngineSize2">Engine size</label>
+      <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputEngineSize2"
+             placeholder="Engine size" th:field="*{engineSize}">
+    </div>
+    <div>
+      <label class="sr-only" for="inlineFormInputEnginePower2">Engine power</label>
+      <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputEnginePower2"
+             placeholder="Engine power" th:field="*{power}">
+    </div>
+
+    <div>
+      <label class="sr-only" for="inlineFormInputCurrentMileage2">Current mileage</label>
+      <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputCurrentMileage2"
+             placeholder="Current mileage" th:field="*{currentMileage}">
+    </div>
+
+    <div>
+      <label class="sr-only" for="inlineFormInputYearOfProduction2">Year of production</label>
+      <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputYearOfProduction2"
+             placeholder="Year of production" th:field="*{yearOfProd}">
+    </div>
+
+    <div>
+      <label class="sr-only" for="inlineFormInputAverageFuelConsumption2">Average fuel
+        consumption</label>
+      <input type="number" class="form-control mb-2 mr-sm-2"
+             id="inlineFormInputAverageFuelConsumption2"
+             placeholder="Average fuel consumption" th:field="*{averageFuelConsumption}">
+    </div>
+    <div>
+      <label class="sr-only" for="inlineFormInputDailyRate2">Daily Rate</label>
+      <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputDailyRate2"
+             placeholder="Daily rate" th:field="*{dailyRate}">
+    </div>
+
+    <div class="form-group mb-2 mr-sm-2">
+      <!-- <label for="inputCarStatus">Car status:</label>-->
+      <select id="inputCarStatus" class="form-control" th:field="*{carStatus}">
+        <option th:value="null"> Car status</option>
+        <option th:each="carStatus : ${carStatuses}"
+                th:value="${carStatus.statusCode}"
+                th:text="${carStatus.statusDescription}">
+        </option>
+      </select>
+    </div>
     <button type="submit" class="btn btn-primary mb-2">Submit</button>
 
-</form>
+  </form>
 </div>
 
- <!-- <div class="form-group col-md-4">
-    <label class="control-label col-sm-2">Registration number:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Enter registration number" >-->
-      <!--   <div class="alert alert-danger" role="alert"
-              th:if="${#fields.hasErrors('registrationNumber')}" th:errors="*{registrationNumber}">
-         </div>-->
- <!--   </div>
-  </div>
-  <div class="form-group col-md-4">
-    <label class="control-label col-sm-2">Engine size:</label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" placeholder="Enter engine size" th:field="*{engineSize}">
-      &lt;!&ndash; <div class="alert alert-danger" role="alert"
-            th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
-       </div>&ndash;&gt;
-    </div>
-  </div>
-
-  <div class="form-group col-md-4">
-    <label class="control-label col-sm-2">Engine power:</label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" placeholder="Enter the year"
-             th:field="*{power}">
-      &lt;!&ndash; <div class="alert alert-danger" role="alert"
-            th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
-       </div>&ndash;&gt;
-    </div>
-  </div>
-  <div class="form-group col-md-4">
-    <label class="control-label col-sm-2">Current mileage:</label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" placeholder="Enter mileage"
-             th:field="*{currentMileage}">
-      &lt;!&ndash; <div class="alert alert-danger" role="alert"
-            th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
-       </div>&ndash;&gt;
-    </div>
-  </div>
-  <div class="form-group col-md-4">
-    <label class="control-label col-sm-2">Year of production:</label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" placeholder="Enter the year"
-             th:field="*{yearOfProd}">
-      &lt;!&ndash; <div class="alert alert-danger" role="alert"
-            th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
-       </div>&ndash;&gt;
-    </div>
-  </div>
-  <div class="form-group col-md-4">
-    <label class="control-label col-sm-2">Average fuel consumption:</label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" placeholder="Enter the year"
-             th:field="*{averageFuelConsumption}">
-      &lt;!&ndash; <div class="alert alert-danger" role="alert"
-            th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
-       </div>&ndash;&gt;
-    </div>
-  </div>
-  <div class="form-group col-md-4">
-    <label class="control-label col-md-4">Daily rate:</label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" placeholder="Enter the year"
-             th:field="*{dailyRate}">
-      &lt;!&ndash; <div class="alert alert-danger" role="alert"
-            th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
-       </div>&ndash;&gt;
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-  </div>-->
 
 <link th:replace="/parts/scripts">
 </body>
