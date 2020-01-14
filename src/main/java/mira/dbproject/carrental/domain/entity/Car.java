@@ -28,8 +28,9 @@ public class Car implements Serializable {
   @Column(name = "registration_number")
   private String registrationNumber;
 
-  @Column(name = "is_rent")
-  private Boolean isRent;
+  @ManyToOne
+  @JoinColumn(name = "car_status")
+  private CarStatus carStatus;
 
   @ManyToOne
   @JoinColumn(name = "location_id")
@@ -50,7 +51,7 @@ public class Car implements Serializable {
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "car_parameter_id")
   private CarParameter carParameter;
-  
+
   public String getRegistrationNumber() {
     return registrationNumber;
   }
@@ -67,12 +68,12 @@ public class Car implements Serializable {
     this.id = id;
   }
 
-  public Boolean getRent() {
-    return isRent;
+  public CarStatus getCarStatus() {
+    return carStatus;
   }
 
-  public void setRent(Boolean rent) {
-    isRent = rent;
+  public void setCarStatus(CarStatus carStatus) {
+    this.carStatus = carStatus;
   }
 
   public Location getLocation() {
