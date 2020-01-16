@@ -11,37 +11,37 @@ import javax.persistence.Table;
 public class CarView {
 
   @Id
-  @Column(name = "Car_ID")
+  @Column(name = "car_id")
   private Long id;
 
-  @Column(name = "Income")
+  @Column(name = "income")
   private BigDecimal income;
 
-  @Column(name = "Brand")
+  @Column(name = "brand")
   private String brandName;
 
-  @Column(name = "Car_model")
+  @Column(name = "car_model")
   private String carModelName;
 
-  @Column(name = "Body_type")
+  @Column(name = "body_type")
   private String bodyType;
 
-  @Column(name = "Engine_power(MP)")
+  @Column(name = "engine_power")
   private Integer enginePower;
 
-  @Column(name = "Engine_size")
+  @Column(name = "engine_size")
   private Integer engineSize;
 
-  @Column(name = "Production_year")
+  @Column(name = "production_year")
   private Integer prodYear;
 
-  @Column(name = "Current_mileage")
+  @Column(name = "current_mileage")
   private Integer currentMileage;
 
-  @Column(name = "Daily_rate")
+  @Column(name = "daily_rate")
   private Integer dailyRate;
 
-  @Column(name = "Status")
+  @Column(name = "status")
   private String carStatus;
 
   public Long getId() {

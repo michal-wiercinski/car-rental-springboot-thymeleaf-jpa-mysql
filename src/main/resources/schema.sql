@@ -166,17 +166,17 @@ alter table customer
 
 create or replace view details_fleet
 as
-select c.id_car                        as 'Car ID',
-       coalesce(sum(r.rental_cost), 0) as 'Income',
-       br.brand_name                   as 'Brand',
-       cm.car_model_name               as 'Car model',
-       bt.type_name                    as 'Body type',
-       cp.power                        as 'Engine power(MP)',
-       cp.engine_size                  as 'Engine size',
-       cp.year_of_prod                 as 'Production year',
-       cp.current_mileage              as 'Current mileage',
-       cp.daily_rate                   as 'Daily rate',
-       cs.status_description           as 'Status'
+select c.id_car                        as 'car_id',
+       coalesce(sum(r.rental_cost), 0) as 'income',
+       br.brand_name                   as 'brand',
+       cm.car_model_name               as 'car_model',
+       bt.type_name                    as 'body_type',
+       cp.power                        as 'engine_power',
+       cp.engine_size                  as 'engine_size',
+       cp.year_of_prod                 as 'production_year',
+       cp.current_mileage              as 'current_mileage',
+       cp.daily_rate                   as 'daily_rate',
+       cs.status_description           as 'status'
 
 from car as c
          left join car_model as cm on c.car_model_id = cm.id_car_model
