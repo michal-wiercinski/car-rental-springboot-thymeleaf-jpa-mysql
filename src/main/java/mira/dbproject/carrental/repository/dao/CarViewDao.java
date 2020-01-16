@@ -1,5 +1,10 @@
 package mira.dbproject.carrental.repository.dao;
 
-public class CarViewDao {
+import mira.dbproject.carrental.domain.CarView;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CarViewDao extends JpaRepository<CarView, Long> {
 
 }

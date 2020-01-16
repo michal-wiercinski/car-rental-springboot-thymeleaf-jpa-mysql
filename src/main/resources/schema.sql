@@ -143,12 +143,12 @@ create table rental
 (
     id_rental   bigint auto_increment
         primary key,
-    date_from   datetime(6)   not null,
-    date_end    datetime(6)   not null,
-    rental_cost int default 0 not null,
-    customer_id bigint        not null,
-    status_id   bigint        not null,
-    car_id      bigint        not null,
+    date_from   datetime(6)                not null,
+    date_end    datetime(6)                not null,
+    rental_cost decimal(10, 4) default 0.0 not null,
+    customer_id bigint                     not null,
+    status_id   bigint                     not null,
+    car_id      bigint                     not null,
     foreign key (customer_id) references customer (id_customer),
     foreign key (car_id) references car (id_car),
     foreign key (status_id) references rental_status (id_status)
@@ -163,22 +163,21 @@ alter table customer
 -- add foreign key  (car_id) references car (id_car);
 
 
-create or replace view car_detail_view
+create or replace view 'Details fleet'
 as
-select c.id_car,
-       sum(r.rental_cost) as 'Income',
-       br.brand_name      as 'Brand',
-       cm.car_model_name  as 'Car model',
-       bt.type_name       as 'Body type',
-       cp.power           as 'Engine power(MP)',
-       cp.engine_size     as 'Engine size',
-       cp.year_of_prod    as 'Production year',
-       cp.current_mileage as 'Current mileage',
-       cp.daily_rate      as 'Daily rate',
-       c.car_status       as 'Status'
+select c.id_car              as 'Car ID',
+       sum(r.rental_cost)    as 'Income',
+       br.brand_name         as 'Brand',
+       cm.car_model_name     as 'Car model',
+       bt.type_name          as 'Body type',
+       cp.power              as 'Engine power(MP)',
+       cp.engine_size        as 'Engine size',
+       cp.year_of_prod       as 'Production year',
+       cp.current_mileage    as 'Current mileage',
+       cp.daily_rate         as 'Daily rate',
+       cs.status_description as 'Status'
 
 from car as c
-         left join location as l on c.location_id = l.id_location
          left join car_model as cm on c.car_model_id = cm.id_car_model
          left join car_parameter as cp
                    on c.car_parameter_id = cp.id_car_parameter
