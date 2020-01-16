@@ -33,7 +33,7 @@ public class CarMapper {
     Car car = new Car();
 
     car.setRegistrationNumber(carDto.getRegistrationNumber());
-    car.setBodyType(bodyTypeService.findById(carDto.getBodyTypeDtoId()).get());
+
     car.setCarModel(carModelService.findById(carDto.getCarModelDtoId()).get());
     car.setLocation(locationService.findById(carDto.getLocationDtoId()).get());
     car.setCarStatus(carStatusService.findById(carDto.getCarStatus()).get());

@@ -35,7 +35,7 @@ public class BodyType implements Serializable {
 
   @OneToMany(mappedBy = "bodyType",
       cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-  private List<Car> vehicles;
+  private List<CarParameter> carParameters;
 
   public Long getId() {
     return id;
@@ -53,11 +53,13 @@ public class BodyType implements Serializable {
     this.typeName = typeName;
   }
 
-  public List<Car> getVehicles() {
-    return vehicles;
+
+  public List<CarParameter> getCarParameters() {
+    return carParameters;
   }
 
-  public void setVehicles(List<Car> vehicles) {
-    this.vehicles = vehicles;
+  public void setCarParameters(
+      List<CarParameter> carParameters) {
+    this.carParameters = carParameters;
   }
 }

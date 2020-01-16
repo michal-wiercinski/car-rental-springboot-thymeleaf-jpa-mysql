@@ -2,7 +2,8 @@ insert into body_type (type_name)
 values ('Hatchback'),
        ('Kombi'),
        ('Sedan'),
-       ('SUV');
+       ('SUV'),
+       ('Coupe');
 
 insert into location (location_name)
 values ('Warsaw Chopin Airport '),
@@ -1798,4 +1799,19 @@ values (3, 'Cobra', 1),
        (2735, 'Haise', 242),
        (2903, 'Air Concept', 245);
 
+insert into car_parameter(body_type_id, current_mileage, engine_size, power, year_of_prod, fuel_consumption,
+                          daily_rate)
+values (3, 150, 2000, 160, 2019, 6, 80),
+       (3, 100, 2500, 200, 2019, 9, 95),
+       (2, 500, 3993, 560, 2018, 8, 120),
+       (2, 250, 2993, 280, 2018, 7, 105),
+       (5, 400, 2000, 520, 2018, 8, 125);
 
+
+insert into car (registration_number, car_model_id, location_id,
+          car_parameter_id, car_status)
+values ('AAA000', 58, 3, 1, 'UAV'),
+    ('BBB111', 61, 3, 2, 'UAV'),
+    ('CCC222', 68, 3, 3, 'UAV'),
+    ('DDD333', 96, 3, 4, 'UAV'),
+    ('EEE444', 95, 3, 5, 'UAV');

@@ -65,12 +65,15 @@ create table car_parameter
 (
     id_car_parameter bigint auto_increment
         primary key,
-    current_mileage  int not null,
-    engine_size      int not null,
-    power            int not null,
-    year_of_prod     int not null,
-    fuel_consumption int not null,
-    daily_rate       int not null
+    current_mileage  int    not null,
+    engine_size      int    not null,
+    power            int    not null,
+    year_of_prod     int    not null,
+    fuel_consumption int    not null,
+    daily_rate       int    not null,
+    body_type_id     bigint not null,
+    foreign key (body_type_id) references body_type (id_body_type)
+
     -- car_id           bigint not null
 );
 
@@ -111,14 +114,12 @@ create table car
         primary key,
     registration_number varchar(255)  not null,
 
-    body_type_id        bigint        not null,
     car_model_id        bigint        not null,
     location_id         bigint        not null,
-    car_parameter_id    bigint  unique not null,
-    car_status          varchar(3)  not null,
+    car_parameter_id    bigint unique not null,
+    car_status          varchar(3)    not null,
     foreign key (car_parameter_id) references car_parameter (id_car_parameter),
     foreign key (car_model_id) references car_model (id_car_model),
-    foreign key (body_type_id) references body_type (id_body_type),
     foreign key (location_id) references location (id_location),
     foreign key (car_status) references car_status (status_code)
 );
@@ -142,22 +143,50 @@ create table rental
 (
     id_rental   bigint auto_increment
         primary key,
-    date_from   datetime(6) not null,
-    date_end    datetime(6) not null,
-    customer_id bigint      not null,
-    status_id   bigint      not null,
-    car_id      bigint      not null,
+    date_from   datetime(6)   not null,
+    date_end    datetime(6)   not null,
+    rental_cost int default 0 not null,
+    customer_id bigint        not null,
+    status_id   bigint        not null,
+    car_id      bigint        not null,
     foreign key (customer_id) references customer (id_customer),
     foreign key (car_id) references car (id_car),
     foreign key (status_id) references rental_status (id_status)
 );
 
+
+
 alter table customer
     add foreign key (user_id) references user (id_user);
 
 -- alter table car_parameter
-   -- add foreign key  (car_id) references car (id_car);
+-- add foreign key  (car_id) references car (id_car);
 
+
+create or replace view car_detail_view
+as
+select c.id_car,
+       sum(r.rental_cost) as 'Income',
+       br.brand_name      as 'Brand',
+       cm.car_model_name  as 'Car model',
+       bt.type_name       as 'Body type',
+       cp.power           as 'Engine power(MP)',
+       cp.engine_size     as 'Engine size',
+       cp.year_of_prod    as 'Production year',
+       cp.current_mileage as 'Current mileage',
+       cp.daily_rate      as 'Daily rate',
+       c.car_status       as 'Status'
+
+from car as c
+         left join location as l on c.location_id = l.id_location
+         left join car_model as cm on c.car_model_id = cm.id_car_model
+         left join car_parameter as cp
+                   on c.car_parameter_id = cp.id_car_parameter
+         left join car_status cs on c.car_status = cs.status_code
+         left join brand as br on cm.brand_id = br.id_brand
+         left join body_type as bt on cp.body_type_id = bt.id_body_type
+         left join rental r on c.id_car = r.car_id
+group by c.id_car;
 
 
 

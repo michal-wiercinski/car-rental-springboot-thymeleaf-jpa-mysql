@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -36,6 +38,10 @@ public class CarParameter {
 
   @Column(name = "daily_rate")
   private Integer dailyRate;
+
+  @ManyToOne
+  @JoinColumn(name = "body_type_id")
+  private BodyType bodyType;
 
   public Long getId() {
     return id;
@@ -93,4 +99,11 @@ public class CarParameter {
     this.currentMileage = currentMileage;
   }
 
+  public BodyType getBodyType() {
+    return bodyType;
+  }
+
+  public void setBodyType(BodyType bodyType) {
+    this.bodyType = bodyType;
+  }
 }
