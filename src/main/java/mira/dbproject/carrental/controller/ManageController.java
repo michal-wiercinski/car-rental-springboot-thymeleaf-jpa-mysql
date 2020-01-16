@@ -2,18 +2,16 @@ package mira.dbproject.carrental.controller;
 
 import java.util.List;
 import javax.validation.Valid;
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
 import mira.dbproject.carrental.domain.dto.CarDto;
 import mira.dbproject.carrental.domain.entity.BodyType;
 import mira.dbproject.carrental.domain.entity.CarModel;
 import mira.dbproject.carrental.domain.entity.CarStatus;
 import mira.dbproject.carrental.domain.entity.Location;
-import mira.dbproject.carrental.service.BodyTypeService;
-import mira.dbproject.carrental.service.CarModelService;
-import mira.dbproject.carrental.service.CarService;
-import mira.dbproject.carrental.service.CarStatusService;
-import mira.dbproject.carrental.service.LocationService;
+import mira.dbproject.carrental.service.entityservice.BodyTypeService;
+import mira.dbproject.carrental.service.entityservice.CarModelService;
+import mira.dbproject.carrental.service.entityservice.CarService;
+import mira.dbproject.carrental.service.entityservice.CarStatusService;
+import mira.dbproject.carrental.service.entityservice.LocationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,4 +78,6 @@ public class ManageController {
     carService.createNewCar(car);
     return "index";
   }
+
+  
 }

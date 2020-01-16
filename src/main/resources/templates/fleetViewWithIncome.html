@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link th:replace="/parts/metadata">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>-->
+<body>
+<link th:replace="/parts/navbar">
+<div class="container mt-4">
+  <h2>Details of our fleet</h2>
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Car ID</th>
+      <th>Income</th>
+      <th>Brand</th>
+      <th>Car model</th>
+      <th>Body type</th>
+      <th>Engine power(MP)</th>
+      <th>Engine size</th>
+      <th>Production year</th>
+      <th>Current mileage</th>
+      <th>Daily rate</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody id="myTable">
+    <tr th:each="car : ${detailsFleet}">
+      <td th:text="${car.id}">ID</td>
+      <td th:text="${car.income}">Income</td>
+      <td th:text="${car.brandName}">Brand</td>
+      <td th:text="${car.carModelName}">Car model</td>
+      <td th:text="${car.bodyType}">Body type</td>
+      <td th:text="${car.enginePower}">Engine power(MP)</td>
+      <td th:text="${car.engineSize}">Engine size<</td>
+      <td th:text="${car.prodYear}">Production year</td>
+      <td th:text="${car.currentMileage}">Current mileage</td>
+      <td th:text="${car.dailyRate}">Daily rate</td>
+      <td th:text="${car.carStatus}">Status</td>
+
+    </tr><script>
+    $('.dropdown navi-log').click(function(){
+
+      $('.dropdown-menu').toggleClass('show');
+
+    });
+  </script>
+    </tbody>
+  </table>
+</div>
+
+
+<link th:replace="/parts/scripts">
+<script>
+  $(document).ready(function () {
+    $("#myInput").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

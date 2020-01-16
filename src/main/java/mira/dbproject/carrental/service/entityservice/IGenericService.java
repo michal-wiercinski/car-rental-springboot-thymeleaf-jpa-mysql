@@ -1,4 +1,4 @@
-package mira.dbproject.carrental.service;
+package mira.dbproject.carrental.service.entityservice;
 
 import java.util.List;
 import java.util.Optional;

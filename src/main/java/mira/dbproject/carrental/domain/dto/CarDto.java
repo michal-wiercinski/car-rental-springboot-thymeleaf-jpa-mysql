@@ -42,7 +42,7 @@ public class CarDto {
   private Integer yearOfProd;
 
   @NotNull(message = "The average fuel consumption can't be null")
-  private Integer averageFuelConsumption;
+  private Double averageFuelConsumption;
 
   @NotNull(message = "The car status can't be null")
   private String carStatus;
@@ -123,11 +123,11 @@ public class CarDto {
     this.yearOfProd = yearOfProd;
   }
 
-  public Integer getAverageFuelConsumption() {
+  public Double getAverageFuelConsumption() {
     return averageFuelConsumption;
   }
 
-  public void setAverageFuelConsumption(Integer averageFuelConsumption) {
+  public void setAverageFuelConsumption(Double averageFuelConsumption) {
     this.averageFuelConsumption = averageFuelConsumption;
   }
 

@@ -40,9 +40,6 @@ public class Car implements Serializable {
   @JoinColumn(name = "car_model_id")
   private CarModel carModel;
 
-  @ManyToOne
-  @JoinColumn(name = "body_type_id")
-  private BodyType bodyType;
 
   @OneToMany(mappedBy = "car",
       cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -90,14 +87,6 @@ public class Car implements Serializable {
 
   public void setCarModel(CarModel carModel) {
     this.carModel = carModel;
-  }
-
-  public BodyType getBodyType() {
-    return bodyType;
-  }
-
-  public void setBodyType(BodyType bodyType) {
-    this.bodyType = bodyType;
   }
 
   public List<Rental> getRental() {

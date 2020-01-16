@@ -1,5 +1,6 @@
 package mira.dbproject.carrental.domain.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,6 +27,9 @@ public class Rental {
 
   @Column(name = "date_end")
   private LocalDateTime dateEnd;
+
+  @Column(name = "rental_cost")
+  private BigDecimal rentalCost;
 
   @ManyToOne
   @JoinColumn(name = "car_id")

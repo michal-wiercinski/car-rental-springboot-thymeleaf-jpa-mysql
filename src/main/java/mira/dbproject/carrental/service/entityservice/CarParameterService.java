@@ -1,4 +1,4 @@
-package mira.dbproject.carrental.service;
+package mira.dbproject.carrental.service.entityservice;
 
 import javax.transaction.Transactional;
 import mira.dbproject.carrental.domain.dto.CarDto;
@@ -13,6 +13,8 @@ public class CarParameterService {
   @Autowired
   CarParameterDao carParameterDao;
 
+  @Autowired
+  BodyTypeService bodyTypeService;
 
   @Transactional
   public CarParameter save(CarParameter carParameter) {
@@ -23,6 +25,7 @@ public class CarParameterService {
   public CarParameter createNewParameter(CarDto carDto) {
     CarParameter carParameter = new CarParameter();
 
+    carParameter.setBodyType(bodyTypeService.findById(carDto.getBodyTypeDtoId()).get());
     carParameter.setYearOfProd(carDto.getYearOfProd());
     carParameter.setAverageFuelConsumption(carDto.getAverageFuelConsumption());
     carParameter.setCurrentMileage(carDto.getCurrentMileage());
