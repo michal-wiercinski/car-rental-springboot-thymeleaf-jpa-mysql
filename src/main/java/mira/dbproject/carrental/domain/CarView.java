@@ -2,12 +2,16 @@ package mira.dbproject.carrental.domain;
 
 import java.math.BigDecimal;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "Details fleet")
+@Entity
+@Table(name = "details_fleet")
 public class CarView {
 
-  @Column(name = "Car ID")
+  @Id
+  @Column(name = "Car_ID")
   private Long id;
 
   @Column(name = "Income")
@@ -16,29 +20,29 @@ public class CarView {
   @Column(name = "Brand")
   private String brandName;
 
-  @Column(name = "Car model")
+  @Column(name = "Car_model")
   private String carModelName;
 
-  @Column(name = "Body type")
+  @Column(name = "Body_type")
   private String bodyType;
 
-  @Column(name = "Engine power(MP)")
+  @Column(name = "Engine_power(MP)")
   private Integer enginePower;
 
-  @Column(name = "Engine size")
+  @Column(name = "Engine_size")
   private Integer engineSize;
 
-  @Column(name = "Production year")
+  @Column(name = "Production_year")
   private Integer prodYear;
 
-  @Column(name = "Current mileage")
+  @Column(name = "Current_mileage")
   private Integer currentMileage;
 
-  @Column(name = "Daily rate")
+  @Column(name = "Daily_rate")
   private Integer dailyRate;
 
   @Column(name = "Status")
-  private String car_status;
+  private String carStatus;
 
   public Long getId() {
     return id;
@@ -120,11 +124,11 @@ public class CarView {
     this.dailyRate = dailyRate;
   }
 
-  public String getCar_status() {
-    return car_status;
+  public String getCarStatus() {
+    return carStatus;
   }
 
-  public void setCar_status(String car_status) {
-    this.car_status = car_status;
+  public void setCarStatus(String carStatus) {
+    this.carStatus = carStatus;
   }
 }

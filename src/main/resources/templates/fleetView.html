@@ -18,16 +18,33 @@
   <table class="table table-bordered">
     <thead>
     <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Email</th>
+      <th>Car ID</th>
+      <th>Income</th>
+      <th>Brand</th>
+      <th>Car model</th>
+      <th>Body type</th>
+      <th>Engine power(MP)</th>
+      <th>Engine size</th>
+      <th>Production year</th>
+      <th>Current mileage</th>
+      <th>Daily rate</th>
+      <th>Status</th>
     </tr>
     </thead>
     <tbody id="myTable">
-    <tr th:each="car : ${cars}">
-      <td>John</td>
-      <td>Doe</td>
-      <td>john@example.com</td>
+    <tr th:each="car : ${detailsFleet}">
+      <td th:text="${car.id}">ID</td>
+      <td th:text="${car.income}">Income</td>
+      <td th:text="${car.brandName}">Brand</td>
+      <td th:text="${car.carModelName}">Car model</td>
+      <td th:text="${car.bodyType}">Body type</td>
+      <td th:text="${car.enginePower}">Engine power(MP)</td>
+      <td th:text="${car.engineSize}">Engine size<</td>
+      <td th:text="${car.prodYear}">Production year</td>
+      <td th:text="${car.currentMileage}">Current mileage</td>
+      <td th:text="${car.dailyRate}">Daily rate</td>
+      <td th:text="${car.carStatus}">Status</td>
+
     </tr>
     </tbody>
   </table>

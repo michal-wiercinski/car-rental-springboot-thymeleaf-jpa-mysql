@@ -16,6 +16,7 @@ drop table if exists rental_status;
 drop table if exists role;
 drop table if exists user;
 drop table if exists car_status;
+drop view if exists car_detail_view;
 
 create table address
 (
@@ -163,19 +164,19 @@ alter table customer
 -- add foreign key  (car_id) references car (id_car);
 
 
-create or replace view 'Details fleet'
+create or replace view details_fleet
 as
-select c.id_car              as 'Car ID',
-       sum(r.rental_cost)    as 'Income',
-       br.brand_name         as 'Brand',
-       cm.car_model_name     as 'Car model',
-       bt.type_name          as 'Body type',
-       cp.power              as 'Engine power(MP)',
-       cp.engine_size        as 'Engine size',
-       cp.year_of_prod       as 'Production year',
-       cp.current_mileage    as 'Current mileage',
-       cp.daily_rate         as 'Daily rate',
-       cs.status_description as 'Status'
+select c.id_car                        as 'Car ID',
+       coalesce(sum(r.rental_cost), 0) as 'Income',
+       br.brand_name                   as 'Brand',
+       cm.car_model_name               as 'Car model',
+       bt.type_name                    as 'Body type',
+       cp.power                        as 'Engine power(MP)',
+       cp.engine_size                  as 'Engine size',
+       cp.year_of_prod                 as 'Production year',
+       cp.current_mileage              as 'Current mileage',
+       cp.daily_rate                   as 'Daily rate',
+       cs.status_description           as 'Status'
 
 from car as c
          left join car_model as cm on c.car_model_id = cm.id_car_model
@@ -185,7 +186,7 @@ from car as c
          left join brand as br on cm.brand_id = br.id_brand
          left join body_type as bt on cp.body_type_id = bt.id_body_type
          left join rental r on c.id_car = r.car_id
-group by c.id_car;
+group by c.id_car, r.rental_cost;
 
 
 
