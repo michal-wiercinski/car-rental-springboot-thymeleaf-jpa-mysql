@@ -70,7 +70,7 @@ create table car_parameter
     engine_size      int    not null,
     power            int    not null,
     year_of_prod     int    not null,
-    fuel_consumption int    not null,
+    fuel_consumption double not null,
     daily_rate       int    not null,
     body_type_id     bigint not null,
     foreign key (body_type_id) references body_type (id_body_type)
@@ -176,8 +176,9 @@ select c.id_car                        as 'car_id',
        cp.year_of_prod                 as 'production_year',
        cp.current_mileage              as 'current_mileage',
        cp.daily_rate                   as 'daily_rate',
-       cs.status_description           as 'status'
-
+       cs.status_description           as 'status',
+       cp.fuel_consumption             as 'avg_fuel_consumption',
+       l.location_name                 as 'location_name'
 from car as c
          left join car_model as cm on c.car_model_id = cm.id_car_model
          left join car_parameter as cp
@@ -186,7 +187,34 @@ from car as c
          left join brand as br on cm.brand_id = br.id_brand
          left join body_type as bt on cp.body_type_id = bt.id_body_type
          left join rental r on c.id_car = r.car_id
+         left join location l on c.location_id = l.id_location
 group by c.id_car, r.rental_cost;
+
+
+
+create or replace view details_fleet_for_user
+as
+select c.id_car              as 'car_id',
+       br.brand_name         as 'brand',
+       cm.car_model_name     as 'car_model',
+       bt.type_name          as 'body_type',
+       cp.power              as 'engine_power',
+       cp.engine_size        as 'engine_size',
+       cp.year_of_prod       as 'production_year',
+       cp.fuel_consumption   as 'avg_fuel_consumption',
+       cp.daily_rate         as 'daily_rate',
+       l.location_name       as 'location_name',
+       cs.status_description as 'status'
+
+from car as c
+         left join car_model as cm on c.car_model_id = cm.id_car_model
+         left join car_parameter as cp
+                   on c.car_parameter_id = cp.id_car_parameter
+         left join car_status cs on c.car_status = cs.status_code
+         left join brand as br on cm.brand_id = br.id_brand
+         left join body_type as bt on cp.body_type_id = bt.id_body_type
+         left join location as l on l.id_location = c.location_id;
+
 
 
 

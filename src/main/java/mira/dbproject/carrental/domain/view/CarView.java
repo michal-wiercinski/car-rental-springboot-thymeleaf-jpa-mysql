@@ -1,21 +1,15 @@
-package mira.dbproject.carrental.domain;
+package mira.dbproject.carrental.domain.view;
 
-import java.math.BigDecimal;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Table(name = "details_fleet")
+@MappedSuperclass
 public class CarView {
 
   @Id
   @Column(name = "car_id")
   private Long id;
-
-  @Column(name = "income")
-  private BigDecimal income;
 
   @Column(name = "brand")
   private String brandName;
@@ -35,14 +29,17 @@ public class CarView {
   @Column(name = "production_year")
   private Integer prodYear;
 
-  @Column(name = "current_mileage")
-  private Integer currentMileage;
-
   @Column(name = "daily_rate")
   private Integer dailyRate;
 
   @Column(name = "status")
   private String carStatus;
+
+  @Column(name = "avg_fuel_consumption")
+  private Double fuelConsumption;
+
+  @Column(name = "location_name")
+  private String locationName;
 
   public Long getId() {
     return id;
@@ -50,14 +47,6 @@ public class CarView {
 
   public void setId(Long id) {
     this.id = id;
-  }
-
-  public BigDecimal getIncome() {
-    return income;
-  }
-
-  public void setIncome(BigDecimal income) {
-    this.income = income;
   }
 
   public String getBrandName() {
@@ -108,14 +97,6 @@ public class CarView {
     this.prodYear = prodYear;
   }
 
-  public Integer getCurrentMileage() {
-    return currentMileage;
-  }
-
-  public void setCurrentMileage(Integer currentMileage) {
-    this.currentMileage = currentMileage;
-  }
-
   public Integer getDailyRate() {
     return dailyRate;
   }
@@ -130,5 +111,21 @@ public class CarView {
 
   public void setCarStatus(String carStatus) {
     this.carStatus = carStatus;
+  }
+
+  public Double getFuelConsumption() {
+    return fuelConsumption;
+  }
+
+  public void setFuelConsumption(Double fuelConsumption) {
+    this.fuelConsumption = fuelConsumption;
+  }
+
+  public String getLocationName() {
+    return locationName;
+  }
+
+  public void setLocationName(String locationName) {
+    this.locationName = locationName;
   }
 }

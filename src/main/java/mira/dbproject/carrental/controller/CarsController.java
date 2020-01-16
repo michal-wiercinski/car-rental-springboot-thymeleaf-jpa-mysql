@@ -2,8 +2,10 @@ package mira.dbproject.carrental.controller;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import mira.dbproject.carrental.domain.CarView;
-import mira.dbproject.carrental.service.CarViewService;
+import mira.dbproject.carrental.domain.view.CarViewAdmin;
+import mira.dbproject.carrental.domain.view.CarViewUser;
+import mira.dbproject.carrental.service.viewservice.CarViewAdminService;
+import mira.dbproject.carrental.service.viewservice.CarViewUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,16 +18,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CarsController {
 
   @Autowired
-  private CarViewService carViewService;
+  private CarViewAdminService carViewAdminService;
+
+  @Autowired
+  private CarViewUserService carViewUserService;
 
 
   @GetMapping("/our-fleet")
   public String getAllCars(Model model) {
-    List<CarView> detailsFleet = carViewService.findAll();
-  //  log.info("Get view, size: {}", detailsFleet.size());
+    List<CarViewAdmin> detailsFleet = carViewAdminService.findAll();
+
     model.addAttribute("detailsFleet", detailsFleet);
-    return "fleetView";
+    return "fleetViewWithIncome";
   }
 
+  @GetMapping("/")
+  private String getAllCarsForUser(Model model) {
+    List<CarViewUser> carsForUser = carViewUserService.findAll();
 
+    model.addAttribute("carsForUser", carsForUser);
+    return "fleetViewForUser";
+  }
 }

@@ -3,11 +3,11 @@ package mira.dbproject.carrental.mapper;
 import javax.transaction.Transactional;
 import mira.dbproject.carrental.domain.dto.CarDto;
 import mira.dbproject.carrental.domain.entity.Car;
-import mira.dbproject.carrental.service.BodyTypeService;
-import mira.dbproject.carrental.service.CarModelService;
-import mira.dbproject.carrental.service.CarParameterService;
-import mira.dbproject.carrental.service.CarStatusService;
-import mira.dbproject.carrental.service.LocationService;
+import mira.dbproject.carrental.service.entityservice.BodyTypeService;
+import mira.dbproject.carrental.service.entityservice.CarModelService;
+import mira.dbproject.carrental.service.entityservice.CarParameterService;
+import mira.dbproject.carrental.service.entityservice.CarStatusService;
+import mira.dbproject.carrental.service.entityservice.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

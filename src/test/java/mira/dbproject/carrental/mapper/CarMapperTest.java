@@ -1,16 +1,5 @@
 package mira.dbproject.carrental.mapper;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import javax.validation.constraints.AssertTrue;
-import mira.dbproject.carrental.domain.dto.CarDto;
-import mira.dbproject.carrental.domain.entity.Car;
-import mira.dbproject.carrental.service.CarService;
-import org.assertj.core.api.Assert;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.test.util.AssertionErrors;
-
 class CarMapperTest {
 
 /*

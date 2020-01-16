@@ -34,7 +34,7 @@ public class CarParameter {
   private Integer yearOfProd;
 
   @Column(name = "fuel_consumption")
-  private Integer averageFuelConsumption;
+  private Double averageFuelConsumption;
 
   @Column(name = "daily_rate")
   private Integer dailyRate;
@@ -83,11 +83,11 @@ public class CarParameter {
     this.dailyRate = dailyRate;
   }
 
-  public Integer getAverageFuelConsumption() {
+  public Double getAverageFuelConsumption() {
     return averageFuelConsumption;
   }
 
-  public void setAverageFuelConsumption(Integer averageFuelConsumption) {
+  public void setAverageFuelConsumption(Double averageFuelConsumption) {
     this.averageFuelConsumption = averageFuelConsumption;
   }
 

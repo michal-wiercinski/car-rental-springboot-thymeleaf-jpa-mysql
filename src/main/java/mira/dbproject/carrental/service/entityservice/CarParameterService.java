@@ -1,4 +1,4 @@
-package mira.dbproject.carrental.service;
+package mira.dbproject.carrental.service.entityservice;
 
 import javax.transaction.Transactional;
 import mira.dbproject.carrental.domain.dto.CarDto;
