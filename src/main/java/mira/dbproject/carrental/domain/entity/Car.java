@@ -37,7 +37,7 @@ public class Car implements Serializable {
   private Location location;
 
   @ManyToOne
-  @JoinColumn(name = "car_model_id")
+  @JoinColumn(name = "FK_car_model")
   private CarModel carModel;
 
 
@@ -46,7 +46,7 @@ public class Car implements Serializable {
   private List<Rental> rental;
 
   @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "car_parameter_id")
+  @JoinColumn(name = "FK_car_parameter")
   private CarParameter carParameter;
 
   public String getRegistrationNumber() {

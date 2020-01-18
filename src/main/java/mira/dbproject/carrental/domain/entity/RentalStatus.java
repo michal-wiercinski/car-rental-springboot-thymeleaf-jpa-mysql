@@ -17,7 +17,7 @@ public class RentalStatus {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(name = "id_status")
+  @Column(name = "PK_status")
   private Long id;
 
   @Column(name = "status_desc")

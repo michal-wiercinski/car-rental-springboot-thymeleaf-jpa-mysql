@@ -20,18 +20,18 @@ public class Customer {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(name = "id_customer")
+  @Column(name = "PK_customer")
   private Long id;
 
   @OneToOne
-  @JoinColumn(name = "user_id")
+  @JoinColumn(name = "FK_user")
   private User user;
 
   @OneToMany(mappedBy = "customer")
   private List<Rental> rentals;
 
   @ManyToOne
-  @JoinColumn(name = "address_id")
+  @JoinColumn(name = "FK_address")
   private Address address;
 
   public Long getId() {

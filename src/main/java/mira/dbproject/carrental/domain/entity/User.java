@@ -31,7 +31,7 @@ public class User implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(name = "id_user")
+  @Column(name = "PK_user")
   private Long id;
 
   @Column(name = "first_name")
@@ -48,8 +48,8 @@ public class User implements Serializable {
 
   @ManyToMany
   @JoinTable(name = "user_roles",
-      joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id_user"),
-      inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id_role"))
+      joinColumns = @JoinColumn(name = "FK_user", referencedColumnName = "PK_user"),
+      inverseJoinColumns = @JoinColumn(name = "FK_role", referencedColumnName = "PK_role"))
   private Collection<Role> roles;
 
 

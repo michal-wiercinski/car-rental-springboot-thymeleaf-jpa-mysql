@@ -19,7 +19,7 @@ public class Rental {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(name = "id_rental")
+  @Column(name = "PK_rental")
   private Long id;
 
   @Column(name = "date_start")
@@ -32,15 +32,15 @@ public class Rental {
   private BigDecimal rentalCost;
 
   @ManyToOne
-  @JoinColumn(name = "car_id")
+  @JoinColumn(name = "FK_car")
   private Car car;
 
   @ManyToOne
-  @JoinColumn(name = "customer_id")
+  @JoinColumn(name = "FK_customer")
   private Customer customer;
 
   @ManyToOne
-  @JoinColumn(name = "status_id")
+  @JoinColumn(name = "FK_status")
   private RentalStatus rentalStatus;
 
   public Long getId() {
