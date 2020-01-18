@@ -22,22 +22,22 @@ values ('Warsaw Chopin Airport '),
        ('Łódź Władysław Reymont Airport ');
 
 
-insert into role (id_role, role_name)
+insert into role (PK_role, role_name)
 values (1, 'SUPERADMIN'),
        (2, 'ADMIN'),
        (3, 'USER');
 
-insert into rental_status (id_status, status_desc)
+insert into rental_status (PK_status, status_desc)
 values (1, 'canceled'),
        (2, 'rented'),
        (3, 'reserved'),
        (4, 'returned');
 
-insert into car_status (status_code, status_description)
+insert into car_status (PK_status_code, status_description)
 values ('AVI', 'available'),
        ('UAV', 'unavailable');
 
-INSERT INTO brand (id_brand, brand_name)
+INSERT INTO brand (PK_brand, brand_name)
 VALUES (1, 'AC'),
        (2, 'Acura'),
        (3, 'Alfa Romeo'),
@@ -214,7 +214,7 @@ VALUES (1, 'AC'),
        (175, 'ZX');
 
 
-insert into car_model (id_car_model, car_model_name, brand_id)
+insert into car_model (PK_car_model, car_model_name, FK_brand)
 values (3, 'Cobra', 1),
        (1844, '378 GT Zagato', 1),
        (7, 'MDX', 2),
@@ -1799,7 +1799,7 @@ values (3, 'Cobra', 1),
        (2735, 'Haise', 242),
        (2903, 'Air Concept', 245);
 
-insert into car_parameter(body_type_id, current_mileage, engine_size, power, year_of_prod, fuel_consumption,
+insert into car_parameter(FK_body_type, current_mileage, engine_size, power, year_of_prod, fuel_consumption,
                           daily_rate)
 values (3, 150, 2000, 160, 2019, 6, 80),
        (3, 100, 2500, 200, 2019, 9, 95),
@@ -1808,9 +1808,9 @@ values (3, 150, 2000, 160, 2019, 6, 80),
        (5, 400, 2000, 520, 2018, 8, 125);
 
 
-insert into car (registration_number, car_model_id, location_id,
-          car_parameter_id, car_status)
-values ('AAA000', 58, 3, 1, 'UAV'),
+insert into car (registration_number, FK_car_model, FK_location,
+          FK_car_parameter, FK_car_status)
+values ('AAA000', 58, 3, 1, 'AVI'),
     ('BBB111', 61, 3, 2, 'UAV'),
     ('CCC222', 68, 3, 3, 'UAV'),
     ('DDD333', 96, 3, 4, 'UAV'),

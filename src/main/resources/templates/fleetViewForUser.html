@@ -40,7 +40,10 @@
       <td th:text="${car.prodYear}">Production year</td>
       <td th:text="${car.dailyRate}">Daily rate</td>
       <td th:text="${car.carStatus}">Status</td>
-      <td class="btn btn-danger">Booking</td>
+        <div th:switch="${car.carStatus}">
+          <td th:case="available" class="btn btn-success">Booking</td>
+          <td th:case="unavailable" class="btn btn-danger">Booking</td>
+        </div>
     </tr>
     </tbody>
   </table>

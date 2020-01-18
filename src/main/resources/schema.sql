@@ -15,6 +15,7 @@ drop table if exists rental;
 drop table if exists rental_status;
 drop table if exists role;
 drop table if exists user;
+drop table if exists user_roles;
 drop table if exists car_status;
 drop view if exists car_detail_view;
 
@@ -136,8 +137,6 @@ create table user
     foreign key (FK_customer) references customer (PK_customer)
 );
 
-
-
 create table rental
 (
     PK_rental   bigint auto_increment
@@ -161,7 +160,7 @@ create table rentals_car
     foreign key (FK_rental) references rental (id_rental)
 );
 */
-create table user_role
+create table user_roles
 (
     FK_user bigint not null,
     FK_role bigint not null,
