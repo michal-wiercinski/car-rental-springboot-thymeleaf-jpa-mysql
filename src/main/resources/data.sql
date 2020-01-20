@@ -30,8 +30,7 @@ values (1, 'SUPERADMIN'),
 insert into rental_status (PK_status, status_desc)
 values (1, 'canceled'),
        (2, 'rented'),
-       (3, 'reserved'),
-       (4, 'returned');
+       (3, 'returned');
 
 insert into car_status (PK_status_code, status_description)
 values ('AVI', 'available'),
@@ -1799,19 +1798,20 @@ values (3, 'Cobra', 1),
        (2735, 'Haise', 242),
        (2903, 'Air Concept', 245);
 
-insert into car_parameter(FK_body_type, current_mileage, engine_size, power, year_of_prod, fuel_consumption,
-                          daily_rate)
-values (3, 150, 2000, 160, 2019, 6, 80),
-       (3, 100, 2500, 200, 2019, 9, 95),
-       (2, 500, 3993, 560, 2018, 8, 120),
-       (2, 250, 2993, 280, 2018, 7, 105),
-       (5, 400, 2000, 520, 2018, 8, 125);
+insert into car_parameter(FK_body_type, FK_car_model, current_mileage, engine_size,
+                          power, year_of_prod, fuel_consumption,
+                          daily_rate, FK_car_status)
+values (3, 58, 150, 2000, 160, 2019, 6, 80, 'AVI'),
+       (3, 61, 100, 2500, 200, 2019, 9, 95, 'UAV'),
+       (2, 68, 500, 3993, 560, 2018, 8, 120, 'UAV'),
+       (2, 96, 250, 2993, 280, 2018, 7, 105, 'UAV'),
+       (5, 95, 400, 2000, 520, 2018, 8, 125, 'UAV');
 
 
-insert into car (registration_number, FK_car_model, FK_location,
-          FK_car_parameter, FK_car_status)
-values ('AAA000', 58, 3, 1, 'AVI'),
-    ('BBB111', 61, 3, 2, 'UAV'),
-    ('CCC222', 68, 3, 3, 'UAV'),
-    ('DDD333', 96, 3, 4, 'UAV'),
-    ('EEE444', 95, 3, 5, 'UAV');
+insert into car (registration_number, FK_location,
+                 FK_car_parameter)
+values ('AAA000', 3, 1),
+       ('BBB111', 3, 2),
+       ('CCC222', 3, 3),
+       ('DDD333', 3, 4),
+       ('EEE444', 3, 5);

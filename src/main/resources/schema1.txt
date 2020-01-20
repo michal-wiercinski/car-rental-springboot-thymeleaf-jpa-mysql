@@ -1,3 +1,5 @@
+//spring.datasource.data=classpath:/schema.sql,classpath:/functions.sql,classpath:/data.sql
+
 drop database if exists carRental;
 create database carRental;
 
@@ -63,12 +65,6 @@ create table car_model
     foreign key (FK_brand) references brand (PK_brand)
 );
 
-create table car_status
-(
-    PK_status_code     varchar(3)  not null primary key,
-    status_description varchar(50) not null
-);
-
 create table car_parameter
 (
     PK_car_parameter bigint auto_increment
@@ -85,6 +81,8 @@ create table car_parameter
     foreign key (FK_body_type) references body_type (PK_body_type),
     foreign key (FK_car_model) references car_model (PK_car_model),
     foreign key (FK_car_status) references car_status (PK_status_code)
+
+    -- car_id           bigint not null
 );
 
 create table location
@@ -110,6 +108,14 @@ create table customer
     foreign key (address_FK) references address (PK_address)
 );
 
+
+create table car_status
+(
+    PK_status_code     varchar(3)  not null primary key,
+    status_description varchar(50) not null
+);
+
+
 create table car
 (
     PK_car              bigint auto_increment
@@ -131,33 +137,32 @@ create table user
     FK_customer bigint       not null,
     foreign key (FK_customer) references customer (PK_customer)
 );
-create table rental_details
-(
-    PK_rental_details bigint auto_increment primary key,
-    date_from         datetime(6)                not null,
-    date_end          datetime(6)                not null,
-    rental_cost       decimal(10, 4) default 0.0 not null,
-    distance          int            default 0   not null,
-    ccc_Number        varchar(16)                not null,
-    ccc_expiration    varchar(5)                 not null,
-    ccc_cvv           varchar(3)                 not null
-);
-
 
 create table rental
 (
-    PK_rental         bigint auto_increment
+    PK_rental        bigint auto_increment
         primary key,
-    FK_customer       bigint not null,
-    FK_status         bigint not null,
-    FK_car            bigint not null,
-    FK_rental_details bigint not null,
+    FK_customer      bigint not null,
+    FK_status        bigint not null,
+    FK_car           bigint not null,
+    FK_rental_detail bigint not null,
     foreign key (FK_customer) references customer (PK_customer),
     foreign key (FK_car) references car (PK_car),
     foreign key (FK_status) references rental_status (PK_status),
-    foreign key (FK_rental_details) references rental_details (PK_rental_details)
+    foreign key (FK_rental_detail) references rental_detail (PK_rental_detail)
 );
 
+create table rental_detail
+(
+    PK_rental_detail bigint auto_increment primary key,
+    date_from        datetime(6)                not null,
+    date_end         datetime(6)                not null,
+    rental_cost      decimal(10, 4) default 0.0 not null,
+    distance         int            default 0   not null,
+    ccc_Number       varchar(16)                not null,
+    ccc_expiration   varchar(5)                 not null,
+    ccc_cvv          varchar(3)                 not null
+);
 /*
 create table rentals_car
 (
@@ -179,30 +184,29 @@ create table user_roles
 
 create or replace view details_fleet
 as
-select c.PK_car                         as 'car_id',
-       coalesce(sum(rd.rental_cost), 0) as 'income',
-       br.brand_name                    as 'brand',
-       cm.car_model_name                as 'car_model',
-       bt.type_name                     as 'body_type',
-       cp.power                         as 'engine_power',
-       cp.engine_size                   as 'engine_size',
-       cp.year_of_prod                  as 'production_year',
-       cp.current_mileage               as 'current_mileage',
-       cp.daily_rate                    as 'daily_rate',
-       cs.status_description            as 'status',
-       cp.fuel_consumption              as 'avg_fuel_consumption',
-       l.location_name                  as 'location_name'
+select c.PK_car                        as 'car_id',
+       coalesce(sum(r.rental_cost), 0) as 'income',
+       br.brand_name                   as 'brand',
+       cm.car_model_name               as 'car_model',
+       bt.type_name                    as 'body_type',
+       cp.power                        as 'engine_power',
+       cp.engine_size                  as 'engine_size',
+       cp.year_of_prod                 as 'production_year',
+       cp.current_mileage              as 'current_mileage',
+       cp.daily_rate                   as 'daily_rate',
+       cs.status_description           as 'status',
+       cp.fuel_consumption             as 'avg_fuel_consumption',
+       l.location_name                 as 'location_name'
 from car as c
+         left join car_model as cm on c.FK_car_model = cm.PK_car_model
          left join car_parameter as cp
                    on c.FK_car_parameter = cp.PK_car_parameter
-         left join car_model as cm on cp.FK_car_model = cm.PK_car_model
-         left join car_status cs on cp.FK_car_status = cs.PK_status_code
+         left join car_status cs on c.FK_car_status = cs.PK_status_code
          left join brand as br on cm.FK_brand = br.PK_brand
          left join body_type as bt on cp.FK_body_type = bt.PK_body_type
          left join rental r on c.PK_car = r.FK_car
-         left join rental_details rd on r.FK_rental_details = rd.PK_rental_details
          left join location l on c.FK_location = l.PK_location
-group by c.PK_car, rd.rental_cost;
+group by c.PK_car, r.rental_cost;
 
 
 
@@ -221,13 +225,14 @@ select c.PK_car              as 'car_id',
        cs.status_description as 'status'
 
 from car as c
+         left join car_model as cm on c.FK_car_model = cm.PK_car_model
          left join car_parameter as cp
                    on c.FK_car_parameter = cp.PK_car_parameter
-         left join car_model as cm on cp.FK_car_model = cm.PK_car_model
-         left join car_status cs on cp.FK_car_status = cs.PK_status_code
+         left join car_status cs on c.FK_car_status = cs.PK_status_code
+         left join brand as br on cm.FK_brand = br.PK_brand
          left join body_type as bt on cp.FK_body_type = bt.PK_body_type
-         left join location as l on l.PK_location = c.FK_location
-         left join brand as br on cm.FK_brand = br.PK_brand;
+         left join location as l on l.PK_location = c.FK_location;
+
 
 
 
