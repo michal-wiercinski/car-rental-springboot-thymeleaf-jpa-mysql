@@ -1,4 +1,4 @@
-package mira.dbproject.carrental.repository.dao;
+package mira.dbproject.carrental.repository.view;
 
 import mira.dbproject.carrental.domain.view.CarView;
 import mira.dbproject.carrental.domain.view.CarViewAdmin;

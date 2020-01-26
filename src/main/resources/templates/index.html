@@ -13,18 +13,11 @@
   <p>Start Date: <input type="text" id="datepicker1" class="form-control"></p>
   <p>End Date: <input type="text" id="datepicker2" class="form-control"></p>
   </div>
-  <!--<div class="col-3">
-    <div class="form-group col-md-4">
-      <label>Car Model:</label>
-      <select class="form-control" th:field="*{locationDtoId}">
-        <option th:value="null">Location</option>
-        <option th:each="location : ${locations}"
-                th:value="${location.id}"
-                th:text="${location.name}">
-        </option>
-      </select>
+    <div class="mt-2 md-2">
+    <a class="btn btn-info" th:href="@{'/cars/'}">Show all cars</a>
     </div>
-  </div>-->
+    <br><br>
+    <link th:replace="/parts/fleetViewForUser">
 </div>
 </div>
 

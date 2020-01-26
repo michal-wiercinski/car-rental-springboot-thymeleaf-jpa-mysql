@@ -29,7 +29,7 @@ public class CarsController {
     List<CarViewAdmin> detailsFleet = carViewAdminService.findAll();
 
     model.addAttribute("detailsFleet", detailsFleet);
-    return "fleetViewWithIncome";
+    return "fleetViewForAdmin";
   }
 
   @GetMapping("/")
@@ -37,6 +37,12 @@ public class CarsController {
     List<CarViewUser> carsForUser = carViewUserService.findAll();
 
     model.addAttribute("carsForUser", carsForUser);
-    return "fleetViewForUser";
+    return "fleetForUser";
+  }
+
+  @GetMapping("/available")
+  private String getAllAvailableCars(Model model ){
+    model.addAttribute("carsForUser", carViewUserService.findAllAvailable());
+    return "fleetForUser";
   }
 }

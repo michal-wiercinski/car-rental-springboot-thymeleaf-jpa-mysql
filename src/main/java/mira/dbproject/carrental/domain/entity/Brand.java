@@ -10,11 +10,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import lombok.Data;
 
+
+@NamedStoredProcedureQueries(
+    @NamedStoredProcedureQuery(name = "Brand.NamedQuery_BrandName",
+        procedureName = "get_brand_name",
+        parameters = {
+            @StoredProcedureParameter(mode = ParameterMode.IN, name = "in_id", type = Long.class),
+            @StoredProcedureParameter(mode = ParameterMode.OUT, name = "brd_name", type = String.class)
+        })
+)
 @NamedQueries({
     @NamedQuery(
         name = "Brand.FindByName",

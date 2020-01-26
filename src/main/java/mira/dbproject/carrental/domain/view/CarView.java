@@ -3,6 +3,9 @@ package mira.dbproject.carrental.domain.view;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 
 @MappedSuperclass
 public class CarView {
@@ -16,6 +19,9 @@ public class CarView {
 
   @Column(name = "car_model")
   private String carModelName;
+
+  @Column(name = "registration_number")
+  private String regNumber;
 
   @Column(name = "body_type")
   private String bodyType;
@@ -63,6 +69,14 @@ public class CarView {
 
   public void setCarModelName(String carModelName) {
     this.carModelName = carModelName;
+  }
+
+  public String getRegNumber() {
+    return regNumber;
+  }
+
+  public void setRegNumber(String regNumber) {
+    this.regNumber = regNumber;
   }
 
   public String getBodyType() {

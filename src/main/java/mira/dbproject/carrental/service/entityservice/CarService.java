@@ -49,7 +49,7 @@ public class CarService implements IGenericService<Car> {
 
   @Override
   public void deleteById(Long id) {
-
+    carDao.deleteById(id);
   }
 
 

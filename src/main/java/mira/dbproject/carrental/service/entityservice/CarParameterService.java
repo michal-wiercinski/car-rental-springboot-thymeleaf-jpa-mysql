@@ -16,6 +16,10 @@ public class CarParameterService {
   @Autowired
   BodyTypeService bodyTypeService;
 
+  @Autowired
+  CarStatusService carStatusService;
+
+
   @Transactional
   public CarParameter save(CarParameter carParameter) {
     return carParameterDao.save(carParameter);
@@ -26,6 +30,7 @@ public class CarParameterService {
     CarParameter carParameter = new CarParameter();
 
     carParameter.setBodyType(bodyTypeService.findById(carDto.getBodyTypeDtoId()).get());
+    carParameter.setCarStatus(carStatusService.findById(carDto.getCarStatus()).get());
     carParameter.setYearOfProd(carDto.getYearOfProd());
     carParameter.setAverageFuelConsumption(carDto.getAverageFuelConsumption());
     carParameter.setCurrentMileage(carDto.getCurrentMileage());

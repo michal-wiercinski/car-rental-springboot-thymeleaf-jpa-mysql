@@ -17,34 +17,48 @@
   <table class="table table-bordered">
     <thead>
     <tr>
+      <th>Car ID</th>
+      <th>Income</th>
       <th>Brand</th>
       <th>Car model</th>
       <th>Body type</th>
-      <th>Location</th>
       <th>Engine power(MP)</th>
       <th>Engine size</th>
       <th>Production year</th>
+      <th>Current mileage</th>
       <th>Daily rate</th>
       <th>Status</th>
-      <th></th>
+      <th>Manage</th>
     </tr>
     </thead>
     <tbody id="myTable">
-    <tr th:each="car : ${carsForUser}">
+    <tr th:each="car : ${detailsFleet}">
+      <td th:text="${car.id}">ID</td>
+      <td th:text="${car.income}">Income</td>
       <td th:text="${car.brandName}">Brand</td>
       <td th:text="${car.carModelName}">Car model</td>
       <td th:text="${car.bodyType}">Body type</td>
-      <td th:text="${car.locationName}">Location</td>
       <td th:text="${car.enginePower}">Engine power(MP)</td>
       <td th:text="${car.engineSize}">Engine size<</td>
       <td th:text="${car.prodYear}">Production year</td>
+      <td th:text="${car.currentMileage}">Current mileage</td>
       <td th:text="${car.dailyRate}">Daily rate</td>
       <td th:text="${car.carStatus}">Status</td>
-        <div th:switch="${car.carStatus}">
-          <td th:case="available" class="btn btn-success">Booking</td>
-          <td th:case="unavailable" class="btn btn-danger">Booking</td>
+      <td>
+        <div class="d-sm-inline-flex">
+          <a class="btn btn-success" th:href="'/manage/edit-form/' + ${car.id}">Edit</a>
+          <a class="btn btn-danger" th:href="'/manage/delete/' + ${car.id}">Delete</a>
         </div>
+      </td>
+
     </tr>
+    <script>
+      $('.dropdown navi-log').click(function () {
+
+        $('.dropdown-menu').toggleClass('show');
+
+      });
+    </script>
     </tbody>
   </table>
 </div>

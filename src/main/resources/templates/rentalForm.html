@@ -7,6 +7,7 @@
 </head>
 <body>
 <link th:replace="/parts/navbar"/>
+<!--
 <div class="container">
   <div class="form-control mt-4">
     <div class="col-4">
@@ -15,6 +16,24 @@
     </div>
   </div>
 </div>
+-->
+
+<div class="container">
+
+
+  <form class="form-inline mt-4 col-lg-6" th:object="${car}" th:action="@{/manage/add-car}"
+        th:method="post">
+
+    <div class="form-group mb-2 mr-sm-2">
+      <!--<label>Car Model:</label>-->
+      <select class="form-control" th:field="*{}">
+        <option th:value="null">Car model</option>
+        <option th:each="model : ${carModels}"
+                th:value="${model.id}"
+                th:text="${model.name} + ' (' + (${model.brand.name}) + ')' ">
+        </option>
+      </select>
+    </div>
 
 
 
