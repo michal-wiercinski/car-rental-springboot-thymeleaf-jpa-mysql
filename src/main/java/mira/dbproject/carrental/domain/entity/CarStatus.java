@@ -17,11 +17,11 @@ import lombok.Data;
 public class CarStatus {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "status_code")
+  @Column(name = "PK_status_code")
   @Id
   private String statusCode;
 
-  @Column
+  @Column(name ="status_description")
   private String statusDescription;
 
   public String getStatusCode() {

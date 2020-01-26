@@ -7,10 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import lombok.Data;
 
+@NamedStoredProcedureQueries(
+    @NamedStoredProcedureQuery(name = "Address.createNewAddress",
+    procedureName = "create_address",
+    parameters ={
+      @StoredProcedureParameter(name = "p_city", mode = ParameterMode.IN, type = String.class),
+      @StoredProcedureParameter(name = "p_street", mode = ParameterMode.IN, type = String.class),
+      @StoredProcedureParameter(name = "p_house_number", mode = ParameterMode.IN, type = String.class),
+      @StoredProcedureParameter(name = "p_flat_number", mode = ParameterMode.IN, type = String.class),
+      @StoredProcedureParameter(name = "p_zip_code", mode = ParameterMode.IN, type = String.class),
+    }
+    )
+)
 @Data
 @Table(name = "address")
 @Entity
@@ -18,7 +34,7 @@ public class Address {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(name = "id_address")
+  @Column(name = "PK_address")
   private Long id;
 
   @Column(name = "city")
@@ -34,7 +50,7 @@ public class Address {
   private String zipCode;
 
   @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
-  private List<Customer> customers;
+  private List<UserDetail> customers;
 
   public Long getId() {
     return id;
@@ -76,11 +92,11 @@ public class Address {
     this.houseNumber = houseNumber;
   }
 
-  public List<Customer> getCustomers() {
+  public List<UserDetail> getCustomers() {
     return customers;
   }
 
-  public void setCustomers(List<Customer> customers) {
+  public void setCustomers(List<UserDetail> customers) {
     this.customers = customers;
   }
 }

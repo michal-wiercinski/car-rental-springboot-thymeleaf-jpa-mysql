@@ -1,7 +1,5 @@
 package mira.dbproject.carrental.domain.entity;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -19,29 +18,24 @@ public class Rental {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(name = "id_rental")
+  @Column(name = "PK_rental")
   private Long id;
 
-  @Column(name = "date_start")
-  private LocalDateTime dateStart;
-
-  @Column(name = "date_end")
-  private LocalDateTime dateEnd;
-
-  @Column(name = "rental_cost")
-  private BigDecimal rentalCost;
-
   @ManyToOne
-  @JoinColumn(name = "car_id")
+  @JoinColumn(name = "FK_car")
   private Car car;
 
   @ManyToOne
-  @JoinColumn(name = "customer_id")
-  private Customer customer;
+  @JoinColumn(name = "FK_user")
+  private User user;
 
   @ManyToOne
-  @JoinColumn(name = "status_id")
+  @JoinColumn(name = "FK_status")
   private RentalStatus rentalStatus;
+
+  @OneToOne
+  @JoinColumn(name = "FK_rental_details" )
+  private RentalDetails rentalDetails;
 
   public Long getId() {
     return id;
@@ -49,22 +43,6 @@ public class Rental {
 
   public void setId(Long id) {
     this.id = id;
-  }
-
-  public LocalDateTime getDateStart() {
-    return dateStart;
-  }
-
-  public void setDateStart(LocalDateTime dateFrom) {
-    this.dateStart = dateFrom;
-  }
-
-  public LocalDateTime getDateEnd() {
-    return dateEnd;
-  }
-
-  public void setDateEnd(LocalDateTime dateTo) {
-    this.dateEnd = dateTo;
   }
 
   public Car getCar() {
@@ -75,12 +53,12 @@ public class Rental {
     this.car = car;
   }
 
-  public Customer getCustomer() {
-    return customer;
+  public User getUser() {
+    return user;
   }
 
-  public void setCustomer(Customer customer) {
-    this.customer = customer;
+  public void setUser(User user) {
+    this.user = user;
   }
 
   public RentalStatus getRentalStatus() {
@@ -89,5 +67,14 @@ public class Rental {
 
   public void setRentalStatus(RentalStatus rentalStatus) {
     this.rentalStatus = rentalStatus;
+  }
+
+
+  public RentalDetails getRentalDetails() {
+    return rentalDetails;
+  }
+
+  public void setRentalDetails(RentalDetails rentalDetails) {
+    this.rentalDetails = rentalDetails;
   }
 }

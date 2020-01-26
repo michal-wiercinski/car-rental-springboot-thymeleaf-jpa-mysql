@@ -22,32 +22,28 @@ public class Car implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_car")
+  @Column(name = "PK_car")
   private Long id;
 
   @Column(name = "registration_number")
   private String registrationNumber;
 
   @ManyToOne
-  @JoinColumn(name = "car_status")
-  private CarStatus carStatus;
-
-  @ManyToOne
-  @JoinColumn(name = "location_id")
+  @JoinColumn(name = "FK_location")
   private Location location;
 
   @ManyToOne
-  @JoinColumn(name = "car_model_id")
+  @JoinColumn(name = "FK_car_model")
   private CarModel carModel;
 
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "FK_car_parameter")
+  private CarParameter carParameter;
 
   @OneToMany(mappedBy = "car",
       cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   private List<Rental> rental;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "car_parameter_id")
-  private CarParameter carParameter;
 
   public String getRegistrationNumber() {
     return registrationNumber;
@@ -65,13 +61,6 @@ public class Car implements Serializable {
     this.id = id;
   }
 
-  public CarStatus getCarStatus() {
-    return carStatus;
-  }
-
-  public void setCarStatus(CarStatus carStatus) {
-    this.carStatus = carStatus;
-  }
 
   public Location getLocation() {
     return location;

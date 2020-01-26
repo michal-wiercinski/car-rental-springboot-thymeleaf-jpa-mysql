@@ -21,4 +21,5 @@ public class CarStatusService {
     return carStatusDao.findAll();
   }
 
+
 }

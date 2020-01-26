@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link th:replace="/parts/metadata">
+  <title>Add new car</title>
+</head>
+<body>
+
+
+<link th:replace="/parts/navbar">
+<div class="container">
+
+
+  <form class="form-inline mt-4 col-lg-6" th:object="${carDto}" th:action="@{/manage/edit-car}"
+        th:method="post">
+
+    <div class="blockList">
+      <div class="alert alert-danger " role="alert"
+           th:if="${#fields.hasErrors('bodyTypeDtoId')}" th:errors="*{bodyTypeDtoId}">
+      </div>
+
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('carModelDtoId')}" th:errors="*{carModelDtoId}">
+      </div>
+
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('registrationNumber')}" th:errors="*{registrationNumber}">
+      </div>
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('averageFuelConsumption')}"
+           th:errors="*{averageFuelConsumption}">
+      </div>
+      <div class="alert alert-danger " role="alert"
+           th:if="${#fields.hasErrors('engineSize')}" th:errors="*{engineSize}">
+      </div>
+
+      <div class="alert alert-danger " role="alert"
+           th:if="${#fields.hasErrors('power')}" th:errors="*{power}">
+      </div>
+
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('carStatus')}" th:errors="*{carStatus}">
+      </div>
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('yearOfProd')}" th:errors="*{yearOfProd}">
+      </div>
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('currentMileage')}" th:errors="*{currentMileage}">
+      </div>
+      <div class="alert alert-danger" role="alert"
+           th:if="${#fields.hasErrors('locationDtoId')}" th:errors="*{locationDtoId}">
+      </div>
+
+
+    </div>
+
+
+    <div class="form-group mb-2 mr-sm-2">
+      <!-- <label for="inputBodyType">Body type:</label>-->
+      <select id="inputBodyType" class="form-control" th:field="*{bodyTypeDtoId}">
+        <!--  <div class="alert alert-danger" role="alert"
+               th:if="${#fields.hasErrors('bodyTypeDtoId')}" th:errors="*{bodyTypeDtoId}">
+          </div>-->
+        <option th:value="null">Body type</option>
+        <!--th:text="'Body type: '"></option>-->
+        <option th:each="bodyType : ${bodyTypes}"
+                th:value="${bodyType.id}"
+                th:text="${bodyType.typeName}">
+        </option>
+
+      </select>
+    </div>
+    <div class="form-group mb-2 mr-sm-2">
+      <!--<label>Car Model:</label>-->
+      <select class="form-control" th:field="*{carModelDtoId}">
+        <option th:value="null">Car model</option>
+        <!--th:text="'Car model: ' + ${editCar.carModelName}"></option>-->
+        <option th:each="model : ${carModels}"
+                th:value="${model.id}"
+                th:text="${model.name} + ' (' + (${model.brand.name}) + ')' ">
+        </option>
+      </select>
+    </div>
+    <div class="form-group mb-2 mr-sm-2">
+      <!--<label>Location:</label>-->
+      <select class="form-control" th:field="*{locationDtoId}">
+        <option th:value="null">Location</option>
+        <!--th:text="'Location: ' + ${editCar.locationName}"-->
+        <option th:each="location : ${locations}"
+                th:value="${location.id}"
+                th:text="${location.name}">
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label class="sr-only" for="inlineFormInputRegistrationNumber2">Registration number</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputRegistrationNumber2"
+             placeholder="Registration Number"
+             th:field="*{registrationNumber}">
+    </div>
+
+    <div>
+      <label class="sr-only" for="inlineFormInputEngineSize2">Engine size</label>
+      <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputEngineSize2"
+             placeholder="Engine size" th:field="*{engineSize}">
+    </div>
+    <div>
+      <label class="sr-only" for="inlineFormInputEnginePower2">Engine power</label>
+      <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputEnginePower2"
+             placeholder="'Engine power" th:field="*{power}">
+    </div>
+
+    <div>
+      <label class="sr-only" for="inlineFormInputCurrentMileage2">Current mileage</label>
+      <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputCurrentMileage2"
+             placeholder="Current mileage"
+             th:field="*{currentMileage}">
+    </div>
+
+    <div>
+      <label class="sr-only" for="inlineFormInputYearOfProduction2">Year of production</label>
+      <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputYearOfProduction2"
+             placeholder="Year of production" th:field="*{yearOfProd}">
+    </div>
+
+    <div>
+      <label class="sr-only" for="inlineFormInputAverageFuelConsumption2">Average fuel
+        consumption</label>
+      <input type="number" class="form-control mb-2 mr-sm-2"
+             id="inlineFormInputAverageFuelConsumption2"
+             placeholder="Fuel consumption"
+             th:field="*{averageFuelConsumption}">
+    </div>
+    <div>
+      <label class="sr-only" for="inlineFormInputDailyRate2">Daily Rate</label>
+      <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputDailyRate2"
+             placeholder="Daily Rate" th:field="*{dailyRate}">
+    </div>
+
+    <div class="form-group mb-2 mr-sm-2">
+      <!-- <label for="inputCarStatus">Car status:</label>-->
+      <select id="inputCarStatus" class="form-control" th:field="*{carStatus}">
+        <option th:value="null"> Car status</option>
+        <option th:each="carStatus : ${carStatuses}"
+                th:value="${carStatus.statusCode}"
+                th:text="${carStatus.statusDescription}">
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+  </form>
+</div>
+
+
+<link th:replace="/parts/scripts">
+</body>
+</html>

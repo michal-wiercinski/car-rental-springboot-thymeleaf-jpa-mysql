@@ -7,19 +7,36 @@
 </head>
 <body>
 <link th:replace="/parts/navbar"/>
+<!--
 <div class="container">
   <div class="form-control mt-4">
-  <div class="col-4">
-  <p>Start Date: <input type="text" id="datepicker1" class="form-control"></p>
-  <p>End Date: <input type="text" id="datepicker2" class="form-control"></p>
-  </div>
-    <div class="mt-2 md-2">
-    <a class="btn btn-info" th:href="@{'/cars/'}">Show all cars</a>
+    <div class="col-4">
+      <p>Start Date: <input type="text" id="datepicker1" class="form-control"></p>
+      <p>End Date: <input type="text" id="datepicker2" class="form-control"></p>
     </div>
-    <br><br>
-    <link th:replace="/parts/fleetViewForUser">
+  </div>
 </div>
-</div>
+-->
+
+<div class="container">
+
+
+  <form class="form-inline mt-4 col-lg-6" th:object="${car}" th:action="@{/manage/add-car}"
+        th:method="post">
+
+    <div class="form-group mb-2 mr-sm-2">
+      <!--<label>Car Model:</label>-->
+      <select class="form-control" th:field="*{}">
+        <option th:value="null">Car model</option>
+        <option th:each="model : ${carModels}"
+                th:value="${model.id}"
+                th:text="${model.name} + ' (' + (${model.brand.name}) + ')' ">
+        </option>
+      </select>
+    </div>
+
+
+
 
 
 <link th:replace="/parts/scripts"/>

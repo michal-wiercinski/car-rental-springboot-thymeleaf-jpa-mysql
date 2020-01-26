@@ -8,9 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
+
 
 @Data
 @Table(name = "location")
@@ -19,11 +22,15 @@ public class Location implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(name = "id_location")
+  @Column(name = "PK_location")
   private Long id;
 
   @Column(name = "location_name")
   private String name;
+
+  @OneToOne
+  @JoinColumn(name = "FK_address")
+  private  Address address;
 
   @OneToMany(mappedBy = "location",
       cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

@@ -1,12 +1,12 @@
-insert into body_type (type_name)
-values ('Hatchback'),
+INSERT INTO body_type (type_name)
+VALUES ('Hatchback'),
        ('Kombi'),
        ('Sedan'),
        ('SUV'),
-       ('Coupe');
+       ('Coupe') ^;
 
-insert into location (location_name)
-values ('Warsaw Chopin Airport '),
+INSERT INTO location (location_name)
+VALUES ('Warsaw Chopin Airport '),
        ('John Paul II International Airport Kraków–Balice '),
        ('Gdańsk Lech Wałęsa Airport '),
        ('Katowice Airport '),
@@ -19,25 +19,24 @@ values ('Warsaw Chopin Airport '),
        ('Bydgoszcz Ignacy Jan Paderewski Airport '),
        ('Olsztyn-Mazury Airport '),
        ('Zielona Góra-Babimost Airport'),
-       ('Łódź Władysław Reymont Airport ');
+       ('Łódź Władysław Reymont Airport ') ^;
 
 
-insert into role (id_role, role_name)
-values (1, 'SUPERADMIN'),
+INSERT INTO role (PK_role, role_name)
+VALUES (1, 'SUPERADMIN'),
        (2, 'ADMIN'),
-       (3, 'USER');
+       (3, 'USER') ^;
 
-insert into rental_status (id_status, status_desc)
-values (1, 'canceled'),
+INSERT INTO rental_status (PK_status, status_desc)
+VALUES (1, 'canceled'),
        (2, 'rented'),
-       (3, 'reserved'),
-       (4, 'returned');
+       (3, 'returned') ^;
 
-insert into car_status (status_code, status_description)
-values ('AVI', 'available'),
-       ('UAV', 'unavailable');
+INSERT INTO car_status (PK_status_code, status_description)
+VALUES ('AVI', 'available'),
+       ('UAV', 'unavailable') ^;
 
-INSERT INTO brand (id_brand, brand_name)
+INSERT INTO brand (PK_brand, brand_name)
 VALUES (1, 'AC'),
        (2, 'Acura'),
        (3, 'Alfa Romeo'),
@@ -211,11 +210,11 @@ VALUES (1, 'AC'),
        (215, 'Zenvo'),
        (234, 'Zibar'),
        (193, 'Zotye'),
-       (175, 'ZX');
+       (175, 'ZX') ^;
 
 
-insert into car_model (id_car_model, car_model_name, brand_id)
-values (3, 'Cobra', 1),
+INSERT INTO car_model (PK_car_model, car_model_name, FK_brand)
+VALUES (3, 'Cobra', 1),
        (1844, '378 GT Zagato', 1),
        (7, 'MDX', 2),
        (8, 'NSX', 2),
@@ -1797,21 +1796,22 @@ values (3, 'Cobra', 1),
        (2702, 'City', 239),
        (2710, 'Qute', 240),
        (2735, 'Haise', 242),
-       (2903, 'Air Concept', 245);
+       (2903, 'Air Concept', 245) ^;
 
-insert into car_parameter(body_type_id, current_mileage, engine_size, power, year_of_prod, fuel_consumption,
-                          daily_rate)
-values (3, 150, 2000, 160, 2019, 6, 80),
-       (3, 100, 2500, 200, 2019, 9, 95),
-       (2, 500, 3993, 560, 2018, 8, 120),
-       (2, 250, 2993, 280, 2018, 7, 105),
-       (5, 400, 2000, 520, 2018, 8, 125);
+INSERT INTO car_parameter(FK_body_type, current_mileage, engine_size,
+                          power, year_of_prod, fuel_consumption,
+                          daily_rate, FK_car_status)
+VALUES (3, 150, 2000, 160, 2019, 6, 80, 'AVI'),
+       (3, 100, 2500, 200, 2019, 9, 95, 'UAV'),
+       (2, 500, 3993, 560, 2018, 8, 120, 'UAV'),
+       (2, 250, 2993, 280, 2018, 7, 105, 'UAV'),
+       (5, 400, 2000, 520, 2018, 8, 125, 'UAV') ^;
 
 
-insert into car (registration_number, car_model_id, location_id,
-          car_parameter_id, car_status)
-values ('AAA000', 58, 3, 1, 'UAV'),
-    ('BBB111', 61, 3, 2, 'UAV'),
-    ('CCC222', 68, 3, 3, 'UAV'),
-    ('DDD333', 96, 3, 4, 'UAV'),
-    ('EEE444', 95, 3, 5, 'UAV');
+INSERT INTO car (registration_number, FK_car_model, FK_location,
+                 FK_car_parameter)
+VALUES ('AAA000', 58, 3, 1),
+       ('BBB111', 61, 3, 2),
+       ('CCC222', 68, 3, 3),
+       ('DDD333', 96, 3, 4),
+       ('EEE444', 95, 3, 5) ^;

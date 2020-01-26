@@ -1,0 +1,41 @@
+
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Car model</th>
+      <th>Body type</th>
+      <th>Location</th>
+      <th>Engine power(MP)</th>
+      <th>Engine size</th>
+      <th>Production year</th>
+      <th>Daily rate</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody id="myTable">
+    <tr th:each="car : ${carsForUser}">
+      <td th:text="${car.brandName}">Brand</td>
+      <td th:text="${car.carModelName}">Car model</td>
+      <td th:text="${car.bodyType}">Body type</td>
+      <td th:text="${car.locationName}">Location</td>
+      <td th:text="${car.enginePower}">Engine power(MP)</td>
+      <td th:text="${car.engineSize}">Engine size<</td>
+      <td th:text="${car.prodYear}">Production year</td>
+      <td th:text="${car.dailyRate}">Daily rate</td>
+      <td th:text="${car.carStatus}">Status</td>
+        <div th:switch="${car.carStatus}">
+          <td>
+          <a th:case="available" class="btn btn-success" th:href="'/rent-car/' + ${car.id}">Booking</a>
+          <a th:case="unavailable" class="btn btn-danger" href="#">Booking</a>
+          </td>
+        </div>
+        </div>
+    </tr>
+    </tbody>
+  </table>
+
+

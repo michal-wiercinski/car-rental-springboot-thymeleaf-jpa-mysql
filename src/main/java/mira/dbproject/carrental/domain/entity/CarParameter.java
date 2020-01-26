@@ -18,7 +18,7 @@ public class CarParameter {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_car_parameter")
+  @Column(name = "PK_car_parameter")
   private Long id;
 
   @Column(name = "current_mileage")
@@ -40,7 +40,11 @@ public class CarParameter {
   private Integer dailyRate;
 
   @ManyToOne
-  @JoinColumn(name = "body_type_id")
+  @JoinColumn(name = "FK_car_status")
+  private CarStatus carStatus;
+
+  @ManyToOne
+  @JoinColumn(name = "FK_body_type")
   private BodyType bodyType;
 
   public Long getId() {
@@ -97,6 +101,14 @@ public class CarParameter {
 
   public void setCurrentMileage(Integer currentMileage) {
     this.currentMileage = currentMileage;
+  }
+
+  public CarStatus getCarStatus() {
+    return carStatus;
+  }
+
+  public void setCarStatus(CarStatus carStatus) {
+    this.carStatus = carStatus;
   }
 
   public BodyType getBodyType() {

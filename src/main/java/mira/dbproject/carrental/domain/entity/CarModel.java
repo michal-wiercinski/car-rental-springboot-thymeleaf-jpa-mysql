@@ -33,14 +33,14 @@ public class CarModel implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(name = "id_car_model")
+  @Column(name = "PK_car_model")
   private Long id;
 
   @Column(name = "car_model_name")
   private String name;
 
   @ManyToOne
-  @JoinColumn(name = "brand_id")
+  @JoinColumn(name = "FK_brand")
   private Brand brand;
 
   @OneToMany(mappedBy = "carModel",

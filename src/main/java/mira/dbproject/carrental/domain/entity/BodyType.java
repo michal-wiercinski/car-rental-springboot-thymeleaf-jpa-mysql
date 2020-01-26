@@ -27,7 +27,7 @@ public class BodyType implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(name = "id_body_type")
+  @Column(name = "PK_body_type")
   private Long id;
 
   @Column(name = "type_name")
