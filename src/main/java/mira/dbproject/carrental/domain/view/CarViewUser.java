@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
 @NamedQueries(
     @NamedQuery(
         name = "CarViewUser.FindAllWhereAvailable",

@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class BodyTypeService implements IGenericService<BodyType> {
 
-  @Autowired
-  BodyTypeDao bodyTypeDao;
+  private final BodyTypeDao bodyTypeDao;
+
+  public BodyTypeService(final BodyTypeDao bodyTypeDao) {
+    this.bodyTypeDao = bodyTypeDao;
+  }
 
   @Override
   public List<BodyType> findAll() {

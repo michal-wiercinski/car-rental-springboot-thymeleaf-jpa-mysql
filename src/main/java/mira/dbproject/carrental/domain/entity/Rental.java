@@ -34,7 +34,7 @@ public class Rental {
   private RentalStatus rentalStatus;
 
   @OneToOne
-  @JoinColumn(name = "FK_rental_details" )
+  @JoinColumn(name = "FK_rental_details")
   private RentalDetails rentalDetails;
 
   public Long getId() {

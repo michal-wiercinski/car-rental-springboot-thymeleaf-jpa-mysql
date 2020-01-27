@@ -30,12 +30,11 @@ public class Location implements Serializable {
 
   @OneToOne
   @JoinColumn(name = "FK_address")
-  private  Address address;
+  private Address address;
 
   @OneToMany(mappedBy = "location",
       cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   private List<Car> vehicles;
-
 
   public Long getId() {
     return id;

@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/cars")
 public class CarsController {
 
-  @Autowired
-  private CarViewAdminService carViewAdminService;
+  private final CarViewAdminService carViewAdminService;
+  private final CarViewUserService carViewUserService;
 
-  @Autowired
-  private CarViewUserService carViewUserService;
-
+  public CarsController(
+      final CarViewAdminService carViewAdminService,
+      final CarViewUserService carViewUserService) {
+    this.carViewAdminService = carViewAdminService;
+    this.carViewUserService = carViewUserService;
+  }
 
   @GetMapping("/our-fleet")
   public String getAllCars(Model model) {
@@ -41,7 +44,7 @@ public class CarsController {
   }
 
   @GetMapping("/available")
-  private String getAllAvailableCars(Model model ){
+  private String getAllAvailableCars(Model model) {
     model.addAttribute("carsForUser", carViewUserService.findAllAvailable());
     return "fleetForUser";
   }

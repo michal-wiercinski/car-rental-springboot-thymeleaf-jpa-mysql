@@ -12,12 +12,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
-import org.hibernate.annotations.Cache;
 
 @NamedQueries({
     @NamedQuery(
-        name="Role.FindByRoleName",
-        query="select r from Role r where r.name = :name"
+        name = "Role.FindByRoleName",
+        query = "select r from Role r where r.name = :name"
     )
 })
 @Data
@@ -33,7 +32,7 @@ public class Role implements Serializable {
   @Column(name = "role_name")
   private String name;
 
-  @ManyToMany(mappedBy = "roles" )
+  @ManyToMany(mappedBy = "roles")
   private List<User> userList;
 
   public Long getId() {

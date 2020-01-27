@@ -15,7 +15,6 @@ public class CarViewAdmin extends CarView {
   @Column(name = "current_mileage")
   private Integer currentMileage;
 
-
   public BigDecimal getIncome() {
     return income;
   }

@@ -4,14 +4,16 @@ import java.util.List;
 import java.util.Optional;
 import mira.dbproject.carrental.domain.entity.CarModel;
 import mira.dbproject.carrental.repository.dao.CarModelDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CarModelService implements IGenericService<CarModel>{
+public class CarModelService implements IGenericService<CarModel> {
 
-  @Autowired
-  CarModelDao carModelDao;
+  private final CarModelDao carModelDao;
+
+  public CarModelService(final CarModelDao carModelDao) {
+    this.carModelDao = carModelDao;
+  }
 
   @Override
   public List<CarModel> findAll() {

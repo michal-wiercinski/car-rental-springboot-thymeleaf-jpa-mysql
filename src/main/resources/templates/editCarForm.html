@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <link th:replace="/parts/metadata">
-  <title>Add new car</title>
+  <title>Edit car</title>
 </head>
 <body>
 
@@ -58,9 +58,6 @@
     <div class="form-group mb-2 mr-sm-2">
       <!-- <label for="inputBodyType">Body type:</label>-->
       <select id="inputBodyType" class="form-control" th:field="*{bodyTypeDtoId}">
-        <!--  <div class="alert alert-danger" role="alert"
-               th:if="${#fields.hasErrors('bodyTypeDtoId')}" th:errors="*{bodyTypeDtoId}">
-          </div>-->
         <option th:value="null">Body type</option>
         <!--th:text="'Body type: '"></option>-->
         <option th:each="bodyType : ${bodyTypes}"
@@ -152,7 +149,6 @@
 
   </form>
 </div>
-
 
 <link th:replace="/parts/scripts">
 </body>

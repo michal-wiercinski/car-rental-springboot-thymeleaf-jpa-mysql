@@ -4,14 +4,16 @@ import java.util.List;
 import java.util.Optional;
 import mira.dbproject.carrental.domain.entity.Location;
 import mira.dbproject.carrental.repository.dao.LocationDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LocationService implements IGenericService<Location> {
 
-  @Autowired
-  LocationDao locationDao;
+  private final LocationDao locationDao;
+
+  public LocationService(final LocationDao locationDao) {
+    this.locationDao = locationDao;
+  }
 
   @Override
   public List<Location> findAll() {

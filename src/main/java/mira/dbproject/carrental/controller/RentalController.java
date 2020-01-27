@@ -2,18 +2,14 @@ package mira.dbproject.carrental.controller;
 
 
 import mira.dbproject.carrental.domain.entity.Rental;
-import mira.dbproject.carrental.domain.entity.RentalDetails;
-import mira.dbproject.carrental.domain.entity.RentalStatus;
 import mira.dbproject.carrental.service.entityservice.RentalService;
 import mira.dbproject.carrental.service.entityservice.RentalStatusService;
 import mira.dbproject.carrental.service.viewservice.CarViewUserService;
 import mira.dbproject.carrental.service.viewservice.RentalViewService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,22 +17,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/rent-car")
 public class RentalController {
 
-  @Autowired
-  private CarViewUserService carViewUserService;
+  private final CarViewUserService carViewUserService;
+  private final RentalService rentalService;
+  private final RentalViewService rentalViewService;
+  private final RentalStatusService rentalStatusService;
 
-  @Autowired
-  private RentalService rentalService;
-
-  @Autowired
-  private RentalViewService rentalViewService;
-
-  @Autowired
-  RentalStatusService rentalStatusService;
+  public RentalController(
+      final CarViewUserService carViewUserService,
+      final RentalService rentalService,
+      final RentalViewService rentalViewService,
+      final RentalStatusService rentalStatusService) {
+    this.carViewUserService = carViewUserService;
+    this.rentalService = rentalService;
+    this.rentalViewService = rentalViewService;
+    this.rentalStatusService = rentalStatusService;
+  }
 
   @RequestMapping(path = "/{id}", method = {RequestMethod.POST, RequestMethod.GET})
   public String rentFormById(@PathVariable("id") Long id) {
     rentalService.createRental(id);
-
     return "redirect:/rent-car/my-rent";
   }
 
@@ -44,7 +43,6 @@ public class RentalController {
   public String getMyRent(Model model) {
     model.addAttribute("rentals", rentalViewService.findAll());
     return "myRentals";
-
   }
 
   @RequestMapping(path = "/cancel/{id}", method = {RequestMethod.POST, RequestMethod.GET})

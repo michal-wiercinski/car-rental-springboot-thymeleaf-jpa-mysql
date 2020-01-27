@@ -12,14 +12,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class RentalService implements IGenericService<Rental> {
 
-  @Autowired
-  RentalDao rentalDao;
+  private final RentalDao rentalDao;
+  private final CarService carService;
+  private final RentalDetailService rentalDetailService;
 
-  @Autowired
-  CarService carService;
-
-  @Autowired
-  RentalDetailService rentalDetailService;
+  public RentalService(final RentalDao rentalDao,
+      final CarService carService,
+      final RentalDetailService rentalDetailService) {
+    this.rentalDao = rentalDao;
+    this.carService = carService;
+    this.rentalDetailService = rentalDetailService;
+  }
 
   @Override
   public List<Rental> findAll() {
@@ -47,7 +50,7 @@ public class RentalService implements IGenericService<Rental> {
   }
 
 
-  public void createRental(Long id){
+  public void createRental(Long id) {
     Rental rental = new Rental();
     rental.setCar(carService.findById(id).get());
     rental.setRentalDetails(rentalDetailService.save(new RentalDetails()));

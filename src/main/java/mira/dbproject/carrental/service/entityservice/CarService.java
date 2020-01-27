@@ -9,7 +9,6 @@ import mira.dbproject.carrental.mapper.CarMapper;
 import mira.dbproject.carrental.repository.dao.CarDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,15 +16,16 @@ public class CarService implements IGenericService<Car> {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
+  private final CarDao carDao;
+  private final CarMapper carMapper;
+  private final CarParameterService carParameterService;
 
-  @Autowired
-  CarDao carDao;
-
-  @Autowired
-  CarMapper carMapper;
-
-  @Autowired
-  CarParameterService carParameterService;
+  public CarService(final CarDao carDao, final CarMapper carMapper,
+      final CarParameterService carParameterService) {
+    this.carDao = carDao;
+    this.carMapper = carMapper;
+    this.carParameterService = carParameterService;
+  }
 
   @Override
   public List<Car> findAll() {

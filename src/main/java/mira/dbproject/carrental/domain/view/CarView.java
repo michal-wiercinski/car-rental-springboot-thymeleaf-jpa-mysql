@@ -3,8 +3,6 @@ package mira.dbproject.carrental.domain.view;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 
 @MappedSuperclass
