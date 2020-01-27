@@ -17,7 +17,6 @@ import mira.dbproject.carrental.service.entityservice.LocationService;
 import mira.dbproject.carrental.service.viewservice.CarViewAdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,11 +32,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ManageController {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
-
-  private List<BodyType> bodyTypes;
-  private List<CarModel> carModels;
-  private List<Location> locations;
-  private List<CarStatus> carStatuses;
 
   private final BodyTypeService bodyTypeService;
   private final CarModelService carModelService;
@@ -61,20 +55,24 @@ public class ManageController {
     this.carViewAdminService = carViewAdminService;
   }
 
-  @GetMapping("/new-car")
-  public String newCarForm(Model model) {
-    CarDto newCar = new CarDto();
-    bodyTypes = bodyTypeService.findAll();
-    carModels = carModelService.findAll();
-    locations = locationService.findAll();
-    carStatuses = carStatusService.findAll();
+  @ModelAttribute
+  public void getLists(final Model model) {
+    List<BodyType> bodyTypes = bodyTypeService.findAll();
+    List<CarModel> carModels = carModelService.findAll();
+    List<Location> locations = locationService.findAll();
+    List<CarStatus> carStatuses = carStatusService.findAll();
 
-    model.addAttribute("car", newCar);
     model.addAttribute("bodyTypes", bodyTypes);
     model.addAttribute("carModels", carModels);
     model.addAttribute("locations", locations);
     model.addAttribute("carStatuses", carStatuses);
+  }
 
+
+  @GetMapping("/new-car")
+  public String newCarForm(Model model) {
+    CarDto newCar = new CarDto();
+    model.addAttribute("car", newCar);
     return "carForm";
   }
 
@@ -101,16 +99,8 @@ public class ManageController {
       Long idl = id.get();
       if (carViewAdminService.findById(idl).isPresent()) {
         CarViewAdmin car = carViewAdminService.findById(idl).get();
-        bodyTypes = bodyTypeService.findAll();
-        carModels = carModelService.findAll();
-        locations = locationService.findAll();
-        carStatuses = carStatusService.findAll();
         model.addAttribute("editCar", car);
         model.addAttribute("carDto", new CarDto());
-        model.addAttribute("bodyTypes", bodyTypes);
-        model.addAttribute("carModels", carModels);
-        model.addAttribute("locations", locations);
-        model.addAttribute("carStatuses", carStatuses);
         return "editCarForm";
       } else {
         return "redirect:/";
