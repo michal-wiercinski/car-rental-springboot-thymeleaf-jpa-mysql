@@ -10,15 +10,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarParameterService {
 
-  @Autowired
-  CarParameterDao carParameterDao;
+  private final CarParameterDao carParameterDao;
+  private final BodyTypeService bodyTypeService;
+  private final CarStatusService carStatusService;
 
-  @Autowired
-  BodyTypeService bodyTypeService;
-
-  @Autowired
-  CarStatusService carStatusService;
-
+  public CarParameterService(final CarParameterDao carParameterDao,
+      final BodyTypeService bodyTypeService,
+      final CarStatusService carStatusService) {
+    this.carParameterDao = carParameterDao;
+    this.bodyTypeService = bodyTypeService;
+    this.carStatusService = carStatusService;
+  }
 
   @Transactional
   public CarParameter save(CarParameter carParameter) {

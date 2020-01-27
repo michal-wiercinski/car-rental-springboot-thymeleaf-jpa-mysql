@@ -1,13 +1,10 @@
 package mira.dbproject.carrental.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import mira.dbproject.carrental.domain.dto.CarDto;
 import mira.dbproject.carrental.domain.entity.BodyType;
-import mira.dbproject.carrental.domain.entity.Car;
 import mira.dbproject.carrental.domain.entity.CarModel;
 import mira.dbproject.carrental.domain.entity.CarStatus;
 import mira.dbproject.carrental.domain.entity.Location;
@@ -24,10 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,29 +34,32 @@ public class ManageController {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-  @Autowired
-  BodyTypeService bodyTypeService;
-
-  @Autowired
-  CarModelService carModelService;
-
-  @Autowired
-  LocationService locationService;
-
-  @Autowired
-  CarService carService;
-
-  @Autowired
-  CarStatusService carStatusService;
-
-  @Autowired
-  CarViewAdminService carViewAdminService;
-
   private List<BodyType> bodyTypes;
   private List<CarModel> carModels;
   private List<Location> locations;
   private List<CarStatus> carStatuses;
 
+  private final BodyTypeService bodyTypeService;
+  private final CarModelService carModelService;
+  private final LocationService locationService;
+  private final CarService carService;
+  private final CarStatusService carStatusService;
+  private final CarViewAdminService carViewAdminService;
+
+  public ManageController(
+      final BodyTypeService bodyTypeService,
+      final CarModelService carModelService,
+      final LocationService locationService,
+      final CarService carService,
+      final CarStatusService carStatusService,
+      final CarViewAdminService carViewAdminService) {
+    this.bodyTypeService = bodyTypeService;
+    this.carModelService = carModelService;
+    this.locationService = locationService;
+    this.carService = carService;
+    this.carStatusService = carStatusService;
+    this.carViewAdminService = carViewAdminService;
+  }
 
   @GetMapping("/new-car")
   public String newCarForm(Model model) {
@@ -93,11 +91,9 @@ public class ManageController {
       });
       return "carForm";
     }
-
     carService.createNewCar(car);
     return "index";
   }
-
 
   @GetMapping("/edit-form/{id}")
   public String editCarForm(Model model, @PathVariable("id") Optional<Long> id) {
@@ -122,7 +118,6 @@ public class ManageController {
     } else {
       return "redirect:/";
     }
-
   }
 
   @PostMapping("/edit-car")
@@ -141,11 +136,9 @@ public class ManageController {
     return "index";
   }
 
-  @RequestMapping(path = "/delete/{id}", method={RequestMethod.DELETE, RequestMethod.GET})
+  @RequestMapping(path = "/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
   public String deleteCarById(@PathVariable("id") Long id) {
     carService.deleteById(id);
     return "redirect:/cars/our-fleet";
   }
-
-
 }

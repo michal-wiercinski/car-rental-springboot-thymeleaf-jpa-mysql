@@ -10,9 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class RentalDetailService implements IGenericService<RentalDetails> {
 
-  @Autowired
-  RentalDetailsDao rentalDetailsDao;
+  private final RentalDetailsDao rentalDetailsDao;
 
+  public RentalDetailService(
+      final RentalDetailsDao rentalDetailsDao) {
+    this.rentalDetailsDao = rentalDetailsDao;
+  }
 
   @Override
   public List<RentalDetails> findAll() {
