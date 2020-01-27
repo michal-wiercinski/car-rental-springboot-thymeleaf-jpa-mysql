@@ -68,7 +68,6 @@ public class ManageController {
     model.addAttribute("carStatuses", carStatuses);
   }
 
-
   @GetMapping("/new-car")
   public String newCarForm(Model model) {
     CarDto newCar = new CarDto();
