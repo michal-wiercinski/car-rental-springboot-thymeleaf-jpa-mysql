@@ -27,7 +27,6 @@ CREATE TABLE address
     city         VARCHAR(255) NOT NULL,
     street       VARCHAR(255) NOT NULL,
     house_number VARCHAR(255) NOT NULL,
-    flat_number  VARCHAR(255) NOT NULL,
     zip_code     VARCHAR(255) NOT NULL
 ) ^;
 
@@ -105,11 +104,8 @@ CREATE TABLE role
 CREATE TABLE user_details
 (
     PK_user_details BIGINT AUTO_INCREMENT PRIMARY KEY,
-    first_name      VARCHAR(255) NOT NULL,
-    last_name       VARCHAR(255) NOT NULL,
-    FK_address      BIGINT       NOT NULL,
-    email           VARCHAR(255) NOT NULL,
-    FK_credit_card  BIGINT       NOT NULL,
+    FK_address      BIGINT NOT NULL,
+    FK_credit_card  BIGINT NOT NULL,
     FOREIGN KEY (FK_address) REFERENCES address (PK_address),
     FOREIGN KEY (FK_credit_card) REFERENCES credit_card (PK_credit_card)
 ) ^;
@@ -129,7 +125,13 @@ CREATE TABLE car
 CREATE TABLE user
 (
     PK_user         BIGINT AUTO_INCREMENT PRIMARY KEY,
+    first_name      VARCHAR(255)  NOT NULL,
+    last_name       VARCHAR(255)  NOT NULL,
+    username        VARCHAR(255)  NOT NULL,
+    password        VARCHAR(255)  NOT NULL,
+    email           VARCHAR(255)  NOT NULL,
     FK_user_details BIGINT UNIQUE NOT NULL,
+
     FOREIGN KEY (FK_user_details) REFERENCES user_details (PK_user_details)
 ) ^;
 

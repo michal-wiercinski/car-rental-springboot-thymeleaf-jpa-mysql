@@ -1,4 +1,4 @@
-package mira.dbproject.carrental.repository.dao;
+package mira.dbproject.carrental.security.repository;
 
 import mira.dbproject.carrental.domain.entity.UserDetail;
 import org.springframework.data.jpa.repository.JpaRepository;

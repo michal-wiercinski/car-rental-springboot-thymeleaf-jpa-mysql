@@ -22,7 +22,6 @@ import lombok.Data;
       @StoredProcedureParameter(name = "p_city", mode = ParameterMode.IN, type = String.class),
       @StoredProcedureParameter(name = "p_street", mode = ParameterMode.IN, type = String.class),
       @StoredProcedureParameter(name = "p_house_number", mode = ParameterMode.IN, type = String.class),
-      @StoredProcedureParameter(name = "p_flat_number", mode = ParameterMode.IN, type = String.class),
       @StoredProcedureParameter(name = "p_zip_code", mode = ParameterMode.IN, type = String.class),
     }
     )

@@ -1,4 +1,4 @@
-package mira.dbproject.carrental.security;
+package mira.dbproject.carrental.security.repository;
 
 import mira.dbproject.carrental.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
