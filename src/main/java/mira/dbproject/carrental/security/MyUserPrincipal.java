@@ -56,5 +56,4 @@ public class MyUserPrincipal implements UserDetails {
   public boolean isEnabled() {
     return false;
   }
-
 }
