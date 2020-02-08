@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 import mira.dbproject.carrental.domain.UserDto;
 import mira.dbproject.carrental.domain.entity.User;
 import mira.dbproject.carrental.security.repository.UserDao;
-import mira.dbproject.carrental.service.entityservice.AddressService;
 import mira.dbproject.carrental.service.entityservice.IGenericService;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +13,11 @@ import org.springframework.stereotype.Service;
 public class UserService implements IGenericService<User> {
 
   private final UserDao userDao;
-  private final AddressService addressService;
   private final UserDetailService userDetailService;
 
   public UserService(final UserDao userDao,
-      final AddressService addressService,
       final UserDetailService userDetailService) {
     this.userDao = userDao;
-    this.addressService = addressService;
     this.userDetailService = userDetailService;
   }
 
@@ -32,7 +28,7 @@ public class UserService implements IGenericService<User> {
   @Transactional
   public void registrationNewUser(UserDto userDto) {
     User user = createByDto(userDto);
-    user.setUserDetail(userDetailService.createByUserDto(userDto));
+    user.setUserDetail(userDetailService.createByUserDetailDto(userDto));
 
     save(user);
   }
@@ -49,7 +45,7 @@ public class UserService implements IGenericService<User> {
 
   @Override
   public List<User> findAll() {
-    return null;
+    return userDao.findAll();
   }
 
   @Override

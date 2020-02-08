@@ -27,9 +27,10 @@ public class UserDetailService implements IUserDetailService {
     return userDetailDao.save(userDetail);
   }
 
-  public UserDetail createByUserDto(UserDto userDto) {
+  public UserDetail createByUserDetailDto(UserDto userDto) {
     UserDetail userDetail = new UserDetail();
-    userDetail.setAddress(addressService.save(addressService.createAddressByUserDto(userDto)));
+    Address address = addressService.createAddressByUserDto(userDto);
+    userDetail.setAddress(address);
     userDetailDao.save(userDetail);
     return userDetail;
   }

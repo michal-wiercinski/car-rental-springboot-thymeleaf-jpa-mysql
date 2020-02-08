@@ -22,12 +22,11 @@ CREATE
     PROCEDURE create_address(IN p_city VARCHAR(30),
                              IN p_street VARCHAR(40),
                              IN p_house_number VARCHAR(20),
-                             IN p_flat_number VARCHAR(20),
                              IN p_zip_code VARCHAR(6),
                              OUT id BIGINT)
 BEGIN
-    INSERT INTO address (city, street, house_number, flat_number, zip_code)
-    VALUES (p_city, p_street, p_house_number, p_flat_number, p_zip_code);
+    INSERT INTO address (city, street, house_number, zip_code)
+    VALUES (p_city, p_street, p_house_number, p_zip_code);
 END ^;
 
 CREATE FUNCTION get_daily_rate_by_rental__details_id(p_pk_rental_details BIGINT)

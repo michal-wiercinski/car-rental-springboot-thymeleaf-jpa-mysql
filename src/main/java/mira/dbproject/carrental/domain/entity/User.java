@@ -1,7 +1,6 @@
 package mira.dbproject.carrental.domain.entity;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.Column;
@@ -12,20 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
 @Table(name = "user")
 @Entity
-public class User implements UserDetails, Serializable {
+public class User implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
@@ -70,6 +65,14 @@ public class User implements UserDetails, Serializable {
 
   public void setUsername(String username) {
     this.username = username;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public String getPassword() {
+    return password;
   }
 
   public void setPassword(String password) {
@@ -123,40 +126,4 @@ public class User implements UserDetails, Serializable {
   public void setRentals(List<Rental> rentals) {
     this.rentals = rentals;
   }
-
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-  }
-
-  @Override
-  public String getPassword() {
-    return password;
-  }
-
-  @Override
-  public String getUsername() {
-    return username;
-  }
-
-  @Override
-  public boolean isAccountNonExpired() {
-    return false;
-  }
-
-  @Override
-  public boolean isAccountNonLocked() {
-    return false;
-  }
-
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return false;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return false;
-  }
 }
-

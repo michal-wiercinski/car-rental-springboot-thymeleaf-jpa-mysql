@@ -15,6 +15,7 @@ public class RegistrationController {
 
   private final UserService userService;
 
+
   public RegistrationController(final UserService userService) {
     this.userService = userService;
   }
@@ -22,11 +23,12 @@ public class RegistrationController {
   @GetMapping
   public String registerForm(Model model) {
     model.addAttribute("user", new UserDto());
-    return "registration";
+    return "registration1";
   }
 
-  @PostMapping
+  @PostMapping("/register")
   public String processRegistration(@ModelAttribute("user") UserDto userDto) {
+    System.out.println(userDto.getFirstName() + "    assssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
     userService.registrationNewUser(userDto);
     return "redirect:/";
   }

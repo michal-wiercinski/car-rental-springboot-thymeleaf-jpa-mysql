@@ -21,13 +21,13 @@ public class UserDetail {
   @Column(name = "PK_user_details")
   private Long id;
 
-  @OneToOne
-  @JoinColumn(name = "FK_credit_card")
-  private CreditCard creditCard;
-
   @ManyToOne
   @JoinColumn(name = "FK_address")
   private Address address;
+
+  @OneToOne
+  @JoinColumn(name = "FK_credit_card")
+  private CreditCard creditCard;
 
   public Long getId() {
     return id;

@@ -105,7 +105,7 @@ CREATE TABLE user_details
 (
     PK_user_details BIGINT AUTO_INCREMENT PRIMARY KEY,
     FK_address      BIGINT NOT NULL,
-    FK_credit_card  BIGINT NOT NULL,
+    FK_credit_card  BIGINT NULL,
     FOREIGN KEY (FK_address) REFERENCES address (PK_address),
     FOREIGN KEY (FK_credit_card) REFERENCES credit_card (PK_credit_card)
 ) ^;
