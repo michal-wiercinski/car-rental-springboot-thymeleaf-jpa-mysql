@@ -22,11 +22,11 @@ CREATE
     PROCEDURE create_address(IN p_city VARCHAR(30),
                              IN p_street VARCHAR(40),
                              IN p_house_number VARCHAR(20),
-                             IN p_flat_number VARCHAR(20),
-                             IN p_zip_code VARCHAR(6))
+                             IN p_zip_code VARCHAR(6),
+                             OUT id BIGINT)
 BEGIN
-    INSERT INTO address (city, street, house_number, flat_number, zip_code)
-    VALUES (p_city, p_street, p_house_number, p_flat_number, p_zip_code);
+    INSERT INTO address (city, street, house_number, zip_code)
+    VALUES (p_city, p_street, p_house_number, p_zip_code);
 END ^;
 
 CREATE FUNCTION get_daily_rate_by_rental__details_id(p_pk_rental_details BIGINT)
@@ -107,4 +107,13 @@ CREATE TRIGGER add_current_time_to_rental
 BEGIN
     SET NEW.date_from = CURRENT_TIMESTAMP;
 END ^;
+
+CREATE TRIGGER add_role_to_new_user
+    AFTER INSERT
+    ON
+        user
+    FOR EACH ROW
+BEGIN
+    INSERT INTO user_roles (FK_user, FK_role) VALUES (NEW.PK_user, 3);
+end ^;
 
