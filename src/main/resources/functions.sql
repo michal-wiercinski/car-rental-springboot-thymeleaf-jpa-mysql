@@ -108,3 +108,12 @@ BEGIN
     SET NEW.date_from = CURRENT_TIMESTAMP;
 END ^;
 
+CREATE TRIGGER add_role_to_new_user
+    AFTER INSERT
+    ON
+        user
+    FOR EACH ROW
+BEGIN
+    INSERT INTO user_roles (FK_user, FK_role) VALUES (NEW.PK_user, 3);
+end ^;
+

@@ -1,4 +1,4 @@
-('#datepicker1').datetimepicker({
+$('#datepicker1').datetimepicker({
   timepicker: true,
   datepicker: true,
   format: 'Y-m-d H:i',

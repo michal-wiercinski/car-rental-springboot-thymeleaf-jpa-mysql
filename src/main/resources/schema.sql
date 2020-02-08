@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS car ^;
 DROP TABLE IF EXISTS car_model ^;
 DROP TABLE IF EXISTS car_parameter ^;
 DROP TABLE IF EXISTS car_status ^;
+DROP TABLE IF EXISTS credit_card ^;
 DROP TABLE IF EXISTS location ^;
 DROP TABLE IF EXISTS brand ^;
 DROP TABLE IF EXISTS rental ^;
@@ -20,6 +21,7 @@ DROP TABLE IF EXISTS user_details ^;
 DROP TABLE IF EXISTS user_roles ^;
 DROP VIEW IF EXISTS car_detail_view ^;
 DROP VIEW IF EXISTS car_detail_view ^;
+DROP VIEW IF EXISTS rental_view ^;
 
 CREATE TABLE address
 (
@@ -131,7 +133,6 @@ CREATE TABLE user
     password        VARCHAR(255)  NOT NULL,
     email           VARCHAR(255)  NOT NULL,
     FK_user_details BIGINT UNIQUE NOT NULL,
-
     FOREIGN KEY (FK_user_details) REFERENCES user_details (PK_user_details)
 ) ^;
 

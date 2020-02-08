@@ -28,12 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Override
-  protected void configure(AuthenticationManagerBuilder auth)
-      throws Exception {
-
-    auth
-        .userDetailsService(userDetailsService)
-        .passwordEncoder(passwordEncoder());
+  protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(userDetailsService)
+        .passwordEncoder(passwordEncoder())
+        .and()
+        .jdbcAuthentication()
+        .dataSource(dataSource);
   }
 
   @Override

@@ -16,11 +16,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
 @Table(name = "user")
 @Entity
-public class User implements Serializable {
+public class User implements Serializable, UserDetails {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
@@ -125,5 +127,30 @@ public class User implements Serializable {
 
   public void setRentals(List<Rental> rentals) {
     this.rentals = rentals;
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return false;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return false;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return false;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return false;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return null;
   }
 }
