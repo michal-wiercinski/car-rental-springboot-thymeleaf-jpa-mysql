@@ -129,7 +129,6 @@ CREATE TABLE user
     PK_user         BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name      VARCHAR(255)  NOT NULL,
     last_name       VARCHAR(255)  NOT NULL,
-    username        VARCHAR(255)  NOT NULL,
     password        VARCHAR(255)  NOT NULL,
     email           VARCHAR(255)  NOT NULL,
     FK_user_details BIGINT UNIQUE NOT NULL,
@@ -165,7 +164,8 @@ CREATE TABLE user_roles
     FK_user BIGINT NOT NULL,
     FK_role BIGINT NOT NULL,
     FOREIGN KEY (FK_user) REFERENCES user (PK_user),
-    FOREIGN KEY (FK_role) REFERENCES role (PK_role)
+    FOREIGN KEY (FK_role) REFERENCES role (PK_role),
+    UNIQUE (FK_user, FK_role)
 ) ^;
 
 CREATE VIEW details_fleet

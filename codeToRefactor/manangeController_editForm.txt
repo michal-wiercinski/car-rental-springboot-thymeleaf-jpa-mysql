@@ -1,0 +1,16 @@
+
+  @GetMapping("/edit-form/{id}")
+  public String editCarForm(Model model, @PathVariable("id") Optional<Long> id) {
+    if (id.isEmpty()) {
+      return "redirect:/manage";
+    }
+      Long idl = id.get();
+      if (carViewAdminService.findById(idl).isPresent()) {
+        CarViewAdmin car = carViewAdminService.findById(idl).get();
+        model.addAttribute("editCar", car);
+        model.addAttribute("carDto", new CarDto());
+        return "editCarForm";
+      } else {
+        return "redirect:/manage";
+      }
+    }

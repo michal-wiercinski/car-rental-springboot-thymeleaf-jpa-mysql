@@ -3,54 +3,66 @@ package mira.dbproject.carrental.security.service;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
-import mira.dbproject.carrental.domain.UserDto;
+import mira.dbproject.carrental.domain.dto.UserDto;
 import mira.dbproject.carrental.domain.entity.User;
 import mira.dbproject.carrental.security.MyUserPrincipal;
 import mira.dbproject.carrental.security.repository.UserDao;
+import mira.dbproject.carrental.security.validation.EmailExistsException;
 import mira.dbproject.carrental.service.entityservice.IGenericService;
+import mira.dbproject.carrental.service.entityservice.RoleService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements IGenericService<User>, UserDetailsService {
+public class UserService implements IGenericService<User>{
 
   private final UserDao userDao;
   private final UserDetailService userDetailService;
+  private final RoleService roleService;
 
   public UserService(final UserDao userDao,
-      final UserDetailService userDetailService) {
+      final UserDetailService userDetailService,
+      final RoleService roleService) {
     this.userDao = userDao;
     this.userDetailService = userDetailService;
+    this.roleService = roleService;
   }
 
-  public Optional<User> findByUsername(String username) {
-    return userDao.findByUsername(username);
+  public Optional<User> findByEmail(String email) {
+    return userDao.findByEmail(email);
   }
 
   @Transactional
-  public void registrationNewUser(UserDto userDto) {
-    User user = createByDto(userDto);
-    user.setUserDetail(userDetailService.createByUserDetailDto(userDto));
-
-    save(user);
+  public User registrationNewUser(UserDto userDto) {
+    User user = null;
+    try {
+      user = createByDto(userDto);
+      user.setUserDetail(userDetailService.createByUserDetailDto(userDto));
+      return save(user);
+    } catch (EmailExistsException e) {
+      return null;
+    }
   }
 
-  private User createByDto(UserDto userDto) {
+  private User createByDto(UserDto userDto)
+      throws EmailExistsException {
+    if (emailExist(userDto.getEmail())) {
+      throw new EmailExistsException("There is an account with that email address: "
+          + userDto.getEmail());
+    }
     User user = new User();
     user.setFirstName(userDto.getFirstName());
     user.setLastName(userDto.getLastName());
-    if (checkByUsername(userDto.getUsername())) {
-      user.setUsername(userDto.getUsername());
-    }
     user.setEmail(userDto.getEmail());
     user.setPassword(userDto.getPassword());
+    //user.setRoles(Arrays.asList(roleService.findById(3L)));
     return user;
   }
 
-  private boolean checkByUsername(String username) {
-    return findByUsername(username).isPresent();
+  private boolean emailExist(String email) {
+    return findByEmail(email).isPresent();
   }
 
   @Override
@@ -76,14 +88,5 @@ public class UserService implements IGenericService<User>, UserDetailsService {
   @Override
   public void deleteById(Long id) {
 
-  }
-
-  @Override
-  public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-    Optional<User> user = findByUsername(s);
-    if (user.isPresent()) {
-      return new MyUserPrincipal(user.get());
-    }
-    throw new UsernameNotFoundException("User: " + s + " is not found");
   }
 }
