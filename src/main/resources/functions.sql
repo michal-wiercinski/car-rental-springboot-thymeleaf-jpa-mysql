@@ -114,6 +114,10 @@ CREATE TRIGGER add_role_to_new_user
         user
     FOR EACH ROW
 BEGIN
-    INSERT INTO user_roles (FK_user, FK_role) VALUES (NEW.PK_user, 3);
-end ^;
+    INSERT INTO user_roles (FK_user, FK_role)
+    VALUES (NEW.PK_user, (SELECT PK_role
+                          FROM role
+                          WHERE PK_role = 3));
+END ^;
+
 

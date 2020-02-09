@@ -1,6 +1,7 @@
 package mira.dbproject.carrental.config;
 
 import javax.sql.DataSource;
+import mira.dbproject.carrental.security.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +9,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   DataSource dataSource;
 
   @Autowired
-  UserDetailsService userDetailsService;
+  MyUserDetailsService userDetailsService;
 
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -44,15 +44,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/", "/registration", "/cars/*")
         .access("permitAll");
   }
-
-  /*  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.jdbcAuthentication()
-        .dataSource(dataSource)
-        .usersByUsernameQuery(
-            "SELECT username, password, enabled FROM user WHERE username=?")
-        .authoritiesByUsernameQuery(
-            "SELECT username, authority FROM UserAuthorities WHERE username=?")
-        .passwordEncoder(passwordEncoder());
-  }*/
 }

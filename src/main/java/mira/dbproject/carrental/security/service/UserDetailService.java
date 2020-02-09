@@ -1,6 +1,6 @@
 package mira.dbproject.carrental.security.service;
 
-import mira.dbproject.carrental.domain.UserDto;
+import mira.dbproject.carrental.domain.dto.UserDto;
 import mira.dbproject.carrental.domain.entity.Address;
 import mira.dbproject.carrental.domain.entity.UserDetail;
 import mira.dbproject.carrental.security.repository.UserDetailDao;

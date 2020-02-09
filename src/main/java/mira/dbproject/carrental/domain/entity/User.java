@@ -21,7 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Data
 @Table(name = "user")
 @Entity
-public class User implements Serializable, UserDetails {
+public class User implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
@@ -33,9 +33,6 @@ public class User implements Serializable, UserDetails {
 
   @Column(name = "last_name")
   private String lastName;
-
-  @Column(name = "username")
-  private String username;
 
   @Column(name = "password")
   private String password;
@@ -62,14 +59,6 @@ public class User implements Serializable, UserDetails {
 
   public void setId(Long id) {
     this.id = id;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getUsername() {
-    return username;
   }
 
   public String getPassword() {
@@ -128,28 +117,4 @@ public class User implements Serializable, UserDetails {
     this.rentals = rentals;
   }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return false;
-  }
-
-  @Override
-  public boolean isAccountNonLocked() {
-    return false;
-  }
-
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return false;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return false;
-  }
-
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return null;
-  }
 }

@@ -1,13 +1,11 @@
+/*
 package mira.dbproject.carrental.security.service;
 
-import mira.dbproject.carrental.domain.UserDto;
+import mira.dbproject.carrental.domain.dto.UserDto;
 import mira.dbproject.carrental.security.repository.UserDao;
-import mira.dbproject.carrental.service.entityservice.AddressService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 class UserServiceTest {
 
@@ -39,4 +37,4 @@ class UserServiceTest {
     Assertions.assertNotEquals(start, expected);
   }
 
-}
+}*/
