@@ -42,6 +42,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/rent-car/**", "/manage/**", "/cars/our-fleet")
         .access("hasRole('ROLE_USER')")
         .antMatchers("/", "/registration", "/cars/*")
-        .access("permitAll");
+        .access("permitAll")
+        .and()
+        .formLogin()
+        .loginPage("/loginPage")
+        .defaultSuccessUrl("/")
+        .and()
+        .logout()
+        .logoutSuccessUrl("/");
   }
+
+
 }

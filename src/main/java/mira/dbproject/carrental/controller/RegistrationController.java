@@ -49,6 +49,6 @@ public class RegistrationController {
       bindingResult.rejectValue("email", "message.regError", "This email address is already taken");
       return "registration";
     }
-    return "redirect:/";
+    return "redirect:/login";
   }
 }
