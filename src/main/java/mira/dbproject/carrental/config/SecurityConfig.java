@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -29,26 +31,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService)
-        .passwordEncoder(passwordEncoder())
-        .and()
-        .jdbcAuthentication()
-        .dataSource(dataSource);
+    auth.jdbcAuthentication()
+        .dataSource(dataSource)
+    .;
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
         .antMatchers("/rent-car/**", "/manage/**", "/cars/our-fleet")
-        .access("hasRole('ROLE_USER')")
+        .access("hasRole('USER')")
         .antMatchers("/", "/registration", "/cars/*")
         .access("permitAll")
         .and()
         .formLogin()
-        .loginPage("/loginPage")
-        .defaultSuccessUrl("/")
+        .loginPage("/login")
+        .usernameParameter("email")
+        .passwordParameter("password")
+        .permitAll()
         .and()
         .logout()
+        .permitAll()
         .logoutSuccessUrl("/");
   }
 

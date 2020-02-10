@@ -27,10 +27,23 @@ VALUES (1, 'SUPERADMIN'),
        (2, 'ADMIN'),
        (3, 'USER') ^;
 
-INSERT INTO rental_status (PK_status, status_desc)
+INSERT INTO address(city, street, house_number, zip_code)
+VALUES ('Gdynia', 'Władysława IV', '100', '00-000'),
+       ('Gdańsk', 'Dmowskiego', '20', '11-111') ^;
+
+INSERT INTO user_details(FK_address, FK_credit_card)
+VALUES (1, NULL),
+       (2, NULL) ^;
+
+INSERT INTO user(first_name, last_name, password, email, FK_user_details)
+VALUES ('Michał', 'Michałowski', 'hasełko', 'michalowski@michalowski.pl', 1),
+       ('Andrzej', 'Andrzejowski', 'masełko', 'andrzejowski@andrzejowski.com', 2) ^;
+
+    INSERT
+INTO rental_status (PK_status, status_desc)
 VALUES (1, 'canceled'),
-       (2, 'rented'),
-       (3, 'returned') ^;
+    (2, 'rented'),
+    (3, 'returned') ^;
 
 INSERT INTO car_status (PK_status_code, status_description)
 VALUES ('AVI', 'available'),
