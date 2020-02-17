@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     authProvider.setPasswordEncoder(passwordEncoder());
     return authProvider;
   }
+
   @Override
   protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
     auth.authenticationProvider(authProvider());
@@ -47,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     http.authorizeRequests()
         .antMatchers("/rent-car/**", "/manage/**", "/cars/our-fleet")
         .access("hasRole('USER')")
-        .antMatchers("/", "/registration", "/cars/*")
+        .antMatchers("/cars/*", "/registration")
         .access("permitAll")
         .and()
         .formLogin()

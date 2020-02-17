@@ -94,8 +94,8 @@ public class UserService implements IGenericService<User> {
 
   @PostConstruct
   public User createSomeUser() {
-    UserDto userDto = new UserDto("Michał", "Michał", "michal@michal.pl", "probaHasla",
-        "probaHasla", "Wrocław", "Warszawska", "33", "71-000");
+    UserDto userDto = new UserDto("Michał", "Michał", "michal@michal.pl", "proba",
+        "proba", "Wrocław", "Warszawska", "33", "71-000");
     return registrationNewUser(userDto);
   }
 }

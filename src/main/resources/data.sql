@@ -23,9 +23,9 @@ VALUES ('Warsaw Chopin Airport '),
 
 
 INSERT INTO role (PK_role, role_name)
-VALUES (1, 'SUPERADMIN'),
-       (2, 'ADMIN'),
-       (3, 'USER') ^;
+VALUES (1, 'ROLE_SUPERADMIN'),
+       (2, 'ROLE_ADMIN'),
+       (3, 'ROLE_USER') ^;
 
 INSERT INTO address(city, street, house_number, zip_code)
 VALUES ('Gdynia', 'Władysława IV', '100', '00-000'),

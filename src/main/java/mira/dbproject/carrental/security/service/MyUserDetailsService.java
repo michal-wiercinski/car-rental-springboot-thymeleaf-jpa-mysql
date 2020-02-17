@@ -37,7 +37,7 @@ public class MyUserDetailsService implements UserDetailsService {
     if (user.isPresent()) {
       logger.info("User {} has been found", user.get().getEmail());
       MyUserPrincipal myUserPrincipal = new MyUserPrincipal(user.get());
-      logger.info("User {} has been found", user.get().getEmail());
+      logger.warn("Roles: {}", myUserPrincipal.getAuthorities());
       return new org.springframework.security.core.userdetails.User(
           myUserPrincipal.getUsername(),
           myUserPrincipal.getPassword(),
