@@ -2,6 +2,7 @@ package mira.dbproject.carrental.security.service;
 
 import java.util.List;
 import java.util.Optional;
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import mira.dbproject.carrental.domain.dto.UserDto;
 import mira.dbproject.carrental.domain.entity.User;
@@ -13,21 +14,22 @@ import mira.dbproject.carrental.service.entityservice.RoleService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements IGenericService<User>{
+public class UserService implements IGenericService<User> {
 
   private final UserDao userDao;
   private final UserDetailService userDetailService;
-  private final RoleService roleService;
+  private final PasswordEncoder passwordEncoder;
 
   public UserService(final UserDao userDao,
       final UserDetailService userDetailService,
-      final RoleService roleService) {
+      final PasswordEncoder passwordEncoder) {
     this.userDao = userDao;
     this.userDetailService = userDetailService;
-    this.roleService = roleService;
+    this.passwordEncoder = passwordEncoder;
   }
 
   public Optional<User> findByEmail(String email) {
@@ -56,7 +58,7 @@ public class UserService implements IGenericService<User>{
     user.setFirstName(userDto.getFirstName());
     user.setLastName(userDto.getLastName());
     user.setEmail(userDto.getEmail());
-    user.setPassword(userDto.getPassword());
+    user.setPassword(passwordEncoder.encode(userDto.getPassword()));
     //user.setRoles(Arrays.asList(roleService.findById(3L)));
     return user;
   }
@@ -88,5 +90,12 @@ public class UserService implements IGenericService<User>{
   @Override
   public void deleteById(Long id) {
 
+  }
+
+  @PostConstruct
+  public User createSomeUser() {
+    UserDto userDto = new UserDto("Michał", "Michał", "michal@michal.pl", "probaHasla",
+        "probaHasla", "Wrocław", "Warszawska", "33", "71-000");
+    return registrationNewUser(userDto);
   }
 }
