@@ -91,6 +91,7 @@ BEGIN
 
 END ^;
 
+
 CREATE TRIGGER add_status_to_rental
     BEFORE INSERT
     ON rental
@@ -108,6 +109,7 @@ BEGIN
     SET NEW.date_from = CURRENT_TIMESTAMP;
 END ^;
 
+/*DROP TRIGGER IF EXISTS  add_role_to_new_user ^;
 CREATE TRIGGER add_role_to_new_user
     AFTER INSERT
     ON
@@ -118,6 +120,6 @@ BEGIN
     VALUES (NEW.PK_user, (SELECT PK_role
                           FROM role
                           WHERE PK_role = 3));
-END ^;
+END ^;*/
 
 
