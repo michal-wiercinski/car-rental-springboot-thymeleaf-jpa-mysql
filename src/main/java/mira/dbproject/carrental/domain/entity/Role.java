@@ -13,12 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
 
-@NamedQueries({
-    @NamedQuery(
-        name = "Role.FindByRoleName",
-        query = "select r from Role r where r.name = :name"
-    )
-})
+
 @Data
 @Table(name = "role")
 @Entity

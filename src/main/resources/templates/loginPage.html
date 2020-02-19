@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+  <link th:replace="/parts/metadata">
+  <title>Login</title>
+</head>
+<body>
+<link th:replace="/parts/navbar">
+
+<div th:if="${error}">
+  Unable to login. Check your username and password.
+</div>
+
+<p>New here? Click
+  <a th:href="@{/registration}">here</a> to register.</p>
+
+<!-- tag::thAction[] -->
+<form th:action="@{/login}"  th:method="post" id="loginForm">
+  <!-- end::thAction[] -->
+  <label for="email">Email: </label>
+  <input type="text" name="email" id="email"/><br/>
+
+  <label for="password">Password: </label>
+  <input type="password" name="password" id="password"/><br/>
+
+  <input type="submit" value="Login"/>
+</form>
+</body>
+</html>

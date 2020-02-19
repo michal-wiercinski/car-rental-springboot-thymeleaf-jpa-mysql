@@ -20,9 +20,22 @@ public class MyUserPrincipal implements UserDetails {
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    final List<GrantedAuthority> authorities = new ArrayList<>();
-    for (final Role role : user.getRoles()) {
-      authorities.add(new SimpleGrantedAuthority(role.getName()));
+    return getGrantedAuthorities(getPrivileges(user.getRoles()));
+  }
+
+  private List<String> getPrivileges(Collection<Role> roles) {
+    List<String> rolesName = new ArrayList<>();
+
+    for (Role role : roles) {
+      rolesName.add(role.getName());
+    }
+    return rolesName;
+  }
+
+  private Collection<GrantedAuthority> getGrantedAuthorities(List<String> rolesName) {
+    List<GrantedAuthority> authorities = new ArrayList<>();
+    for (String roleName : rolesName) {
+      authorities.add(new SimpleGrantedAuthority(roleName));
     }
     return authorities;
   }
@@ -39,21 +52,21 @@ public class MyUserPrincipal implements UserDetails {
 
   @Override
   public boolean isAccountNonExpired() {
-    return false;
+    return true;
   }
 
   @Override
   public boolean isAccountNonLocked() {
-    return false;
+    return true;
   }
 
   @Override
   public boolean isCredentialsNonExpired() {
-    return false;
+    return true;
   }
 
   @Override
   public boolean isEnabled() {
-    return false;
+    return true;
   }
 }
