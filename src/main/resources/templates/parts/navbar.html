@@ -1,4 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+     xmlns:th="http://www.w3.org/1999/xhtml">
   <a class="navbar-brand" href="/">Car Rental</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse"
           data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -30,24 +32,35 @@
         </div>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item dropdown navi-log">
-        <a class="nav-link dropdown-toggle" id="naviLog" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-default"
-             aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="#">Sign in</a>
-          <!-- <a class="dropdown-item" href="#"></a>-->
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/registration">Register</a>
-        </div>
-      </li>
-    </ul>
+    <div class="float-right">
+      <div sec:authorize="isAuthenticated()">
+        <form method="POST" th:action="@{/logout}">
+          <button class="btn btn-default" type="submit">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            Sign-out
+          </button>
+        </form>
+      </div>
+    </div>
+    <div sec:authorize="isAnonymous()">
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item dropdown navi-log">
+          <a class="nav-link dropdown-toggle" id="naviLog" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-default"
+               aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="#">Sign in</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/registration">Register</a>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-<!--  </li>
-  </ul>-->
+  <!--  </li>
+    </ul>-->
   <!--<form class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
