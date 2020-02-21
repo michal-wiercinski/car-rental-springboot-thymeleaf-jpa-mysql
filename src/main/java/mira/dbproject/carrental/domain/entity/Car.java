@@ -10,11 +10,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import lombok.Data;
 
+@NamedStoredProcedureQueries(
+    @NamedStoredProcedureQuery(name = "Car.changeToAvailable",
+        procedureName = "change_to_available_if_not_rented",
+        parameters = {
+            @StoredProcedureParameter(name = "p_pk_car", mode = ParameterMode.IN, type = Long.class),
+            @StoredProcedureParameter(name = "p_pk_car_status", mode = ParameterMode.IN, type = String.class)
+        }
+    )
+)
 @Data
 @Table(name = "car")
 @Entity

@@ -17,6 +17,10 @@ public class RentalDetailService implements IGenericService<RentalDetails> {
     this.rentalDetailsDao = rentalDetailsDao;
   }
 
+  public void updateDate(Long id) {
+    rentalDetailsDao.updateEndDateById(id);
+  }
+
   @Override
   public List<RentalDetails> findAll() {
     return null;

@@ -130,4 +130,12 @@ public class ManageController {
     carService.deleteById(id);
     return "redirect:/cars/our-fleet";
   }
+
+  @RequestMapping(path = "/make-availability/{carId}/{status}", method = {RequestMethod.POST,
+      RequestMethod.GET})
+  public String makeAvailability(@PathVariable("carId") Long carId,
+      @PathVariable("status") String carStatus) {
+    carService.changeToAvailable(carId, carStatus);
+    return "redirect:/cars/our-fleet";
+  }
 }

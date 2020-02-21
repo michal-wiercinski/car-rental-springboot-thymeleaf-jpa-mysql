@@ -3,8 +3,9 @@ package mira.dbproject.carrental.domain.view;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import org.springframework.context.annotation.Scope;
 
-
+@Scope("prototype")
 @MappedSuperclass
 public class CarView {
 

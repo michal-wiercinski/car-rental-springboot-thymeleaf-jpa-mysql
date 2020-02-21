@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link th:replace="/parts/metadata">
   <tittle>Fleet for admin</tittle>
+  <link th:replace="/parts/metadata">
+
 </head>
 <body>
 <link th:replace="/parts/navbar">
@@ -13,18 +14,18 @@
   <table class="table table-bordered">
     <thead>
     <tr>
-      <th>Car ID</th>
-      <th>Income</th>
-      <th>Brand</th>
-      <th>Car model</th>
-      <th>Body type</th>
-      <th>Engine power(MP)</th>
-      <th>Engine size</th>
-      <th>Production year</th>
-      <th>Current mileage</th>
-      <th>Daily rate</th>
-      <th>Status</th>
-      <th>Manage</th>
+      <th><a th:href=""><i class="fa fa-sort-asc" aria-hidden="true"></i></a>Car ID<a th:href=""><i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
+      <th>Income<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>Brand<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>Car model<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>Body type<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>Engine power(MP)<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>Engine size<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>Production year<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>Current mileage<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>Daily rate<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>Status<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>Manage<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
     </tr>
     </thead>
     <tbody id="myTable">
@@ -39,13 +40,25 @@
       <td th:text="${car.prodYear}">Production year</td>
       <td th:text="${car.currentMileage}">Current mileage</td>
       <td th:text="${car.dailyRate}">Daily rate</td>
-      <td th:text="${car.carStatus}">Status</td>
+      <div th:switch="${car.carStatus}">
+        <td>
+          <a th:case="unavailable" class="btn btn-success btn-sm"
+             th:href="'/manage/make-availability/' + ${car.id} + '/AVI'"><i class="fa fa-thumbs-up"
+                                                                            aria-hidden="true"></i>
+            Change to available</a>
+          <a th:case="available" class="btn btn-danger btn-sm"
+             th:href="'/manage/make-availability/' + ${car.id} + '/UAV'"><i
+              class="fa fa-thumbs-down" aria-hidden="true"></i>
+            Change to unavailable</a>
+        </td>
+      </div>
       <td>
         <div class="d-sm-inline-flex">
           <a class="btn btn-success" th:href="'/manage/edit-form/' + ${car.id}">Edit</a>
           <a class="btn btn-danger" th:href="'/manage/delete/' + ${car.id}">Delete</a>
         </div>
       </td>
+
     </tr>
     </tbody>
   </table>
