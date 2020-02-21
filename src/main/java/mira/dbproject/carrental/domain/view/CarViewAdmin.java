@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import org.springframework.context.annotation.Scope;
 
+@Scope("request")
 @Entity
 @Table(name = "details_fleet")
 public class CarViewAdmin extends CarView {

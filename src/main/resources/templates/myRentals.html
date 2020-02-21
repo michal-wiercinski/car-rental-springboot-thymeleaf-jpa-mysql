@@ -18,6 +18,8 @@
       <th>Start date</th>
       <th>End date</th>
       <th>Daily Rate</th>
+      <th>Distance</th>
+      <th>Rental Cost</th>
       <th>Status</th>
       <th></th>
     </tr>
@@ -30,7 +32,9 @@
       <td th:text="${rent.dateFrom}">Start date</td>
       <td th:text="${rent.dateEnd}">End date</td>
       <td th:text="${rent.dailyRate}">Daily rate</td>
-      <td th:text="${rent.rentalStatus}">Status</td>
+      <!--<td th:text="${rent.rentalStatus}">Status</td>-->
+      <td th:text="${rent.distance}">Distance</td>
+      <td th:text="${rent.rentalCost}">Rental cost</td>
       <div th:switch="${rent.rentalStatus}">
         <td>
           <a th:case="rented" class="btn btn-danger" th:href="'/rent-car/cancel/' + ${rent.id}">Cancel</a>

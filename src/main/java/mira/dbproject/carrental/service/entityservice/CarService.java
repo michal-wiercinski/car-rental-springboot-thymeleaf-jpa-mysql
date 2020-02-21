@@ -27,6 +27,10 @@ public class CarService implements IGenericService<Car> {
     this.carParameterService = carParameterService;
   }
 
+  public void changeToAvailable(Long carId, String carStatus){
+    carDao.changeToAvailable(carId, carStatus);
+  }
+
   @Override
   public List<Car> findAll() {
     return carDao.findAll();

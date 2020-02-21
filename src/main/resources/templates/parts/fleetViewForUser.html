@@ -1,4 +1,4 @@
-
+<div xmlns:th="http://www.w3.org/1999/xhtml">
   <input class="form-control" id="myInput" type="text" placeholder="Search..">
   <br>
   <table class="table table-bordered">
@@ -27,15 +27,15 @@
       <td th:text="${car.prodYear}">Production year</td>
       <td th:text="${car.dailyRate}">Daily rate</td>
       <td th:text="${car.carStatus}">Status</td>
-        <div th:switch="${car.carStatus}">
-          <td>
-          <a th:case="available" class="btn btn-success" th:href="'/rent-car/' + ${car.id}">Booking</a>
-          <a th:case="unavailable" class="btn btn-danger" href="#">Booking</a>
-          </td>
-        </div>
-        </div>
+      <div th:switch="${car.carStatus}">
+        <td>
+          <a th:case="available" class="btn btn-success"
+             th:href="'/rent-car/' + ${car.id}">Booking</a>
+          <span th:case="unavailable" class="badge badge-warning">Currently rented</span>
+        </td>
+      </div>
     </tr>
     </tbody>
   </table>
 
-
+</div>

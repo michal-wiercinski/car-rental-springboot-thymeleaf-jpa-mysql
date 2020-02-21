@@ -4,7 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.swing.SwingContainer;
+import org.springframework.context.annotation.Scope;
 
+@Scope("request")
 @NamedQueries(
     @NamedQuery(
         name = "CarViewUser.FindAllWhereAvailable",

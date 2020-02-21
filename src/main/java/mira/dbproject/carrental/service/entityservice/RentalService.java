@@ -5,8 +5,7 @@ import java.util.Optional;
 import mira.dbproject.carrental.domain.entity.Rental;
 import mira.dbproject.carrental.domain.entity.RentalDetails;
 import mira.dbproject.carrental.repository.dao.RentalDao;
-import mira.dbproject.carrental.service.entityservice.IGenericService;
-import org.springframework.beans.factory.annotation.Autowired;
+import mira.dbproject.carrental.security.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,13 +14,20 @@ public class RentalService implements IGenericService<Rental> {
   private final RentalDao rentalDao;
   private final CarService carService;
   private final RentalDetailService rentalDetailService;
+  private final UserService userService;
 
   public RentalService(final RentalDao rentalDao,
       final CarService carService,
-      final RentalDetailService rentalDetailService) {
+      final RentalDetailService rentalDetailService,
+      UserService userService) {
     this.rentalDao = rentalDao;
     this.carService = carService;
     this.rentalDetailService = rentalDetailService;
+    this.userService = userService;
+  }
+
+  public void updateStatus(Long id){
+    rentalDao.updateStatusById(id);
   }
 
   @Override
@@ -49,10 +55,10 @@ public class RentalService implements IGenericService<Rental> {
 
   }
 
-
-  public void createRental(Long id) {
+  public void createRental(Long carId, String email) {
     Rental rental = new Rental();
-    rental.setCar(carService.findById(id).get());
+    rental.setCar(carService.findById(carId).get());
+    rental.setUser(userService.findByEmail(email).get());
     rental.setRentalDetails(rentalDetailService.save(new RentalDetails()));
     save(rental);
   }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Slf4j
 @Controller
@@ -27,7 +28,7 @@ public class CarsController {
     this.carViewUserService = carViewUserService;
   }
 
-  @GetMapping("/our-fleet")
+  @RequestMapping(value = "/our-fleet/{kind}}", method = RequestMethod.GET)
   public String getAllCars(Model model) {
     List<CarViewAdmin> detailsFleet = carViewAdminService.findAll();
 
@@ -35,7 +36,7 @@ public class CarsController {
     return "fleetViewForAdmin";
   }
 
-  @GetMapping("/")
+  @RequestMapping(value = "/", method = RequestMethod.GET)
   private String getAllCarsForUser(Model model) {
     List<CarViewUser> carsForUser = carViewUserService.findAll();
 
@@ -43,7 +44,7 @@ public class CarsController {
     return "fleetForUser";
   }
 
-  @GetMapping("/available")
+  @RequestMapping(value = "/available", method = RequestMethod.GET)
   private String getAllAvailableCars(Model model) {
     model.addAttribute("carsForUser", carViewUserService.findAllAvailable());
     return "fleetForUser";

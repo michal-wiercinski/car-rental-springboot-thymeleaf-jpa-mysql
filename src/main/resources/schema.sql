@@ -142,7 +142,7 @@ CREATE TABLE rental_details
     date_from         TIMESTAMP                  NULL,
     date_end          TIMESTAMP                  NULL,
     rental_cost       DECIMAL(10, 4) DEFAULT 0.0 NULL,
-    distance          INT            DEFAULT 0   NOT NULL
+    distance          INT            DEFAULT 0   NULL
 ) ^;
 
 CREATE TABLE rental
@@ -232,7 +232,9 @@ SELECT r.PK_rental       AS 'rental_id',
        cm.car_model_name AS 'model_name',
        cp.daily_rate     AS 'daily_rate',
        rd.date_from      AS 'date_from',
-       rd.date_end       AS 'date_end'
+       rd.date_end       AS 'date_end',
+       rd.distance       AS 'distance',
+       rd.rental_cost    AS 'rental_cost'
 FROM rental AS r
          JOIN car c on r.FK_car = c.PK_car
          JOIN rental_status rs on r.FK_status = rs.PK_status

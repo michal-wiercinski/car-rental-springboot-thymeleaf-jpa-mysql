@@ -1,12 +1,16 @@
 package mira.dbproject.carrental.domain.view;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
+import org.springframework.context.annotation.Scope;
 
+@Scope("prototype")
 @Data
 @Entity
 @Table(name = "rental_view")
@@ -33,6 +37,12 @@ public class RentalView {
 
   @Column(name = "date_end")
   private Timestamp dateEnd;
+
+  @Column(name = "distance")
+  private Integer distance;
+
+  @Column(name = "rental_cost")
+  private BigDecimal rentalCost;
 
   public Long getId() {
     return id;
@@ -88,5 +98,21 @@ public class RentalView {
 
   public void setCarModel(String carModel) {
     this.carModel = carModel;
+  }
+
+  public Integer getDistance() {
+    return distance;
+  }
+
+  public void setDistance(Integer distance) {
+    this.distance = distance;
+  }
+
+  public BigDecimal getRentalCost() {
+    return rentalCost;
+  }
+
+  public void setRentalCost(BigDecimal rentalCost) {
+    this.rentalCost = rentalCost;
   }
 }
