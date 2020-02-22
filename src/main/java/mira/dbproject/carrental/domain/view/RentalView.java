@@ -2,15 +2,16 @@ package mira.dbproject.carrental.domain.view;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import lombok.Data;
 import org.springframework.context.annotation.Scope;
 
 @Scope("prototype")
+@MappedSuperclass
 @Data
 @Entity
 @Table(name = "rental_view")
@@ -18,7 +19,7 @@ public class RentalView {
 
   @Id
   @Column(name = "rental_id")
-  private Long id;
+  private Long rentalId;
 
   @Column(name = "rental_status")
   private String rentalStatus;
@@ -44,12 +45,12 @@ public class RentalView {
   @Column(name = "rental_cost")
   private BigDecimal rentalCost;
 
-  public Long getId() {
-    return id;
+  public Long getRentalId() {
+    return rentalId;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setRentalId(Long rentalId) {
+    this.rentalId = rentalId;
   }
 
   public String getRentalStatus() {

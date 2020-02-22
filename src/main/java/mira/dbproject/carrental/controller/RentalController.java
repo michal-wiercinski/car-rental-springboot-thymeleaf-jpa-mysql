@@ -2,23 +2,19 @@ package mira.dbproject.carrental.controller;
 
 
 import java.security.Principal;
-import java.sql.DatabaseMetaData;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import mira.dbproject.carrental.domain.entity.Rental;
 import mira.dbproject.carrental.domain.entity.RentalDetails;
-import mira.dbproject.carrental.domain.entity.User;
-import mira.dbproject.carrental.security.MyUserPrincipal;
+import mira.dbproject.carrental.domain.view.CarViewUser;
+import mira.dbproject.carrental.domain.view.RentalViewForAdmin;
+import mira.dbproject.carrental.domain.view.RentalViewForUser;
 import mira.dbproject.carrental.service.entityservice.RentalDetailService;
 import mira.dbproject.carrental.service.entityservice.RentalService;
-import mira.dbproject.carrental.service.entityservice.RentalStatusService;
 import mira.dbproject.carrental.service.viewservice.CarViewUserService;
-import mira.dbproject.carrental.service.viewservice.RentalViewService;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import mira.dbproject.carrental.service.viewservice.RentalViewAdminService;
+import mira.dbproject.carrental.service.viewservice.RentalViewUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,20 +28,20 @@ public class RentalController {
 
   private final CarViewUserService carViewUserService;
   private final RentalService rentalService;
-  private final RentalViewService rentalViewService;
-  private final RentalStatusService rentalStatusService;
+  private final RentalViewUserService rentalViewUserService;
+  private final RentalViewAdminService rentalViewAdminService;
   private final RentalDetailService rentalDetailService;
 
   public RentalController(
       final CarViewUserService carViewUserService,
       final RentalService rentalService,
-      final RentalViewService rentalViewService,
-      final RentalStatusService rentalStatusService,
-      RentalDetailService rentalDetailService) {
+      final RentalViewUserService rentalViewService,
+      final RentalViewAdminService rentalViewAdminService,
+      final RentalDetailService rentalDetailService) {
     this.carViewUserService = carViewUserService;
     this.rentalService = rentalService;
-    this.rentalViewService = rentalViewService;
-    this.rentalStatusService = rentalStatusService;
+    this.rentalViewUserService = rentalViewService;
+    this.rentalViewAdminService = rentalViewAdminService;
     this.rentalDetailService = rentalDetailService;
   }
 
@@ -56,9 +52,20 @@ public class RentalController {
     return "redirect:/rent-car/my-rent";
   }
 
-  @GetMapping("/my-rent")
-  public String getMyRent(Model model) {
-    model.addAttribute("rentals", rentalViewService.findAll());
+  @RequestMapping(value = {"/my-rent", "/my-rent/{sort},{direction}"})
+  public String getMyRent(@PathVariable(name = "sort", required = false) Optional<String> sortParam,
+      @PathVariable(name = "direction", required = false) Optional<String> directionParam,
+      Model model) {
+    List<RentalViewForUser> rentals;
+
+    if (sortParam.isPresent() && directionParam.isPresent()) {
+      rentals = rentalViewUserService
+          .findAllAndSortByParam(sortParam.get(), directionParam.get());
+    } else {
+      rentals = rentalViewUserService.findAll();
+    }
+
+    model.addAttribute("rentals", rentalViewUserService.findAll());
     return "myRentals";
   }
 
@@ -71,9 +78,29 @@ public class RentalController {
       rentalDetailService.updateDate(rentalDetails.getId());
       rentalService.updateStatus(id);
 
-
       //rentalService.save(rental);
     }
     return "redirect:/rent-car/my-rent";
   }
+
+  @RequestMapping(value = {"/all-rent", "/all-rent/{sort},{direction}"}, method = RequestMethod.GET)
+  public String getAllRental(
+      @PathVariable(name = "sort", required = false) Optional<String> sortParam,
+      @PathVariable(name = "direction", required = false) Optional<String> directionParam,
+      Model model) {
+
+    List<RentalViewForAdmin> rentals;
+
+    if (sortParam.isPresent() && directionParam.isPresent()) {
+      rentals = rentalViewAdminService
+          .findAllAndSortByParam(sortParam.get(), directionParam.get());
+    } else {
+      rentals = rentalViewAdminService.findAll();
+    }
+
+    model.addAttribute("rentalsAdmin", rentals);
+    return "fleetForUser";
+  }
+
+
 }

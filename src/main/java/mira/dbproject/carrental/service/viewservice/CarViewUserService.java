@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CarViewUserService implements ICarViewService<CarViewUser> {
+public class CarViewUserService implements IViewService<CarViewUser> {
 
   @Autowired
   private CarViewUserDao carViewUserDao;

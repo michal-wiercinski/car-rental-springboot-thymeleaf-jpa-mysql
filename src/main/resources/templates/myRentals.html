@@ -26,7 +26,7 @@
     </thead>
     <tbody id="myTable1">
     <tr th:each="rent : ${rentals}">
-      <td th:text="${rent.id}">ID Rent</td>
+      <td th:text="${rent.rentalId}">ID Rent</td>
       <td th:text="${rent.brandName}">Brand</td>
       <td th:text="${rent.carModel}">Car model</td>
       <td th:text="${rent.dateFrom}">Start date</td>
@@ -37,7 +37,7 @@
       <td th:text="${rent.rentalCost}">Rental cost</td>
       <div th:switch="${rent.rentalStatus}">
         <td>
-          <a th:case="rented" class="btn btn-danger" th:href="'/rent-car/cancel/' + ${rent.id}">Cancel</a>
+          <a th:case="rented" class="btn btn-danger" th:href="'/rent-car/cancel/' + ${rent.rentalId}">Cancel</a>
         </td>
       </div>
 </tr>
