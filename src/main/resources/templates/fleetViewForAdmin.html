@@ -14,18 +14,150 @@
   <table class="table table-bordered">
     <thead>
     <tr>
-      <th><a th:href=""><i class="fa fa-sort-asc" aria-hidden="true"></i></a>Car ID<a th:href=""><i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
-      <th>Income<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
-      <th>Brand<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
-      <th>Car model<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
-      <th>Body type<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
-      <th>Engine power(MP)<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
-      <th>Engine size<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
-      <th>Production year<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
-      <th>Current mileage<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
-      <th>Daily rate<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
-      <th>Status<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
-      <th>Manage<i class="fa fa-sort-desc" aria-hidden="true"></i></th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Car ID </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=id,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=id,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Income </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=income,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=income,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Brand </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=brandName,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=brandName,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Car model </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=carModelName,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=carModelName,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Body type </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=bodyType,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=bodyType,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Engine power(MP) </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=enginePower,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=enginePower,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Engine size </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=engineSize,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=engineSize,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Production of year </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=prodYear,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=prodYear,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Current mileage</span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=currentMileage,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=currentMileage,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Daily rate </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=dailyRate,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=dailyRate,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Status </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=carStatus,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=carStatus,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>Manage</th>
     </tr>
     </thead>
     <tbody id="myTable">
