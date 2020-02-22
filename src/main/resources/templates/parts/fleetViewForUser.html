@@ -1,18 +1,125 @@
 <div xmlns:th="http://www.w3.org/1999/xhtml">
   <input class="form-control" id="myInput" type="text" placeholder="Search..">
   <br>
-  <table class="table table-bordered">
+  <table id="sort-table" class="table table-bordered">
     <thead>
     <tr>
-      <th>Brand</th>
-      <th>Car model</th>
-      <th>Body type</th>
-      <th>Location</th>
-      <th>Engine power(MP)</th>
-      <th>Engine size</th>
-      <th>Production year</th>
-      <th>Daily rate</th>
-      <th>Status</th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Brand </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/{sort},{direction}(sort=brandName,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/{sort},{direction}(sort=brandName,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Car Model </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/{sort},{direction}(sort=carModelName,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/{sort},{direction}(sort=carModelName,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Body type </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/{sort},{direction}(sort=bodyType,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/{sort},{direction}(sort=bodyType,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Location </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/{sort},{direction}(sort=locationName,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/{sort},{direction}(sort=locationName,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Engine power(MP) </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/{sort},{direction}(sort=enginePower,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/{sort},{direction}(sort=enginePower,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Engine size </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/{sort},{direction}(sort=engineSize,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/{sort},{direction}(sort=engineSize,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Production of year </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/{sort},{direction}(sort=prodYear,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/{sort},{direction}(sort=prodYear,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Daily rate </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars{sort},{direction}(sort=dailyRate,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/{sort},{direction}(sort=dailyRate,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Status </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/{sort},{direction}(sort=carStatus,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/{sort},{direction}(sort=carStatus,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
       <th></th>
     </tr>
     </thead>

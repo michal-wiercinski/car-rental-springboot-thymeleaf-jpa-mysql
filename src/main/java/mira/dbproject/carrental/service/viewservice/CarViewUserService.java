@@ -5,6 +5,8 @@ import java.util.Optional;
 import mira.dbproject.carrental.domain.view.CarViewUser;
 import mira.dbproject.carrental.repository.view.CarViewUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +20,6 @@ public class CarViewUserService implements ICarViewService<CarViewUser> {
     return carViewUserDao.findAll();
   }
 
-  @Override
   public List<CarViewUser> findAllAvailable() {
     return carViewUserDao.findCarViewUserByCarStatusIsLike("available");
   }
@@ -28,8 +29,15 @@ public class CarViewUserService implements ICarViewService<CarViewUser> {
     return Optional.empty();
   }
 
-
-  public Optional<CarViewUser> getCarById(Long id) {
-    return carViewUserDao.findById(id);
+  @Override
+  public List<CarViewUser> findAllAndSortByParam(String sort, String direction) {
+    if (!sort.isEmpty()) {
+      if (!direction.isEmpty() && direction.equals(Direction.DESC.toString())) {
+        return carViewUserDao.findAll(Sort.by(sort).descending());
+      }
+      return carViewUserDao.findAll(Sort.by(sort).ascending());
+    }
+    return carViewUserDao.findAll();
   }
+
 }

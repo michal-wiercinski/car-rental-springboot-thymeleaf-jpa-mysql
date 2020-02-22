@@ -19,12 +19,12 @@ public class RentalViewService implements ICarViewService<RentalView> {
   }
 
   @Override
-  public List<RentalView> findAllAvailable() {
-    return null;
+  public Optional<RentalView> findById(Long id) {
+    return Optional.empty();
   }
 
   @Override
-  public Optional<RentalView> findById(Long id) {
-    return Optional.empty();
+  public List<RentalView> findAllAndSortByParam(String sort, String direction) {
+    return null;
   }
 }
