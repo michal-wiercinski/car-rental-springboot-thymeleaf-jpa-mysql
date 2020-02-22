@@ -2,6 +2,7 @@ package mira.dbproject.carrental.service.viewservice;
 
 import java.util.List;
 import java.util.Optional;
+import mira.dbproject.carrental.domain.view.CarView;
 import mira.dbproject.carrental.domain.view.CarViewUser;
 import mira.dbproject.carrental.repository.view.CarViewUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CarViewUserService implements ICarViewService<CarViewUser> {
+public class CarViewUserService implements IViewService<CarViewUser> {
+
+  private final String STATUS = "available";
 
   @Autowired
   private CarViewUserDao carViewUserDao;
@@ -21,8 +24,20 @@ public class CarViewUserService implements ICarViewService<CarViewUser> {
   }
 
   public List<CarViewUser> findAllAvailable() {
-    return carViewUserDao.findCarViewUserByCarStatusIsLike("available");
+    return carViewUserDao.findCarViewUserByCarStatusIsLike(STATUS);
   }
+
+  public List<CarViewUser> findAllAvailable(String sort, String direction) {
+
+    if (!sort.isEmpty()) {
+      if (!direction.isEmpty() && direction.equals(Direction.DESC.toString())) {
+        return carViewUserDao.findCarViewUserByCarStatusIsLike(STATUS, Sort.by(sort).descending());
+      }
+      return carViewUserDao.findCarViewUserByCarStatusIsLike(STATUS, Sort.by(sort).ascending());
+    }
+    return carViewUserDao.findCarViewUserByCarStatusIsLike(STATUS);
+  }
+
 
   @Override
   public Optional<CarViewUser> findById(Long id) {

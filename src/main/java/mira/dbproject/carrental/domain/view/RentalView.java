@@ -2,7 +2,6 @@ package mira.dbproject.carrental.domain.view;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,7 +17,7 @@ public class RentalView {
 
   @Id
   @Column(name = "rental_id")
-  private Long id;
+  private Long rentalId;
 
   @Column(name = "rental_status")
   private String rentalStatus;
@@ -33,23 +32,31 @@ public class RentalView {
   private Integer dailyRate;
 
   @Column(name = "date_from")
-  private Timestamp dateFrom;
+  private Timestamp startDate;
 
   @Column(name = "date_end")
-  private Timestamp dateEnd;
+  private Timestamp endDate;
 
   @Column(name = "distance")
   private Integer distance;
 
   @Column(name = "rental_cost")
   private BigDecimal rentalCost;
+  @Column(name = "user_email")
+  private String userEmail;
 
-  public Long getId() {
-    return id;
+  @Column(name = "registration_number")
+  private String registrationNumber;
+
+  @Column(name = "car_id")
+  private Long carId;
+
+  public Long getRentalId() {
+    return rentalId;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setRentalId(Long rentalId) {
+    this.rentalId = rentalId;
   }
 
   public String getRentalStatus() {
@@ -76,20 +83,20 @@ public class RentalView {
     this.dailyRate = dailyRate;
   }
 
-  public Timestamp getDateFrom() {
-    return dateFrom;
+  public Timestamp getStartDate() {
+    return startDate;
   }
 
-  public void setDateFrom(Timestamp dateFrom) {
-    this.dateFrom = dateFrom;
+  public void setStartDate(Timestamp dateFrom) {
+    this.startDate = dateFrom;
   }
 
-  public Timestamp getDateEnd() {
-    return dateEnd;
+  public Timestamp getEndDate() {
+    return endDate;
   }
 
-  public void setDateEnd(Timestamp dateEnd) {
-    this.dateEnd = dateEnd;
+  public void setEndDate(Timestamp dateEnd) {
+    this.endDate = dateEnd;
   }
 
   public String getCarModel() {
@@ -114,5 +121,29 @@ public class RentalView {
 
   public void setRentalCost(BigDecimal rentalCost) {
     this.rentalCost = rentalCost;
+  }
+
+  public String getUserEmail() {
+    return userEmail;
+  }
+
+  public void setUserEmail(String userEmail) {
+    this.userEmail = userEmail;
+  }
+
+  public String getRegistrationNumber() {
+    return registrationNumber;
+  }
+
+  public void setRegistrationNumber(String registrationNumber) {
+    this.registrationNumber = registrationNumber;
+  }
+
+  public Long getCarId() {
+    return carId;
+  }
+
+  public void setCarId(Long carId) {
+    this.carId = carId;
   }
 }
