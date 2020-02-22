@@ -1,48 +1,186 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <link th:replace="/parts/metadata"/>
-  <title>My rentals</title>
+  <title>Rentals</title>
 
 </head>
 <body>
 <link th:replace="/parts/navbar"/>
 
 <div class="container">
-  <table class="table table-bordered">
+  <table class="table table-bordered mt-4">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Brand</th>
-      <th>Car model</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Daily Rate</th>
-      <th>Distance</th>
-      <th>Rental Cost</th>
-      <th>Status</th>
-      <th></th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>ID </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=rentalId,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=rentalId,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th sec:authorize="hasRole('ROLE_ADMIN')">
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>User </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=userEmail,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=userEmail,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th sec:authorize="hasRole('ROLE_ADMIN')">
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Registration number</span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=registrationNumber,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=registrationNumber,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Brand </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=brandName,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=brandName,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Car model </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=carModel,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=carModel,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Start date </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=startDate,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=startDate,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>End date </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=endDate,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=endDate,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Daily rate </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=dailyRate,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=dailyRate,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Distance </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=distance,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=distance,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Rental cost </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=rentalCost,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=rentalCost,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Status </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/rent-car/my-rent/{sort},{direction}(sort=rentalStatus,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/rent-car/my-rent/{sort},{direction}(sort=rentalStatus,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
     </tr>
     </thead>
     <tbody id="myTable1">
     <tr th:each="rent : ${rentals}">
       <td th:text="${rent.rentalId}">ID Rent</td>
+      <td th:text="${rent.userEmail}">User</td>
+      <td th:text="${rent.registrationNumber}">Registration number</td>
       <td th:text="${rent.brandName}">Brand</td>
       <td th:text="${rent.carModel}">Car model</td>
-      <td th:text="${rent.dateFrom}">Start date</td>
-      <td th:text="${rent.dateEnd}">End date</td>
+      <td th:text="${rent.startDate}">Start date</td>
+      <td th:text="${rent.endDate}">End date</td>
       <td th:text="${rent.dailyRate}">Daily rate</td>
       <!--<td th:text="${rent.rentalStatus}">Status</td>-->
       <td th:text="${rent.distance}">Distance</td>
       <td th:text="${rent.rentalCost}">Rental cost</td>
       <div th:switch="${rent.rentalStatus}">
         <td>
-          <a th:case="rented" class="btn btn-danger" th:href="'/rent-car/cancel/' + ${rent.rentalId}">Cancel</a>
+          <a th:case="rented" class="btn btn-danger"
+             th:href="'/rent-car/cancel/' + ${rent.rentalId}">Cancel</a>
+          <p th:case="canceled" class="badge badge-secondary">Canceled</p>
         </td>
       </div>
-</tr>
-</tbody>
-</table>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 <link th:replace="/parts/scripts"/>

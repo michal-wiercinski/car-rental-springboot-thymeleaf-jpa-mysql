@@ -5,13 +5,11 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import lombok.Data;
 import org.springframework.context.annotation.Scope;
 
 @Scope("prototype")
-@MappedSuperclass
 @Data
 @Entity
 @Table(name = "rental_view")
@@ -34,16 +32,24 @@ public class RentalView {
   private Integer dailyRate;
 
   @Column(name = "date_from")
-  private Timestamp dateFrom;
+  private Timestamp startDate;
 
   @Column(name = "date_end")
-  private Timestamp dateEnd;
+  private Timestamp endDate;
 
   @Column(name = "distance")
   private Integer distance;
 
   @Column(name = "rental_cost")
   private BigDecimal rentalCost;
+  @Column(name = "user_email")
+  private String userEmail;
+
+  @Column(name = "registration_number")
+  private String registrationNumber;
+
+  @Column(name = "car_id")
+  private Long carId;
 
   public Long getRentalId() {
     return rentalId;
@@ -77,20 +83,20 @@ public class RentalView {
     this.dailyRate = dailyRate;
   }
 
-  public Timestamp getDateFrom() {
-    return dateFrom;
+  public Timestamp getStartDate() {
+    return startDate;
   }
 
-  public void setDateFrom(Timestamp dateFrom) {
-    this.dateFrom = dateFrom;
+  public void setStartDate(Timestamp dateFrom) {
+    this.startDate = dateFrom;
   }
 
-  public Timestamp getDateEnd() {
-    return dateEnd;
+  public Timestamp getEndDate() {
+    return endDate;
   }
 
-  public void setDateEnd(Timestamp dateEnd) {
-    this.dateEnd = dateEnd;
+  public void setEndDate(Timestamp dateEnd) {
+    this.endDate = dateEnd;
   }
 
   public String getCarModel() {
@@ -115,5 +121,29 @@ public class RentalView {
 
   public void setRentalCost(BigDecimal rentalCost) {
     this.rentalCost = rentalCost;
+  }
+
+  public String getUserEmail() {
+    return userEmail;
+  }
+
+  public void setUserEmail(String userEmail) {
+    this.userEmail = userEmail;
+  }
+
+  public String getRegistrationNumber() {
+    return registrationNumber;
+  }
+
+  public void setRegistrationNumber(String registrationNumber) {
+    this.registrationNumber = registrationNumber;
+  }
+
+  public Long getCarId() {
+    return carId;
+  }
+
+  public void setCarId(Long carId) {
+    this.carId = carId;
   }
 }

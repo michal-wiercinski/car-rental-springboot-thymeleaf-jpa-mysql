@@ -21,8 +21,7 @@ DROP TABLE IF EXISTS user_details ^;
 DROP TABLE IF EXISTS user_roles ^;
 DROP VIEW IF EXISTS car_detail_view ^;
 DROP VIEW IF EXISTS car_detail_view ^;
-DROP VIEW IF EXISTS rental_view_for_user ^;
-DROP VIEW IF EXISTS rental_view_for_admin ^;
+DROP VIEW IF EXISTS rental_view ^;
 
 
 CREATE TABLE address
@@ -226,29 +225,10 @@ FROM car AS c
 
 
 
-CREATE VIEW rental_view_for_user
-AS
-SELECT r.PK_rental       AS 'rental_id',
-       rs.status_desc    AS 'rental_status',
-       br.brand_name     AS 'brand_name',
-       cm.car_model_name AS 'model_name',
-       cp.daily_rate     AS 'daily_rate',
-       rd.date_from      AS 'date_from',
-       rd.date_end       AS 'date_end',
-       rd.distance       AS 'distance',
-       rd.rental_cost    AS 'rental_cost'
-FROM rental AS r
-         JOIN car c on r.FK_car = c.PK_car
-         JOIN rental_status rs on r.FK_status = rs.PK_status
-         JOIN car_model cm on c.FK_car_model = cm.PK_car_model
-         JOIN brand br on cm.FK_brand = br.PK_brand
-         JOIN car_parameter cp on c.FK_car_parameter = cp.PK_car_parameter
-         JOIN rental_details rd on r.FK_rental_details = rd.PK_rental_details ^;
-
-CREATE VIEW rental_view_for_admin
+CREATE VIEW rental_view
 AS
 SELECT r.PK_rental           AS 'rental_id',
-       u.email              AS 'user_email',
+       u.email               AS 'user_email',
        c.PK_car              AS 'car_id',
        c.registration_number AS 'registration_number',
        rs.status_desc        AS 'rental_status',
@@ -267,6 +247,7 @@ FROM rental AS r
          JOIN car_parameter cp on c.FK_car_parameter = cp.PK_car_parameter
          JOIN rental_details rd on r.FK_rental_details = rd.PK_rental_details
          JOIN user u on r.FK_user = u.PK_user ^;
+^;
 
 
 

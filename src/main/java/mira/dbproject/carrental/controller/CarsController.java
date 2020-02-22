@@ -71,9 +71,18 @@ public class CarsController {
 
   @RequestMapping(path = {"/available",
       "available/sorting/{sort},{direction}"}, method = RequestMethod.GET)
-  private String getAllAvailableCars(@PathVariable("sort") String sortParam,
-      @PathVariable("direction") String directionParam, Model model) {
-    model.addAttribute("carsForUser", carViewUserService.findAllAvailable());
+  private String getAllAvailableCars(@PathVariable("sort") Optional<String> sortParam,
+      @PathVariable("direction") Optional<String> directionParam, Model model) {
+    List<CarViewUser> availableCars;
+
+    if (sortParam.isPresent() && directionParam.isPresent()) {
+      availableCars = carViewUserService
+          .findAllAvailable(sortParam.get(), directionParam.get());
+    } else {
+      availableCars = carViewUserService.findAllAvailable();
+    }
+
+    model.addAttribute("carsForUser", availableCars);
     return "fleetForUser";
   }
 }
