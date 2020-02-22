@@ -39,11 +39,11 @@ INSERT INTO user(first_name, last_name, password, email, FK_user_details)
 VALUES ('Michał', 'Michałowski', 'hasełko', 'michalowski@michalowski.pl', 1),
        ('Andrzej', 'Andrzejowski', 'masełko', 'andrzejowski@andrzejowski.com', 2) ^;
 
-    INSERT
+INSERT
 INTO rental_status (PK_status, status_desc)
 VALUES (1, 'canceled'),
-    (2, 'rented'),
-    (3, 'returned') ^;
+       (2, 'rented'),
+       (3, 'returned') ^;
 
 INSERT INTO car_status (PK_status_code, status_description)
 VALUES ('AVI', 'available'),
@@ -1814,11 +1814,11 @@ VALUES (3, 'Cobra', 1),
 INSERT INTO car_parameter(FK_body_type, current_mileage, engine_size,
                           power, year_of_prod, fuel_consumption,
                           daily_rate, FK_car_status)
-VALUES (3, 150, 2000, 160, 2019, 6, 80, 'AVI'),
-       (3, 100, 2500, 200, 2019, 9, 95, 'UAV'),
-       (2, 500, 3993, 560, 2018, 8, 120, 'UAV'),
-       (2, 250, 2993, 280, 2018, 7, 105, 'UAV'),
-       (5, 400, 2000, 520, 2018, 8, 125, 'UAV') ^;
+VALUES (3, 150, 2000, 160, 2019, 6, 8, 'AVI'),
+       (3, 100, 2500, 200, 2019, 9, 9, 'UAV'),
+       (2, 500, 3993, 560, 2018, 8, 10, 'UAV'),
+       (2, 250, 2993, 280, 2018, 7, 15, 'UAV'),
+       (5, 400, 2000, 520, 2018, 8, 20, 'UAV') ^;
 
 
 INSERT INTO car (registration_number, FK_car_model, FK_location,
