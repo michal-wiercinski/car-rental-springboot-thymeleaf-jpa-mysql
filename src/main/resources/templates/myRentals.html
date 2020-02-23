@@ -39,7 +39,7 @@
           </div>
         </div>
       </th>
-      <th sec:authorize="hasRole('ROLE_ADMIN')">
+      <th>
         <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>Registration number</span></div>
           <div class="text-right ">
@@ -161,7 +161,7 @@
     <tbody id="myTable1">
     <tr th:each="rent : ${rentals}">
       <td th:text="${rent.rentalId}">ID Rent</td>
-      <td th:text="${rent.userEmail}">User</td>
+      <td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${rent.userEmail}">User</td>
       <td th:text="${rent.registrationNumber}">Registration number</td>
       <td th:text="${rent.brandName}">Brand</td>
       <td th:text="${rent.carModel}">Car model</td>

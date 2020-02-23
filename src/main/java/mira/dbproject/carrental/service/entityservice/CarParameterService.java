@@ -4,7 +4,6 @@ import javax.transaction.Transactional;
 import mira.dbproject.carrental.domain.dto.CarDto;
 import mira.dbproject.carrental.domain.entity.CarParameter;
 import mira.dbproject.carrental.repository.dao.CarParameterDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,7 +26,6 @@ public class CarParameterService {
     return carParameterDao.save(carParameter);
   }
 
-
   public CarParameter createNewParameter(CarDto carDto) {
     CarParameter carParameter = new CarParameter();
 
@@ -41,5 +39,4 @@ public class CarParameterService {
     carParameter.setPower(carDto.getPower());
     return carParameter;
   }
-
 }

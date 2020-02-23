@@ -17,7 +17,7 @@ DROP TRIGGER IF EXISTS update_car_status_after_update ^;
 CREATE PROCEDURE update_end_date_by_pk(IN p_pk_rental_details BIGINT)
 BEGIN
     UPDATE rental_details
-    SET date_end = CURRENT_TIMESTAMP
+    SET end_date = CURRENT_TIMESTAMP
     WHERE PK_rental_details = p_pk_rental_details;
 END ^;
 
@@ -110,7 +110,6 @@ END ^;
 
 
 
-
 CREATE TRIGGER after_update_rental_cost
     BEFORE UPDATE
     ON rental_details
@@ -119,11 +118,11 @@ BEGIN
     DECLARE v_diff_date INT;
     DECLARE v_daily_rate INT;
 
-    SET v_diff_date = TIMESTAMPDIFF(SECOND, OLD.date_from, NEW.date_end);
+    SET v_diff_date = TIMESTAMPDIFF(SECOND, OLD.start_date, NEW.end_date);
     SET v_daily_rate =
                 v_diff_date * get_daily_rate_by_rental__details_id(OLD.PK_rental_details);
     SET NEW.rental_cost = v_diff_date * v_daily_rate;
-    SET NEW.distance = car_distance(OLD.date_from, NEW.date_end);
+    SET NEW.distance = car_distance(OLD.start_date, NEW.end_date);
 END ^;
 
 
@@ -142,7 +141,7 @@ CREATE TRIGGER add_current_time_to_rental
         rental_details
     FOR EACH ROW
 BEGIN
-    SET NEW.date_from = CURRENT_TIMESTAMP;
+    SET NEW.start_date = CURRENT_TIMESTAMP;
 END ^;
 
 

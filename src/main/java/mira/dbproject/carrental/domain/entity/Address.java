@@ -11,17 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
-/*@NamedStoredProcedureQueries(
-    @NamedStoredProcedureQuery(name = "Address.createNewAddress",
-    procedureName = "create_address",
-    parameters ={
-      @StoredProcedureParameter(name = "p_city", mode = ParameterMode.IN, type = String.class),
-      @StoredProcedureParameter(name = "p_street", mode = ParameterMode.IN, type = String.class),
-      @StoredProcedureParameter(name = "p_house_number", mode = ParameterMode.IN, type = String.class),
-      @StoredProcedureParameter(name = "p_zip_code", mode = ParameterMode.IN, type = String.class),
-    }
-    )
-)*/
 @Data
 @Table(name = "address")
 @Entity

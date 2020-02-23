@@ -22,6 +22,4 @@ public class CarStatusService {
   public List<CarStatus> findAll() {
     return carStatusDao.findAll();
   }
-
-
 }

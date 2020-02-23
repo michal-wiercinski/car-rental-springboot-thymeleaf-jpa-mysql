@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -54,4 +52,3 @@ public class Role implements Serializable {
     this.userList = userList;
   }
 }
-
