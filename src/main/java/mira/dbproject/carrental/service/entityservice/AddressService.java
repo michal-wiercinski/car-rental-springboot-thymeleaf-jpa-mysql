@@ -27,8 +27,6 @@ public class AddressService {
     address.setHouseNumber(userDto.getHouseNumber());
     address.setZipCode(userDto.getZipCode());
     save(address);
-    System.out.println(
-        "asssssssssssssssssssssssssssssssssssssssssssssssssssDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd");
     return address;
   }
 }

@@ -1,24 +1,17 @@
 package mira.dbproject.carrental.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import lombok.extern.slf4j.Slf4j;
 import mira.dbproject.carrental.domain.view.CarViewAdmin;
 import mira.dbproject.carrental.domain.view.CarViewUser;
 import mira.dbproject.carrental.service.viewservice.CarViewAdminService;
 import mira.dbproject.carrental.service.viewservice.CarViewUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Slf4j
 @Controller
 @RequestMapping("/cars")
 public class CarsController {

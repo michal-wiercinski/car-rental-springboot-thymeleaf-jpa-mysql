@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import org.springframework.context.annotation.Scope;
 
-@Scope("prototype")
+@Scope("request")
 @MappedSuperclass
 public class CarView {
 

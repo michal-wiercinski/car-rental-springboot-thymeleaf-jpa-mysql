@@ -32,7 +32,4 @@ public class CarViewAdmin extends CarView {
   public void setCurrentMileage(Integer currentMileage) {
     this.currentMileage = currentMileage;
   }
-
 }
-
-

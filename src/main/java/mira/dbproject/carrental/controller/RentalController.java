@@ -2,7 +2,6 @@ package mira.dbproject.carrental.controller;
 
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
@@ -78,14 +77,12 @@ public class RentalController {
     return "myRentals";
   }
 
-
   @RequestMapping(path = "/{id}", method = {RequestMethod.POST, RequestMethod.GET})
   public String rentFormById(@PathVariable("id") Long id, HttpServletRequest servletRequest) {
     Principal principal = servletRequest.getUserPrincipal();
     rentalService.createRental(id, principal.getName());
     return "redirect:/rent-car/my-rent";
   }
-
 
   @RequestMapping(path = "/cancel/{id}", method = {RequestMethod.POST, RequestMethod.GET})
   public String cancelRent(@PathVariable("id") Long id) {
@@ -95,11 +92,7 @@ public class RentalController {
 
       rentalDetailService.updateDate(rentalDetails.getId());
       rentalService.updateStatus(id);
-
-      //rentalService.save(rental);
     }
     return "redirect:/rent-car/my-rent";
   }
-
-
 }

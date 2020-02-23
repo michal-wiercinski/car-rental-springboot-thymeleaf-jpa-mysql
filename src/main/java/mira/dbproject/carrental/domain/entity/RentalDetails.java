@@ -32,11 +32,11 @@ public class RentalDetails {
   @Column(name = "PK_rental_details")
   private Long id;
 
-  @Column(name = "date_from")
-  private Timestamp dateFrom;
+  @Column(name = "start_date")
+  private Timestamp startDate;
 
-  @Column(name = "date_end")
-  private Timestamp dateEnd;
+  @Column(name = "end_date")
+  private Timestamp endDate;
 
   @Column(name = "rental_cost")
   private BigDecimal rentalCost;
@@ -52,20 +52,20 @@ public class RentalDetails {
     this.id = id;
   }
 
-  public Timestamp getDateFrom() {
-    return dateFrom;
+  public Timestamp getStartDate() {
+    return startDate;
   }
 
-  public void setDateFrom(Timestamp dateFrom) {
-    this.dateFrom = dateFrom;
+  public void setStartDate(Timestamp dateFrom) {
+    this.startDate = dateFrom;
   }
 
-  public Timestamp getDateEnd() {
-    return dateEnd;
+  public Timestamp getEndDate() {
+    return endDate;
   }
 
-  public void setDateEnd(Timestamp dateEnd) {
-    this.dateEnd = dateEnd;
+  public void setEndDate(Timestamp dateEnd) {
+    this.endDate = dateEnd;
   }
 
   public Integer getDistance() {

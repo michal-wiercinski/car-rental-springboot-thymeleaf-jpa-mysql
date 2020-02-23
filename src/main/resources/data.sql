@@ -31,9 +31,9 @@ INSERT INTO address(city, street, house_number, zip_code)
 VALUES ('Gdynia', 'Władysława IV', '100', '00-000'),
        ('Gdańsk', 'Dmowskiego', '20', '11-111') ^;
 
-INSERT INTO user_details(FK_address, FK_credit_card)
-VALUES (1, NULL),
-       (2, NULL) ^;
+INSERT INTO user_details(FK_address)
+VALUES (1),
+       (2) ^;
 
 INSERT INTO user(first_name, last_name, password, email, FK_user_details)
 VALUES ('Michał', 'Michałowski', 'hasełko', 'michalowski@michalowski.pl', 1),

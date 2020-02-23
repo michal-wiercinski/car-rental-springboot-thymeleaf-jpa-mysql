@@ -39,7 +39,8 @@ public class MyUserPrincipal implements UserDetails {
     }
     return authorities;
   }
-  public Long getId(){
+
+  public Long getId() {
     return user.getId();
   }
 

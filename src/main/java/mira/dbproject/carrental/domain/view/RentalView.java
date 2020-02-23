@@ -31,10 +31,10 @@ public class RentalView {
   @Column(name = "daily_rate")
   private Integer dailyRate;
 
-  @Column(name = "date_from")
+  @Column(name = "start_date")
   private Timestamp startDate;
 
-  @Column(name = "date_end")
+  @Column(name = "end_Date")
   private Timestamp endDate;
 
   @Column(name = "distance")

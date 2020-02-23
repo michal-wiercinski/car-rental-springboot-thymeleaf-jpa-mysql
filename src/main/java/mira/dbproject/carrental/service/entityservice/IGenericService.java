@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 
 public interface IGenericService<T> {
 
-
   List<T> findAll();
 
   @Transactional
@@ -20,7 +19,5 @@ public interface IGenericService<T> {
 
   @Transactional
   void deleteById(Long id);
-
-
 
 }
