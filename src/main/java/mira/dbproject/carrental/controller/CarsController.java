@@ -82,7 +82,7 @@ public class CarsController {
       availableCars = carViewUserService.findAllAvailable();
     }
 
-    model.addAttribute("carsForUser", availableCars);
+    model.addAttribute("carsForUser", availableCars                            );
     return "fleetForUser";
   }
 }
