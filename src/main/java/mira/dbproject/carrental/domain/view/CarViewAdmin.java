@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 
 @Scope("request")
 @Entity
-@Table(name = "details_fleet")
+@Table(name = "details_fleet_for_admin")
 public class CarViewAdmin extends CarView {
 
   @Column(name = "income")

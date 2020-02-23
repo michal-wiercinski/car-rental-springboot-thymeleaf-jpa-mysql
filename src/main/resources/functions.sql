@@ -17,7 +17,7 @@ DROP TRIGGER IF EXISTS update_car_status_after_update ^;
 CREATE PROCEDURE update_end_date_by_pk(IN p_pk_rental_details BIGINT)
 BEGIN
     UPDATE rental_details
-    SET date_end = CURRENT_TIMESTAMP
+    SET end_date = CURRENT_TIMESTAMP
     WHERE PK_rental_details = p_pk_rental_details;
 END ^;
 

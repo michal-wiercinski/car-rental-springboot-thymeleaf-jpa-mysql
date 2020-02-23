@@ -128,7 +128,7 @@ CREATE TABLE user
     PK_user         BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name      VARCHAR(30)   NOT NULL,
     last_name       VARCHAR(30)   NOT NULL,
-    password        VARCHAR(255)   NOT NULL,
+    password        VARCHAR(255)  NOT NULL,
     email           VARCHAR(30)   NOT NULL,
     FK_user_details BIGINT UNIQUE NOT NULL,
     FOREIGN KEY (FK_user_details) REFERENCES user_details (PK_user_details)
@@ -222,22 +222,25 @@ FROM car AS c
          LEFT JOIN brand AS br ON cm.FK_brand = br.PK_brand ^;
 
 
-
 CREATE VIEW rental_view
 AS
-SELECT r.PK_rental       AS 'rental_id',
-       rs.status_desc    AS 'rental_status',
-       br.brand_name     AS 'brand_name',
-       cm.car_model_name AS 'model_name',
-       cp.daily_rate     AS 'daily_rate',
-       rd.start_date     AS 'date_from',
-       rd.end_date       AS 'date_end',
-       rd.distance       AS 'distance',
-       rd.rental_cost    AS 'rental_cost'
+SELECT r.PK_rental           AS 'rental_id',
+       u.email               AS 'user_email',
+       c.PK_car              AS 'car_id',
+       c.registration_number AS 'registration_number',
+       rs.status_desc        AS 'rental_status',
+       br.brand_name         AS 'brand_name',
+       cm.car_model_name     AS 'model_name',
+       cp.daily_rate         AS 'daily_rate',
+       rd.start_date         AS 'start_date',
+       rd.end_date           AS 'end_date',
+       rd.distance           AS 'distance',
+       rd.rental_cost        AS 'rental_cost'
 FROM rental AS r
          JOIN car c on r.FK_car = c.PK_car
          JOIN rental_status rs on r.FK_status = rs.PK_status
          JOIN car_model cm on c.FK_car_model = cm.PK_car_model
          JOIN brand br on cm.FK_brand = br.PK_brand
          JOIN car_parameter cp on c.FK_car_parameter = cp.PK_car_parameter
-         JOIN rental_details rd on r.FK_rental_details = rd.PK_rental_details ^;
+         JOIN rental_details rd on r.FK_rental_details = rd.PK_rental_details
+         JOIN user u on r.FK_user = u.PK_user ^;
