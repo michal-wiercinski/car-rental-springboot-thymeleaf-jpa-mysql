@@ -1,7 +1,6 @@
 package mira.dbproject.carrental.controller;
 
 import mira.dbproject.carrental.service.viewservice.CarViewUserService;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

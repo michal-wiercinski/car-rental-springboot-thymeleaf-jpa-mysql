@@ -93,20 +93,17 @@ public class ManageController {
   }
 
   @GetMapping("/edit-form/{id}")
-  public String editCarForm(Model model, @PathVariable("id") Optional<Long> id) {
-    if (id.isPresent()) {
-      Long idl = id.get();
+  public String editCarForm(Model model, @PathVariable("id") Optional<Long> idParam) {
+    if (idParam.isPresent()) {
+      Long idl = idParam.get();
       if (carViewAdminService.findById(idl).isPresent()) {
         CarViewAdmin car = carViewAdminService.findById(idl).get();
         model.addAttribute("editCar", car);
         model.addAttribute("carDto", new CarDto());
         return "editCarForm";
-      } else {
-        return "redirect:/";
       }
-    } else {
-      return "redirect:/";
     }
+    return "redirect:/manage";
   }
 
   @PostMapping("/edit-car")

@@ -91,19 +91,19 @@ public class Car implements Serializable {
     this.carModel = carModel;
   }
 
-  public List<Rental> getRental() {
-    return rental;
-  }
-
-  public void setRental(List<Rental> rental) {
-    this.rental = rental;
-  }
-
   public CarParameter getCarParameter() {
     return carParameter;
   }
 
   public void setCarParameter(CarParameter carParameter) {
     this.carParameter = carParameter;
+  }
+
+  public List<Rental> getRental() {
+    return rental;
+  }
+
+  public void setRental(List<Rental> rental) {
+    this.rental = rental;
   }
 }

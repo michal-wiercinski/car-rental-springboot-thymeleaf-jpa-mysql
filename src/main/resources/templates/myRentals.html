@@ -16,7 +16,7 @@
       <th>
         <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>ID </span></div>
-          <div class="text-right ">
+          <div class="text-right">
             <a
                 th:href="@{/rent-car/my-rent/{sort},{direction}(sort=rentalId,direction=ASC)}"><i
                 class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
@@ -29,7 +29,7 @@
       <th sec:authorize="hasRole('ROLE_ADMIN')">
         <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>User </span></div>
-          <div class="text-right ">
+          <div class="text-right">
             <a
                 th:href="@{/rent-car/my-rent/{sort},{direction}(sort=userEmail,direction=ASC)}"><i
                 class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
@@ -39,10 +39,10 @@
           </div>
         </div>
       </th>
-      <th sec:authorize="hasRole('ROLE_ADMIN')">
+      <th>
         <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>Registration number</span></div>
-          <div class="text-right ">
+          <div class="text-right" sec:authorize="hasRole('ROLE_USER')">
             <a
                 th:href="@{/rent-car/my-rent/{sort},{direction}(sort=registrationNumber,direction=ASC)}"><i
                 class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
@@ -55,7 +55,7 @@
       <th>
         <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>Brand </span></div>
-          <div class="text-right ">
+          <div class="text-right">
             <a
                 th:href="@{/rent-car/my-rent/{sort},{direction}(sort=brandName,direction=ASC)}"><i
                 class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
@@ -68,7 +68,7 @@
       <th>
         <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>Car model </span></div>
-          <div class="text-right ">
+          <div class="text-right">
             <a
                 th:href="@{/rent-car/my-rent/{sort},{direction}(sort=carModel,direction=ASC)}"><i
                 class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
@@ -81,7 +81,7 @@
       <th>
         <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>Start date </span></div>
-          <div class="text-right ">
+          <div class="text-right">
             <a
                 th:href="@{/rent-car/my-rent/{sort},{direction}(sort=startDate,direction=ASC)}"><i
                 class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
@@ -94,7 +94,7 @@
       <th>
         <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>End date </span></div>
-          <div class="text-right ">
+          <div class="text-right">
             <a
                 th:href="@{/rent-car/my-rent/{sort},{direction}(sort=endDate,direction=ASC)}"><i
                 class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
@@ -107,7 +107,7 @@
       <th>
         <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>Daily rate </span></div>
-          <div class="text-right ">
+          <div class="text-right">
             <a
                 th:href="@{/rent-car/my-rent/{sort},{direction}(sort=dailyRate,direction=ASC)}"><i
                 class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
@@ -161,7 +161,7 @@
     <tbody id="myTable1">
     <tr th:each="rent : ${rentals}">
       <td th:text="${rent.rentalId}">ID Rent</td>
-      <td th:text="${rent.userEmail}">User</td>
+      <td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${rent.userEmail}">User</td>
       <td th:text="${rent.registrationNumber}">Registration number</td>
       <td th:text="${rent.brandName}">Brand</td>
       <td th:text="${rent.carModel}">Car model</td>

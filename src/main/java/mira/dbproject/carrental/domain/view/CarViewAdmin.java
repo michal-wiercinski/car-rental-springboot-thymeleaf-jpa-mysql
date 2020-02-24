@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 
 @Scope("request")
 @Entity
-@Table(name = "details_fleet")
+@Table(name = "details_fleet_for_admin")
 public class CarViewAdmin extends CarView {
 
   @Column(name = "income")
@@ -16,6 +16,9 @@ public class CarViewAdmin extends CarView {
 
   @Column(name = "current_mileage")
   private Integer currentMileage;
+
+  @Column(name = "registration_number")
+  private String registrationNumber;
 
   public BigDecimal getIncome() {
     return income;
@@ -33,6 +36,11 @@ public class CarViewAdmin extends CarView {
     this.currentMileage = currentMileage;
   }
 
+  public String getRegistrationNumber() {
+    return registrationNumber;
+  }
+
+  public void setRegistrationNumber(String regNumber) {
+    this.registrationNumber = regNumber;
+  }
 }
-
-

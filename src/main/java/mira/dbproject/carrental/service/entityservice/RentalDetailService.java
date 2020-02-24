@@ -45,5 +45,4 @@ public class RentalDetailService implements IGenericService<RentalDetails> {
   public void deleteById(Long id) {
 
   }
-
 }

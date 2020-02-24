@@ -27,7 +27,7 @@ public class CarViewAdminService implements IViewService<CarViewAdmin> {
 
   @Override
   public List<CarViewAdmin> findAllAndSortByParam(String sortingAttribute, String direction) {
-    if (!sortingAttribute.isEmpty() ) {
+    if (!sortingAttribute.isEmpty()) {
       if (!direction.isEmpty() && direction.equals(Direction.DESC.toString())) {
         return carViewAdminDao.findAll(Sort.by(sortingAttribute).descending());
       }
@@ -35,5 +35,4 @@ public class CarViewAdminService implements IViewService<CarViewAdmin> {
     }
     return carViewAdminDao.findAll();
   }
-
 }

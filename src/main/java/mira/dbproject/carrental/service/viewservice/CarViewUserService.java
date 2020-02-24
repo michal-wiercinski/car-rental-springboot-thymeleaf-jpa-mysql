@@ -38,7 +38,6 @@ public class CarViewUserService implements IViewService<CarViewUser> {
     return carViewUserDao.findCarViewUserByCarStatusIsLike(STATUS);
   }
 
-
   @Override
   public Optional<CarViewUser> findById(Long id) {
     return Optional.empty();
@@ -54,5 +53,4 @@ public class CarViewUserService implements IViewService<CarViewUser> {
     }
     return carViewUserDao.findAll();
   }
-
 }

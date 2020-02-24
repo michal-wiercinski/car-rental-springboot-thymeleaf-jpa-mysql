@@ -17,7 +17,7 @@ DROP TRIGGER IF EXISTS update_car_status_after_update ^;
 CREATE PROCEDURE update_end_date_by_pk(IN p_pk_rental_details BIGINT)
 BEGIN
     UPDATE rental_details
-    SET date_end = CURRENT_TIMESTAMP
+    SET end_date = CURRENT_TIMESTAMP
     WHERE PK_rental_details = p_pk_rental_details;
 END ^;
 
@@ -35,9 +35,8 @@ BEGIN
     SET FK_car_status = p_pk_car_status
     WHERE PK_car_parameter = (SELECT FK_car_parameter FROM car WHERE PK_car = p_pk_car)
       AND (SELECT FK_car_parameter
-           FROM car as c
-                    join rental as r
-                         on c.PK_car = r.FK_car
+           FROM car AS c
+                    JOIN rental AS r ON c.PK_car = r.FK_car
            WHERE c.PK_car = p_pk_car
              AND r.FK_status = 2) IS NULL;
 END ^;
@@ -48,7 +47,7 @@ CREATE FUNCTION car_distance(date_from TIMESTAMP, date_end TIMESTAMP)
 BEGIN
     DECLARE diff INT;
     SET diff = TIMESTAMPDIFF(SECOND, date_from, date_end);
-    RETURN (RAND(1) * 10) * diff;
+    RETURN RAND(1) * diff;
 END ^;
 
 CREATE FUNCTION get_daily_rate_by_rental__details_id(p_pk_rental_details BIGINT)
@@ -66,28 +65,6 @@ BEGIN
     RETURN result;
 END ^;
 
-CREATE FUNCTION get_status_by_rental_dtl(p_pk_rd BIGINT)
-    RETURNS BIGINT
-    DETERMINISTIC
-BEGIN
-    DECLARE result BIGINT;
-    SET result = (SELECT r.fk_status
-                  from rental AS r
-                           JOIN rental_details AS rd ON r.FK_rental_details = rd.PK_rental_details
-                  WHERE PK_rental_details = p_pk_rd);
-    RETURN result;
-
-END ^;
-CREATE TRIGGER update_car_status_after_insert
-    AFTER INSERT
-    ON rental
-    FOR EACH ROW
-BEGIN
-    UPDATE car_parameter
-    SET FK_car_status = 'UAV'
-    WHERE PK_car_parameter = get_pk_car_param_by_pk_rental(NEW.PK_rental);
-end ^;
-
 CREATE FUNCTION get_pk_car_param_by_pk_rental(p_pk_rental BIGINT)
     RETURNS BIGINT
     DETERMINISTIC
@@ -98,18 +75,32 @@ BEGIN
             WHERE r.PK_rental = p_pk_rental);
 END ^;
 
+CREATE TRIGGER update_car_status_after_insert
+    AFTER INSERT
+    ON rental
+    FOR EACH ROW
+BEGIN
+    UPDATE car_parameter
+    SET FK_car_status = 'UAV'
+    WHERE PK_car_parameter = get_pk_car_param_by_pk_rental(NEW.PK_rental);
+END ^;
+
 CREATE TRIGGER update_car_status_after_update
     AFTER UPDATE
     ON rental
     FOR EACH ROW
 BEGIN
-    UPDATE car_parameter
-    SET FK_car_status = 'AVI'
-    WHERE PK_car_parameter = get_pk_car_param_by_pk_rental(OLD.PK_rental);
+    IF (NEW.FK_status = 1)
+    THEN
+        UPDATE car_parameter
+        SET FK_car_status   = 'AVI',
+            current_mileage = current_mileage + (SELECT distance
+                                                 FROM rental_details AS rd
+                                                          JOIN rental AS r ON rd.PK_rental_details = r.FK_rental_details
+                                                 WHERE r.PK_rental = OLD.PK_rental)
+        WHERE PK_car_parameter = get_pk_car_param_by_pk_rental(OLD.PK_rental);
+    END IF;
 END ^;
-
-
-
 
 CREATE TRIGGER after_update_rental_cost
     BEFORE UPDATE
@@ -119,11 +110,32 @@ BEGIN
     DECLARE v_diff_date INT;
     DECLARE v_daily_rate INT;
 
-    SET v_diff_date = TIMESTAMPDIFF(SECOND, OLD.date_from, NEW.date_end);
+    SET v_diff_date = TIMESTAMPDIFF(SECOND, OLD.start_date, NEW.end_date);
     SET v_daily_rate =
                 v_diff_date * get_daily_rate_by_rental__details_id(OLD.PK_rental_details);
-    SET NEW.rental_cost = v_diff_date * v_daily_rate;
-    SET NEW.distance = car_distance(OLD.date_from, NEW.date_end);
+    SET NEW.rental_cost = (v_diff_date * v_daily_rate) / 1000;
+    SET NEW.distance = car_distance(OLD.start_date, NEW.end_date);
+
+END ^;
+
+CREATE TRIGGER update_mileage_after_cancel_rental
+    AFTER UPDATE
+    ON rental
+    FOR EACH ROW
+BEGIN
+    IF (NEW.FK_status = 1)
+    THEN
+        UPDATE
+            car_parameter
+        SET current_mileage = current_mileage + (SELECT distance
+                                                 FROM rental_details AS rd
+                                                          JOIN rental AS r ON rd.PK_rental_details = r.FK_rental_details
+                                                 WHERE r.PK_rental = OLD.PK_rental)
+        WHERE PK_car_parameter = (SELECT FK_car_parameter
+                                  FROM car AS c
+                                           JOIN rental AS r ON c.PK_car = r.FK_car
+                                  WHERE FK_car = OLD.FK_car);
+    END IF;
 END ^;
 
 
@@ -142,7 +154,7 @@ CREATE TRIGGER add_current_time_to_rental
         rental_details
     FOR EACH ROW
 BEGIN
-    SET NEW.date_from = CURRENT_TIMESTAMP;
+    SET NEW.start_date = CURRENT_TIMESTAMP;
 END ^;
 
 

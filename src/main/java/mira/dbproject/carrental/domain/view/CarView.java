@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import org.springframework.context.annotation.Scope;
 
-@Scope("prototype")
+@Scope("request")
 @MappedSuperclass
 public class CarView {
 
@@ -18,9 +18,6 @@ public class CarView {
 
   @Column(name = "car_model")
   private String carModelName;
-
-  @Column(name = "registration_number")
-  private String regNumber;
 
   @Column(name = "body_type")
   private String bodyType;
@@ -68,14 +65,6 @@ public class CarView {
 
   public void setCarModelName(String carModelName) {
     this.carModelName = carModelName;
-  }
-
-  public String getRegNumber() {
-    return regNumber;
-  }
-
-  public void setRegNumber(String regNumber) {
-    this.regNumber = regNumber;
   }
 
   public String getBodyType() {

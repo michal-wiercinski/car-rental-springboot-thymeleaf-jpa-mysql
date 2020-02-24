@@ -19,6 +19,15 @@ public class RentalView {
   @Column(name = "rental_id")
   private Long rentalId;
 
+  @Column(name = "user_email")
+  private String userEmail;
+
+  @Column(name = "registration_number")
+  private String registrationNumber;
+
+  @Column(name = "car_id")
+  private Long carId;
+
   @Column(name = "rental_status")
   private String rentalStatus;
 
@@ -31,10 +40,10 @@ public class RentalView {
   @Column(name = "daily_rate")
   private Integer dailyRate;
 
-  @Column(name = "date_from")
+  @Column(name = "start_date")
   private Timestamp startDate;
 
-  @Column(name = "date_end")
+  @Column(name = "end_Date")
   private Timestamp endDate;
 
   @Column(name = "distance")
@@ -42,14 +51,6 @@ public class RentalView {
 
   @Column(name = "rental_cost")
   private BigDecimal rentalCost;
-  @Column(name = "user_email")
-  private String userEmail;
-
-  @Column(name = "registration_number")
-  private String registrationNumber;
-
-  @Column(name = "car_id")
-  private Long carId;
 
   public Long getRentalId() {
     return rentalId;
@@ -57,6 +58,30 @@ public class RentalView {
 
   public void setRentalId(Long rentalId) {
     this.rentalId = rentalId;
+  }
+
+  public String getUserEmail() {
+    return userEmail;
+  }
+
+  public void setUserEmail(String userEmail) {
+    this.userEmail = userEmail;
+  }
+
+  public String getRegistrationNumber() {
+    return registrationNumber;
+  }
+
+  public void setRegistrationNumber(String registrationNumber) {
+    this.registrationNumber = registrationNumber;
+  }
+
+  public Long getCarId() {
+    return carId;
+  }
+
+  public void setCarId(Long carId) {
+    this.carId = carId;
   }
 
   public String getRentalStatus() {
@@ -121,29 +146,5 @@ public class RentalView {
 
   public void setRentalCost(BigDecimal rentalCost) {
     this.rentalCost = rentalCost;
-  }
-
-  public String getUserEmail() {
-    return userEmail;
-  }
-
-  public void setUserEmail(String userEmail) {
-    this.userEmail = userEmail;
-  }
-
-  public String getRegistrationNumber() {
-    return registrationNumber;
-  }
-
-  public void setRegistrationNumber(String registrationNumber) {
-    this.registrationNumber = registrationNumber;
-  }
-
-  public Long getCarId() {
-    return carId;
-  }
-
-  public void setCarId(Long carId) {
-    this.carId = carId;
   }
 }
