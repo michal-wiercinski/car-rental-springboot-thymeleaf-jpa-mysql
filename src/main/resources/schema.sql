@@ -27,7 +27,7 @@ CREATE TABLE address
     PK_address   BIGINT AUTO_INCREMENT PRIMARY KEY,
     city         VARCHAR(255) NOT NULL,
     street       VARCHAR(255) NOT NULL,
-    house_number VARCHAR(255) NOT NULL,
+    house_number VARCHAR(10)  NOT NULL,
     zip_code     VARCHAR(6)   NOT NULL
 ) ^;
 
@@ -65,8 +65,7 @@ CREATE TABLE car_status
 
 CREATE TABLE car_parameter
 (
-    PK_car_parameter bigint auto_increment
-        primary key,
+    PK_car_parameter BIGINT AUTO_INCREMENT PRIMARY KEY,
     current_mileage  INT        NOT NULL,
     engine_size      INT        NOT NULL,
     power            INT        NOT NULL,
@@ -79,16 +78,6 @@ CREATE TABLE car_parameter
     FOREIGN KEY (FK_car_status) REFERENCES car_status (PK_status_code)
 ) ^;
 
-/*
-DROP TABLE IF EXISTS credit_card ^;
-CREATE TABLE credit_card
-(
-    PK_credit_card BIGINT AUTO_INCREMENT PRIMARY KEY,
-    ccc_number     VARCHAR(16) NOT NULL,
-    ccc_expiration VARCHAR(5)  NOT NULL,
-    ccc_cvv        VARCHAR(3)  NOT NULL
-) ^;*/
-
 CREATE TABLE location
 (
     PK_location   BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -96,6 +85,18 @@ CREATE TABLE location
     FK_address    BIGINT,
     FOREIGN KEY (FK_address) REFERENCES address (PK_address)
 
+) ^;
+
+CREATE TABLE car
+(
+    PK_car              BIGINT AUTO_INCREMENT PRIMARY KEY,
+    registration_number VARCHAR(7)    NOT NULL,
+    FK_location         BIGINT        NOT NULL,
+    FK_car_parameter    BIGINT UNIQUE NOT NULL,
+    FK_car_model        BIGINT        NOT NULL,
+    FOREIGN KEY (FK_car_model) REFERENCES car_model (PK_car_model),
+    FOREIGN KEY (FK_car_parameter) REFERENCES car_parameter (PK_car_parameter),
+    FOREIGN KEY (FK_location) REFERENCES location (PK_location)
 ) ^;
 
 CREATE TABLE role
@@ -111,25 +112,13 @@ CREATE TABLE user_details
     FOREIGN KEY (FK_address) REFERENCES address (PK_address)
 ) ^;
 
-CREATE TABLE car
-(
-    PK_car              BIGINT AUTO_INCREMENT PRIMARY KEY,
-    registration_number VARCHAR(7)    NOT NULL,
-    FK_location         BIGINT        NOT NULL,
-    FK_car_parameter    BIGINT UNIQUE NOT NULL,
-    FK_car_model        BIGINT        NOT NULL,
-    FOREIGN KEY (FK_car_model) REFERENCES car_model (PK_car_model),
-    FOREIGN KEY (FK_car_parameter) REFERENCES car_parameter (PK_car_parameter),
-    FOREIGN KEY (FK_location) REFERENCES location (PK_location)
-) ^;
-
 CREATE TABLE user
 (
     PK_user         BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name      VARCHAR(30)   NOT NULL,
     last_name       VARCHAR(30)   NOT NULL,
     password        VARCHAR(255)  NOT NULL,
-    email           VARCHAR(30)   NOT NULL,
+    email           VARCHAR(50)   NOT NULL,
     FK_user_details BIGINT UNIQUE NOT NULL,
     FOREIGN KEY (FK_user_details) REFERENCES user_details (PK_user_details)
 ) ^;
@@ -167,11 +156,34 @@ CREATE TABLE user_roles
     UNIQUE (FK_user, FK_role)
 ) ^;
 
+CREATE VIEW details_fleet_for_user
+AS
+SELECT c.PK_car              AS 'car_id',
+       br.brand_name         AS 'brand',
+       cm.car_model_name     AS 'car_model',
+       bt.type_name          AS 'body_type',
+       cp.power              AS 'engine_power',
+       cp.engine_size        AS 'engine_size',
+       cp.year_of_prod       AS 'production_year',
+       cp.fuel_consumption   AS 'avg_fuel_consumption',
+       cp.daily_rate         AS 'daily_rate',
+       l.location_name       AS 'location_name',
+       cs.status_description AS 'status'
+
+FROM car AS c
+         LEFT JOIN car_parameter AS cp
+                   on c.FK_car_parameter = cp.PK_car_parameter
+         LEFT JOIN car_model AS cm ON c.FK_car_model = cm.PK_car_model
+         LEFT JOIN car_status cs ON cp.FK_car_status = cs.PK_status_code
+         LEFT JOIN body_type AS bt ON cp.FK_body_type = bt.PK_body_type
+         LEFT JOIN location AS l ON l.PK_location = c.FK_location
+         LEFT JOIN brand AS br ON cm.FK_brand = br.PK_brand ^;
+
 CREATE VIEW details_fleet_for_admin
 AS
 SELECT c.PK_car                         AS 'car_id',
        c.registration_number            AS 'registration_number',
-       coalesce(sum(rd.rental_cost), 0) AS 'income',
+       COALESCE(SUM(rd.rental_cost), 0) AS 'income',
        br.brand_name                    AS 'brand',
        cm.car_model_name                AS 'car_model',
        bt.type_name                     AS 'body_type',
@@ -193,34 +205,7 @@ FROM car AS c
          LEFT JOIN rental r ON c.PK_car = r.FK_car
          LEFT JOIN rental_details rd ON r.FK_rental_details = rd.PK_rental_details
          LEFT JOIN location l ON c.FK_location = l.PK_location
-GROUP BY c.PK_car, rd.rental_cost ^;
-
-
-
-CREATE VIEW details_fleet_for_user
-AS
-SELECT c.PK_car              AS 'car_id',
-       c.registration_number AS 'registration_number',
-       br.brand_name         AS 'brand',
-       cm.car_model_name     AS 'car_model',
-       bt.type_name          AS 'body_type',
-       cp.power              AS 'engine_power',
-       cp.engine_size        AS 'engine_size',
-       cp.year_of_prod       AS 'production_year',
-       cp.fuel_consumption   AS 'avg_fuel_consumption',
-       cp.daily_rate         AS 'daily_rate',
-       l.location_name       AS 'location_name',
-       cs.status_description AS 'status'
-
-FROM car AS c
-         LEFT JOIN car_parameter AS cp
-                   on c.FK_car_parameter = cp.PK_car_parameter
-         LEFT JOIN car_model AS cm ON c.FK_car_model = cm.PK_car_model
-         LEFT JOIN car_status cs ON cp.FK_car_status = cs.PK_status_code
-         LEFT JOIN body_type AS bt ON cp.FK_body_type = bt.PK_body_type
-         LEFT JOIN location AS l ON l.PK_location = c.FK_location
-         LEFT JOIN brand AS br ON cm.FK_brand = br.PK_brand ^;
-
+GROUP BY c.PK_car ^;
 
 CREATE VIEW rental_view
 AS

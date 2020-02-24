@@ -17,6 +17,9 @@ public class CarViewAdmin extends CarView {
   @Column(name = "current_mileage")
   private Integer currentMileage;
 
+  @Column(name = "registration_number")
+  private String registrationNumber;
+
   public BigDecimal getIncome() {
     return income;
   }
@@ -31,5 +34,13 @@ public class CarViewAdmin extends CarView {
 
   public void setCurrentMileage(Integer currentMileage) {
     this.currentMileage = currentMileage;
+  }
+
+  public String getRegistrationNumber() {
+    return registrationNumber;
+  }
+
+  public void setRegistrationNumber(String regNumber) {
+    this.registrationNumber = regNumber;
   }
 }

@@ -29,19 +29,6 @@
       </th>
       <th>
         <div class="d-sm-inline-flex">
-          <div class="text-lg-left"><span>Income </span></div>
-          <div class="text-right ">
-            <a
-                th:href="@{/cars/our-fleet/{sort},{direction}(sort=income,direction=ASC)}"><i
-                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
-            <br>
-            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=income,direction=DESC)}"><i
-                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
-          </div>
-        </div>
-      </th>
-      <th>
-        <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>Brand </span></div>
           <div class="text-right ">
             <a
@@ -146,6 +133,19 @@
       </th>
       <th>
         <div class="d-sm-inline-flex">
+          <div class="text-lg-left"><span>Income </span></div>
+          <div class="text-right ">
+            <a
+                th:href="@{/cars/our-fleet/{sort},{direction}(sort=income,direction=ASC)}"><i
+                class="fa fa-sort-asc fa-xs" aria-hidden="true"></i></a>
+            <br>
+            <a th:href="@{/cars/our-fleet/{sort},{direction}(sort=income,direction=DESC)}"><i
+                class="fa fa-sort-desc fa-xs" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </th>
+      <th>
+        <div class="d-sm-inline-flex">
           <div class="text-lg-left"><span>Status </span></div>
           <div class="text-right ">
             <a
@@ -163,7 +163,6 @@
     <tbody id="myTable">
     <tr th:each="car : ${detailsFleet}">
       <td th:text="${car.id}">ID</td>
-      <td th:text="${car.income}">Income</td>
       <td th:text="${car.brandName}">Brand</td>
       <td th:text="${car.carModelName}">Car model</td>
       <td th:text="${car.bodyType}">Body type</td>
@@ -172,6 +171,7 @@
       <td th:text="${car.prodYear}">Production year</td>
       <td th:text="${car.currentMileage}">Current mileage</td>
       <td th:text="${car.dailyRate}">Daily rate</td>
+      <td th:text="${car.income}">Income</td>
       <div th:switch="${car.carStatus}">
         <td>
           <a th:case="unavailable" class="btn btn-success btn-sm"
