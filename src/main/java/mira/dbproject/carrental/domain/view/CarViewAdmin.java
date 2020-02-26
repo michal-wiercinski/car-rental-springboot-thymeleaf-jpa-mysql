@@ -20,6 +20,9 @@ public class CarViewAdmin extends CarView {
   @Column(name = "registration_number")
   private String registrationNumber;
 
+  @Column(name = "avg_fuel_consumption")
+  private Double fuelConsumption;
+
   public BigDecimal getIncome() {
     return income;
   }
@@ -42,5 +45,13 @@ public class CarViewAdmin extends CarView {
 
   public void setRegistrationNumber(String regNumber) {
     this.registrationNumber = regNumber;
+  }
+
+  public Double getFuelConsumption() {
+    return fuelConsumption;
+  }
+
+  public void setFuelConsumption(Double fuelConsumption) {
+    this.fuelConsumption = fuelConsumption;
   }
 }

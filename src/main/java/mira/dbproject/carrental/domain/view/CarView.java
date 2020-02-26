@@ -37,9 +37,6 @@ public class CarView {
   @Column(name = "status")
   private String carStatus;
 
-  @Column(name = "avg_fuel_consumption")
-  private Double fuelConsumption;
-
   @Column(name = "location_name")
   private String locationName;
 
@@ -113,14 +110,6 @@ public class CarView {
 
   public void setCarStatus(String carStatus) {
     this.carStatus = carStatus;
-  }
-
-  public Double getFuelConsumption() {
-    return fuelConsumption;
-  }
-
-  public void setFuelConsumption(Double fuelConsumption) {
-    this.fuelConsumption = fuelConsumption;
   }
 
   public String getLocationName() {
