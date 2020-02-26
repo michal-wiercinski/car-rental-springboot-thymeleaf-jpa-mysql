@@ -165,7 +165,6 @@ SELECT c.PK_car              AS 'car_id',
        cp.power              AS 'engine_power',
        cp.engine_size        AS 'engine_size',
        cp.year_of_prod       AS 'production_year',
-       cp.fuel_consumption   AS 'avg_fuel_consumption',
        cp.daily_rate         AS 'daily_rate',
        l.location_name       AS 'location_name',
        cs.status_description AS 'status'
