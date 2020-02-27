@@ -3,8 +3,7 @@ package mira.dbproject.carrental.service.entityservice;
 import java.util.List;
 import java.util.Optional;
 import mira.dbproject.carrental.domain.entity.RentalDetails;
-import mira.dbproject.carrental.repository.dao.RentalDetailsDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import mira.dbproject.carrental.repository.entity.RentalDetailsDao;
 import org.springframework.stereotype.Service;
 
 @Service

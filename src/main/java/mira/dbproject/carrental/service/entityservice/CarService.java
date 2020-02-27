@@ -6,7 +6,7 @@ import mira.dbproject.carrental.domain.dto.CarDto;
 import mira.dbproject.carrental.domain.entity.Car;
 import mira.dbproject.carrental.domain.entity.CarParameter;
 import mira.dbproject.carrental.mapper.CarMapper;
-import mira.dbproject.carrental.repository.dao.CarDao;
+import mira.dbproject.carrental.repository.entity.CarDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

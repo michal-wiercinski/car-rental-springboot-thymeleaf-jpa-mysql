@@ -2,7 +2,7 @@ package mira.dbproject.carrental.service.entityservice;
 
 import java.util.Optional;
 import mira.dbproject.carrental.domain.entity.Brand;
-import mira.dbproject.carrental.repository.dao.BrandDao;
+import mira.dbproject.carrental.repository.entity.BrandDao;
 import org.springframework.stereotype.Service;
 
 @Service

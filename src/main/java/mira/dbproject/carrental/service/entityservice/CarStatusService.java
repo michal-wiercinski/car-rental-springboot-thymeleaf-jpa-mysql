@@ -3,7 +3,7 @@ package mira.dbproject.carrental.service.entityservice;
 import java.util.List;
 import java.util.Optional;
 import mira.dbproject.carrental.domain.entity.CarStatus;
-import mira.dbproject.carrental.repository.dao.CarStatusDao;
+import mira.dbproject.carrental.repository.entity.CarStatusDao;
 import org.springframework.stereotype.Service;
 
 @Service

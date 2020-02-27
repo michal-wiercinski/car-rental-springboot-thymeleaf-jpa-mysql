@@ -18,7 +18,7 @@ import lombok.Data;
     @NamedStoredProcedureQuery(name = "RentalDetail.UpdateEndTime",
         procedureName = "update_end_date_by_pk",
         parameters = {
-            @StoredProcedureParameter(name = "p_pk_rental_detail", mode = ParameterMode.IN, type = Long.class)
+            @StoredProcedureParameter(name = "p_pk_rental_details", mode = ParameterMode.IN, type = Long.class)
         }
     )
 )

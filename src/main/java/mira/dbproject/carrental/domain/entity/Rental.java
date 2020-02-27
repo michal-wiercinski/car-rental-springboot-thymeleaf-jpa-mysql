@@ -17,7 +17,7 @@ import lombok.Data;
 
 @NamedStoredProcedureQueries(
     @NamedStoredProcedureQuery(name = "Rental.UpdateStatus",
-        procedureName = "update_rental_status_by_pk",
+        procedureName = "set_cancel_rental_status_by_pk",
         parameters = {
             @StoredProcedureParameter(name = "p_pk_rental", mode = ParameterMode.IN, type = Long.class)
         }
