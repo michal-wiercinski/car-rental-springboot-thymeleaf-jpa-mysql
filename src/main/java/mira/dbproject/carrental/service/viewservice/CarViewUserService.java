@@ -2,7 +2,6 @@ package mira.dbproject.carrental.service.viewservice;
 
 import java.util.List;
 import java.util.Optional;
-import mira.dbproject.carrental.domain.view.CarView;
 import mira.dbproject.carrental.domain.view.CarViewUser;
 import mira.dbproject.carrental.repository.view.CarViewUserDao;
 import org.springframework.beans.factory.annotation.Autowired;

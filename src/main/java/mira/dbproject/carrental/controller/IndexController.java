@@ -20,7 +20,6 @@ public class IndexController {
 
   @GetMapping("/")
   public String getWelcomePageWithStatus(Model model) {
-    System.out.println(Direction.ASC.toString());
     model.addAttribute("carsForUser", carViewUserService.findAllAvailable());
     return "index";
   }

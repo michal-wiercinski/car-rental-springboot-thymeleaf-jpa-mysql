@@ -1,4 +1,4 @@
-package mira.dbproject.carrental.repository.dao;
+package mira.dbproject.carrental.repository.entity;
 
 import mira.dbproject.carrental.domain.entity.Car;
 import org.springframework.data.jpa.repository.query.Procedure;

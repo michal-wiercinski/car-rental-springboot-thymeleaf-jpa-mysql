@@ -1,7 +1,7 @@
 package mira.dbproject.carrental.service.entityservice;
 
 import mira.dbproject.carrental.domain.entity.Role;
-import mira.dbproject.carrental.repository.dao.RoleDao;
+import mira.dbproject.carrental.repository.entity.RoleDao;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import mira.dbproject.carrental.domain.entity.Rental;
 import mira.dbproject.carrental.domain.entity.RentalDetails;
-import mira.dbproject.carrental.repository.dao.RentalDao;
+import mira.dbproject.carrental.repository.entity.RentalDao;
 import mira.dbproject.carrental.security.service.UserService;
 import org.springframework.stereotype.Service;
 

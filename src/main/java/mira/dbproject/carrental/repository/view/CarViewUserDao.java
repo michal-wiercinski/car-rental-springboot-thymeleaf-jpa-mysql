@@ -10,5 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface CarViewUserDao extends JpaRepository<CarViewUser, Long> {
 
   List<CarViewUser> findCarViewUserByCarStatusIsLike(String status);
+
   List<CarViewUser> findCarViewUserByCarStatusIsLike(String status, Sort sort);
 }
